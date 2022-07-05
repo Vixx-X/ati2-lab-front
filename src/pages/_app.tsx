@@ -1,4 +1,11 @@
 import type { AppProps } from 'next/app';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 import '@styles/globals.css';
 
@@ -19,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AuthContextProvider>
         <UserContextProvider>
           <AnimatePresence>
-            <Component {...pageProps} />
+            <ThemeProvider theme={darkTheme}>
+              <Component {...pageProps} />
+            </ThemeProvider>
           </AnimatePresence>
         </UserContextProvider>
       </AuthContextProvider>
