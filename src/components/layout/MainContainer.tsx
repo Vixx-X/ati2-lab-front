@@ -24,8 +24,21 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Container } from '@mui/material';
+import { SERVER_URLS } from '@config';
+import BusinessIcon from '@mui/icons-material/Business';
+import GroupIcon from '@mui/icons-material/Group';
+import BadgeIcon from '@mui/icons-material/Badge';
+import Link from 'next/link';
+import HomeIcon from '@mui/icons-material/Home';
+import HandymanIcon from '@mui/icons-material/Handyman';
+import LanguageSelect from './LanguageSelect';
+import { ENTITYS } from '@components/data/Entitys';
+
+const { URL_BUSINESS, URL_CLIENTS, URL_EMPLOYEES, 
+        URL_PROVIDERS, URL_HOME } = SERVER_URLS;
 
 const drawerWidth = 240;
+
 
 export default function MainContainer({children} : any) {
   return (
@@ -41,20 +54,7 @@ export default function MainContainer({children} : any) {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <LanguageSelect />
             <IconButton
               size="large"
               edge="end"
@@ -71,6 +71,7 @@ export default function MainContainer({children} : any) {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
+          bgColor: '#003366',
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
@@ -82,37 +83,27 @@ export default function MainContainer({children} : any) {
         <Toolbar />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+          {ENTITYS.map(({name, icon, link}, index) => (
+            <Link href={link}>
+              <ListItem key={name} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText sx={{textTransform: "capitalize"}} primary={name} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-        <Box display="flex" alignItems="center" sx={{height: "calc(100vh - 64px)"}}>
+        <Box display="flex" alignItems="center" sx={{height: "calc(100vh - 64px)", bgColor: '#185583'}}>
           <Container maxWidth="lg">
             {children}
           </Container>

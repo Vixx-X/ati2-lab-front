@@ -9,22 +9,34 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
 import { Container } from '@mui/material';
+import Link from 'next/link';
 
 
-export default function MediaCard({name, img, color, description} : any) {
+const styles = {
+  height: 200,
+  '& .MuiSvgIcon-root': {
+    width: '100%',
+    height: '100%',
+  },
+}
+
+
+export default function MediaCard({ name, icon, color, description, link }: any) {
   return (
-    <Card>
-      <Box display="flex" justifyContent="center" sx={{height: 200}}>
-        <img src={img} alt={name} style={{height: "100%"}} />
-      </Box>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div" sx={{textTransform: "capitalize"}}>
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Link href={link}>
+      <Card sx={{ bgcolor: color, cursor: "pointer" }}>
+        <Box display="flex" justifyContent="center" sx={styles}>
+          {icon}
+        </Box>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div" sx={{ textTransform: "capitalize" }}>
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
