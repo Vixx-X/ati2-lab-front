@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
-
+import { FlagSelector } from '@components/forms/FlagSelector';
 import MainContainer from '@components/layout/MainContainer';
-
 import MiTable from '../../components/table/MiTable';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import Button from '@components/layout/Button';
@@ -18,6 +17,9 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchBar from '../../components/layout/SearchBar'
 import { Box } from '@mui/system';
 import Modal from '@components/layout/modals/GeneralModal';
+
+import SearchBar from '../../components/layout/SearchBar';
+import MiTable from '../../components/table/MiTable';
 
 const businessData = [
   {
@@ -73,6 +75,9 @@ const BusinessButton = ({ onclick }: any) => {
 
 const Business: NextPage = () => {
 
+const handleSelectFlag = (e:any) =>{
+    console.log("Se selecciono la bandera de:", e);
+  }
 
   const [open, setOpen] = useState(false);
 
@@ -382,6 +387,9 @@ const Business: NextPage = () => {
           </>
         </Form>
       </Modal>
+<FlagSelector
+        onSelect={handleSelectFlag}
+      ></FlagSelector>
       <MiTable rows={businessData}></MiTable>
     </MainContainer >
   );
