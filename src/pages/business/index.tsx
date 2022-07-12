@@ -4,7 +4,6 @@ import MainContainer from '@components/layout/MainContainer';
 
 import MiTable from '../../components/table/MiTable';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
-import IconButton from '@mui/material/IconButton';
 import Button from '@components/layout/Button';
 import FormDialog from '@components/layout/modals/GeneralModal';
 import { useState } from 'react';
@@ -12,11 +11,13 @@ import { FormikValues } from 'formik';
 import Form from '@components/forms/Form';
 import { Field } from 'formik';
 import ErrorMsg from '@components/forms/ErrorMsg';
-import PassField from '@components/forms/PassField';
 import Loader from '@components/Loader';
 import { SOCIAL } from '@components/data/SocialNetworks';
 import Select from '@components/forms/Select';
 import AddIcon from '@mui/icons-material/Add';
+import SearchBar from '../../components/layout/SearchBar'
+import { Box } from '@mui/system';
+import Modal from '@components/layout/modals/GeneralModal';
 
 const businessData = [
   {
@@ -104,8 +105,11 @@ const Business: NextPage = () => {
 
   return (
     <MainContainer>
-      <FormDialog 
-        button={<BusinessButton onclick={handleClickOpen} />}
+      <Box display="flex" justifyContent="space-between" className="my-8">  
+        <BusinessButton onclick={handleClickOpen} />
+        <SearchBar></SearchBar>
+      </Box>  
+      <Modal
         open={open}
         handleClose={handleClose}
         CancelButton={""}
@@ -377,7 +381,7 @@ const Business: NextPage = () => {
             {loading && <Loader />}
           </>
         </Form>
-      </FormDialog>
+      </Modal>
       <MiTable rows={businessData}></MiTable>
     </MainContainer >
   );

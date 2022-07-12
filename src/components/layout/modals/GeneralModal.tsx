@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-export default function Modal({ button, open, handleClose, CancelButton, AcceptButton, children }: any) {
+export default function Modal({open, handleClose, CancelButton, AcceptButton, children }: any) {
 
     const styles = {
         '& .MuiPaper-root': {
@@ -18,7 +18,6 @@ export default function Modal({ button, open, handleClose, CancelButton, AcceptB
 
     return (
         <div>
-            {button}
             <Dialog open={open} onClose={handleClose} sx={styles}>
                 <DialogTitle>Subscribe</DialogTitle>
                 <DialogContent>
