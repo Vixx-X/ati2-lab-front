@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
-
+import { FlagSelector } from '@components/forms/FlagSelector';
 import MainContainer from '@components/layout/MainContainer';
 
-import MiTable from '../../components/table/MiTable';
-import SearchBar from '../../components/layout/SearchBar'
 import { Box } from '@mui/system';
+
+import SearchBar from '../../components/layout/SearchBar';
+import MiTable from '../../components/table/MiTable';
 
 const businessData = [
   {
@@ -49,11 +50,19 @@ const businessData = [
 ];
 
 const Business: NextPage = () => {
+
+  const handleSelectFlag = (e:any) =>{
+    console.log("Se selecciono la bandera de:", e);
+  }
+
   return (
     <MainContainer>
-    <Box sx={{display:'flex', justifyContent:'flex-end'}}>  
-      <SearchBar></SearchBar>
-    </Box>  
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <SearchBar></SearchBar>
+      </Box>
+      <FlagSelector
+        onSelect={handleSelectFlag}
+      ></FlagSelector>
       <MiTable rows={businessData}></MiTable>
     </MainContainer>
   );
