@@ -34,28 +34,17 @@ export default function CustomizedInputBase() {
   };
 
   return (
-    <Form initialValues={initValues} onSubmit={handleSubmit}>
-      <Paper
-        elevation={1}
-        sx={{
-          p: '2px 4px',
-          display: 'flex',
-          alignItems: 'center',
-          borderRadius: '0.5em',
-          marginBottom: '1em',
-          padding: '.75em',
-        }}
-      >
-        <FField name="search" onChange={handleChange} style={{
-          color: 'black',
-          padding :'.5em',
-          borderRadius:'.25em'
-        }}>
+    <Form initialValues={initValues} onSubmit={handleSubmit} >
+        <Box display="flex" sx={{color: 'black',
+          borderRadius:'.30em',
+          background: 'rgba(255, 255, 255, 0.15)'}}>
+        <FField name="search" onChange={handleChange} placeholder="Search..." 
+                style={{background: 'transparent', color: '#ffffff', paddingLeft: '1.5em'}}>
         </FField>
-        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+        <IconButton type="submit" sx={{ p: '10px', }} aria-label="search">
           <SearchIcon />
         </IconButton>
-      </Paper>
+        </Box>
     </Form>
   );
 }
