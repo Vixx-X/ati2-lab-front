@@ -18,9 +18,6 @@ import SearchBar from '../../components/layout/SearchBar'
 import { Box } from '@mui/system';
 import Modal from '@components/layout/modals/GeneralModal';
 
-import SearchBar from '../../components/layout/SearchBar';
-import MiTable from '../../components/table/MiTable';
-
 const businessData = [
   {
     id: 1,
