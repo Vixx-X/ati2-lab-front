@@ -11,40 +11,47 @@ export default function MiTable({rows} : any) {
   console.log(rows)
   const headTable = Object.keys(rows[0]); 
     return (
-        <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {/* <TableCell>Dessert (100g serving)</TableCell> */}
+      <Paper
+      elevation={1}
+      sx={{
+          padding: '.75em',
+      }}
+      >
+        <TableContainer>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {/* <TableCell>Dessert (100g serving)</TableCell> */}
+                {
+                  headTable.map((item,index)=>(
+                    <TableCell key={index}>
+                      {
+                        item[0].toUpperCase() + item.substring(1)
+                      }
+                    </TableCell>
+                  ))
+                }
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {
-                headTable.map((item,index)=>(
-                  <TableCell key={index}>
+                rows.map((row:any,index:number)=>(
+                  <TableRow
+                    key={index}
+                  >
                     {
-                      item[0].toUpperCase() + item.substring(1)
+                      headTable.map((prop,index)=>(
+                        <TableCell key={index} >
+                          {row[prop]}
+                        </TableCell>
+                      ))
                     }
-                  </TableCell>
+                  </TableRow>
                 ))
               }
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              rows.map((row:any,index:number)=>(
-                <TableRow
-                  key={index}
-                >
-                  {
-                    headTable.map((prop,index)=>(
-                      <TableCell key={index} >
-                        {row[prop]}
-                      </TableCell>
-                    ))
-                  }
-                </TableRow>
-              ))
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
     );
   }

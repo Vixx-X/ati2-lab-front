@@ -3,6 +3,8 @@ import type { NextPage } from 'next';
 import MainContainer from '@components/layout/MainContainer';
 
 import MiTable from '../../components/table/MiTable';
+import SearchBar from '../../components/layout/SearchBar'
+import { Box } from '@mui/system';
 
 const businessData = [
   {
@@ -49,6 +51,9 @@ const businessData = [
 const Business: NextPage = () => {
   return (
     <MainContainer>
+    <Box sx={{display:'flex', justifyContent:'flex-end'}}>  
+      <SearchBar></SearchBar>
+    </Box>  
       <MiTable rows={businessData}></MiTable>
     </MainContainer>
   );
