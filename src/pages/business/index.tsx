@@ -13,6 +13,9 @@ import MainContainer from '@components/layout/MainContainer';
 import FormDialog from '@components/layout/modals/GeneralModal';
 import Modal from '@components/layout/modals/GeneralModal';
 
+import SearchBar from '@components/layout/SearchBar'
+import MiTable from '@components/table/MiTable'
+
 import AddIcon from '@mui/icons-material/Add';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
