@@ -1,24 +1,18 @@
-import type { NextPage } from 'next';
-import { FlagSelector } from '@components/forms/FlagSelector';
-import MainContainer from '@components/layout/MainContainer';
-import MiTable from '../../components/table/MiTable';
-import DomainAddIcon from '@mui/icons-material/DomainAdd';
-import Button from '@components/layout/Button';
-import FormDialog from '@components/layout/modals/GeneralModal';
 import { useState } from 'react';
-import { FormikValues } from 'formik';
-import Form from '@components/forms/Form';
-import { Field } from 'formik';
-import ErrorMsg from '@components/forms/ErrorMsg';
-import Loader from '@components/Loader';
-import { SOCIAL } from '@components/data/SocialNetworks';
-import Select from '@components/forms/Select';
-import AddIcon from '@mui/icons-material/Add';
-import SearchBar from '../../components/layout/SearchBar'
-import { Box } from '@mui/system';
-import Modal from '@components/layout/modals/GeneralModal';
+
+import type { NextPage } from 'next';
+
+import { FlagSelector } from '@components/forms/FlagSelector';
+import Button from '@components/layout/Button';
+import MainContainer from '@components/layout/MainContainer';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import { postBusiness } from '@fetches/user';
+
+import DomainAddIcon from '@mui/icons-material/DomainAdd';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import MiTable from '@components/table/MiTable';
+import SearchBar from '@components/layout/SearchBar';
 
 const businessData = [
   {
@@ -63,14 +57,12 @@ const businessData = [
 ];
 
 const BusinessButton = ({ onclick }: any) => {
-
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
       Añadir Empresa
     </Button>
-  )
-}
-
+  );
+};
 
 const Business: NextPage = () => {
 
@@ -158,7 +150,7 @@ const Business: NextPage = () => {
     <MainContainer>
       <Box display="flex" justifyContent="space-between" className="my-8">
         <BusinessButton onclick={handleClickOpen} />
-        <SearchBar></SearchBar>
+        <SearchBar />
       </Box>
       <CreateForm
         open={open}
@@ -169,7 +161,7 @@ const Business: NextPage = () => {
         onSelect={handleSelectFlag}
       ></FlagSelector>
       <MiTable rows={businessData}></MiTable>
-    </MainContainer >
+    </MainContainer>
   );
 };
 

@@ -19,6 +19,8 @@ export const API_URLS = {
   
   //Bussiness
   URL_BUSINESSES: `/businesses/`,
-  URL_BUSINESS: `/businesses/[id]`
+  URL_BUSINESS: `/businesses/[id]`,
 
+  // Country
+  URL_COUNTRY:`/countries/`,
 };
