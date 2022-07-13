@@ -7,7 +7,6 @@ import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import { postBusiness } from '@fetches/user';
-import AddIcon from '@mui/icons-material/Add';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
@@ -142,24 +141,24 @@ const Business: NextPage = () => {
       // setLoading(false);
     }
   };
-
-
-
-
   return (
     <MainContainer>
       <Box display="flex" justifyContent="space-between" className="my-8">
         <BusinessButton onclick={handleClickOpen} />
-        <SearchBar />
+        <Box className="w-1/2" display="flex" alignItems="center" justifyContent="space-between">
+          <SearchBar/>
+          <Box className="w-1/2">  
+            <FlagSelector
+              onSelect={handleSelectFlag}
+            ></FlagSelector>
+          </Box>
+        </Box>
       </Box>
       <CreateForm
         open={open}
         handleClose={handleClose}
         handleSubmit={handleSubmitCreate}
         initValues={initValues} />
-      <FlagSelector
-        onSelect={handleSelectFlag}
-      ></FlagSelector>
       <MiTable rows={businessData}></MiTable>
     </MainContainer>
   );

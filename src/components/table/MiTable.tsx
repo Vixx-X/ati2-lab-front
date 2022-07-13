@@ -12,6 +12,15 @@ import TableRow from '@mui/material/TableRow';
 
 export default function MiTable({ rows }: any) {
   const headTable = Object.keys(rows[0]);
+
+  const handleEditRow = (id:any) => {
+    console.log("Quiero editar:", id);
+  }
+
+  const handleDeleteRow = (id:any) => {
+    console.log("Quiero borrar:", id);
+  }
+
   console.log(rows)
   return (
     <Paper
@@ -24,7 +33,7 @@ export default function MiTable({ rows }: any) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{minWidth: 120}} key={'buttons'}>Acciones</TableCell>
+              <TableCell sx={{minWidth: 120, textAling:"center"}} key={'buttons'}>Acciones</TableCell>
               {headTable.map((item, index) => (
                 <TableCell key={index}>
                   {item[0].toUpperCase() + item.substring(1)}
@@ -41,6 +50,7 @@ export default function MiTable({ rows }: any) {
                       color="primary"
                       aria-label="upload picture"
                       component="label"
+                      onClick={()=>{handleEditRow(row.id)}}
                     >
                       <EditIcon />
                     </IconButton>
@@ -48,6 +58,7 @@ export default function MiTable({ rows }: any) {
                       color="primary"
                       aria-label="upload picture"
                       component="label"
+                      onClick={()=>{handleDeleteRow(row.id)}}
                     >
                       <DeleteIcon />
                     </IconButton>
