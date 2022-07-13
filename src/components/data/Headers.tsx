@@ -1,0 +1,18 @@
+export const BusinessHeaders = [
+    { key: 'id', value: 'id' },
+    { key: 'name', value: 'nombre' },
+    { key: 'tax_id', value: 'identificación tributaria' },
+    { key: 'email', value: 'email' },
+    { key: 'phone_number', value: 'teléfono' },
+    { key: 'country', value: 'país' },
+    { key: 'city', value: 'ciudad' },
+    { key: 'line1', value: 'dirección básica', styles: { minWidth: 150 } },
+    { key: 'line2', value: 'dirección (más detalles)', styles: { minWidth: 150 } },
+    { key: 'website', value: 'sitio web', styles: { minWidth: 150 } },
+    { key: 'whastapp', value: 'whatsapp' },
+    { key: 'socials', value: 'redes sociales', styles: { minWidth: 150 } },
+    { key: 'services', value: 'servicios solicitados', styles: { minWidth: 150 } },
+    { key: 'offered_services', value: 'servicios que ofrecen', styles: { minWidth: 150 } },
+    { key: 'fav_course', value: 'Cursos de interés', styles: { minWidth: 150 } },
+    { key: 'notification_frecuency', value: 'Frecuencia de información', styles: { minWidth: 150 } },
+]

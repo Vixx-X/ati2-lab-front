@@ -25,10 +25,8 @@ export const FlagSelector: React.FC<FlagSelectorInterface> = ({
   const [selected, setSelected] = useState('');
 
   const { data: country } = useSWR('country', getCountry);
-  console.log('country: ', country);
 
   const handleChange = (e: any) => {
-    console.log('Event.target:', e.target);
     setSelected(e.target.value);
     onSelect(e.target.value);
   };

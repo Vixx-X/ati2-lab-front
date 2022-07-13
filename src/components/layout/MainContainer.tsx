@@ -69,7 +69,7 @@ export default function MainContainer({ children }: any) {
         <Divider />
         <List>
           {ENTITYS.map(({ name, icon, link }, index) => (
-            <Link href={link} key={name}>
+            <Link href={link} passHref key={name}>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>

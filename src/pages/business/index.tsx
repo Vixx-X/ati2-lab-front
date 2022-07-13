@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { NextPage } from 'next';
 
@@ -6,54 +6,19 @@ import { FlagSelector } from '@components/forms/FlagSelector';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import { CreateForm } from '@components/pages/business/CreateForm';
-import { postBusiness } from '@fetches/user';
+import { deleteBusiness, getBusiness, getBusinesses, postBusiness } from '@fetches/business';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import MiTable from '@components/table/MiTable';
 import SearchBar from '@components/layout/SearchBar';
-
-const businessData = [
-  {
-    id: 1,
-    nombre: 'Edu',
-    telefono: '123-123123',
-    servicios: 'Hombre de compañia',
-    curso: 'baile exotico',
-    frencuencia: 'mucha',
-    ciudad: 'caracas',
-    pais: 'venezuela',
-    numero_tributario: '123',
-    direccion: 'por ahi al lado de la mata de mango',
-    web: 'www.eduguapo.com',
-  },
-  {
-    id: 2,
-    nombre: 'Gabriela Valentina',
-    telefono: '123-123123',
-    servicios: 'Estudiante',
-    curso: 'estudiante',
-    frencuencia: 'mucha',
-    ciudad: 'caracas',
-    pais: 'venezuela',
-    numero_tributario: '123',
-    direccion: 'por ahi al lado de la mata de mango',
-    web: 'www.gabisegundonombrevalentina.com',
-  },
-  {
-    id: 3,
-    nombre: 'Edu',
-    telefono: '123-123123',
-    servicios: 'Hombre de compañia',
-    curso: 'baile exotico',
-    frencuencia: 'mucha',
-    ciudad: 'caracas',
-    pais: 'venezuela',
-    numero_tributario: '123',
-    direccion: 'por ahi al lado de la mata de mango',
-    web: 'www.eduguapo.com',
-  },
-];
+import { AnyPointerEvent } from 'framer-motion/types/gestures/PanSession';
+import useSWR from 'swr';
+import Loader from '@components/Loader';
+import { BusinessHeaders } from '@components/data/Headers';
+import { ENTITYS } from '@components/data/Entitys';
+import Card from '@components/Card';
+import Alert from '@components/layout/Alert';
 
 const BusinessButton = ({ onclick }: any) => {
   return (
@@ -63,48 +28,107 @@ const BusinessButton = ({ onclick }: any) => {
   );
 };
 
+const flattenJSON = (obj: any = {}, res: any = {}) => {
+  for (const key in obj) {
+    if (typeof obj[key] !== 'object') {
+      res[key] = obj[key];
+    } else if (key == 'socials') {
+      let a = obj[key].map(function ({ name, value }: any) {
+        return `${name}: ${value}`;
+      }).join("\n");
+      res[key] = a;
+    } else {
+      flattenJSON(obj[key], res);
+    }
+  }
+  return res;
+};
+
+
+const initValues = {
+  client: {
+    phone_number: '',
+    fav_course: '',
+    notification_frecuency: '',
+    offered_services: '',
+    whatsapp: '',
+    // line1: '',
+    // line2: '',
+    // city: '',
+    // state: '',
+    // country: '',
+    // socials: []
+  },
+  name: '',
+  email: '',
+  services: '',
+  task_id: '',
+  // website: '',
+};
+// as BusinessForm
+
 const Business: NextPage = () => {
 
-  const handleSelectFlag = (e: any) => {
-    console.log("Se selecciono la bandera de:", e);
+  const [businessData, setBusinessData] = useState()
+
+  const [openCreate, setOpenCreate] = useState(false);
+
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const [editable, setEditable] = useState(false);
+
+  const [initialValues, setInitial] = useState(initValues);
+
+  const [currentId, setId] = useState();
+
+  const handleClickOpenCreate = () => {
+    setOpenCreate(true);
+  };
+
+  const handleCloseCreate = () => {
+    setOpenCreate(false);
+    setEditable(false);
+    setInitial(initValues)
+  };
+
+  const handleClickOpenDelete = () => {
+    setOpenDelete(true);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+
+  const handleEditRow = (id: any) => {
+    setId(id)
+    setEditable(true);
+    // get de la variable y setear initial values
+    handleClickOpenCreate()
   }
 
-  const [open, setOpen] = useState(false);
+  const handleDeleteRow = (id: any) => {
+    console.log("He aqui el id", id)
+    setId(id)
+    handleClickOpenDelete()
+  }
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  //   const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const initValues = {
-    client : {
-      phone_number: '',
-      fav_course: '',
-      notification_frecuency: '',
-      offered_services: '',
-      whatsapp: '',
-      // line1: '',
-      // line2: '',
-      // city: '',
-      // state: '',
-      // country: '',
-      // socials: []
-    },
-    name: '',
-    email: '',
-    services: '',
-    task_id: '',
-    // website: '',
-  };
-  // as BusinessForm
+  const { data: business } = useSWR('business', getBusinesses);
+
+  useEffect(() => {
+    if (business) {
+      console.log('111', business);
+      const businessFlaten = business.results.map(function (element: any) {
+        return flattenJSON(element);
+      });
+      console.log("holi", businessFlaten)
+      setBusinessData(businessFlaten)
+    }
+  }, [business]);
 
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
-    console.log("Buenas poliedro de caracas", values)
-    // setLoading(true);
     try {
       await postBusiness({
         "client": {
@@ -136,18 +160,60 @@ const Business: NextPage = () => {
         "website": "https://mui.com/material-ui/api/button/"
       });
       setStatus({});
+      handleCloseCreate();
     } catch (exception: any) {
       setStatus(exception.data);
       // setLoading(false);
     }
   };
+
+  const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
+  }
+
+  const handleSubmitDelete = async () => {
+    try {
+      await deleteBusiness(currentId);
+      // setStatus({});
+      handleCloseDelete();
+    } catch (e) {
+      // setStatus(exception.data);
+      // setLoading(false);
+    }
+  }
+
+  const handleSelectFlag = (e: any) => {
+    console.log("Se selecciono la bandera de:", e);
+  }
+
+  const styles = {
+    '& form': {
+      height: '100%'
+    },
+  }
+
+  const stylesCard = {
+    height: 100,
+    '& .MuiSvgIcon-root': {
+      width: '100%',
+      height: '100%',
+    },
+  };
+
   return (
     <MainContainer>
+      <Box sx={{ maxWidth: 500 }}>
+        <Card name={ENTITYS[1].name}
+          icon={ENTITYS[1].icon}
+          color={ENTITYS[1].color}
+          description={ENTITYS[1].description}
+          link={ENTITYS[1].link}
+          style={stylesCard} />
+      </Box>
       <Box display="flex" justifyContent="space-between" className="my-8">
-        <BusinessButton onclick={handleClickOpen} />
-        <Box className="w-1/2" display="flex" alignItems="center" justifyContent="space-between">
-          <SearchBar/>
-          <Box className="w-1/2">  
+        <BusinessButton onclick={handleClickOpenCreate} />
+        <Box className="w-1/2 gap-x-4" display="flex" alignItems="center" justifyContent="space-between">
+          <SearchBar />
+          <Box className="w-1/2">
             <FlagSelector
               onSelect={handleSelectFlag}
             ></FlagSelector>
@@ -155,11 +221,19 @@ const Business: NextPage = () => {
         </Box>
       </Box>
       <CreateForm
-        open={open}
-        handleClose={handleClose}
-        handleSubmit={handleSubmitCreate}
-        initValues={initValues} />
-      <MiTable rows={businessData}></MiTable>
+        open={openCreate}
+        handleClose={handleCloseCreate}
+        handleSubmit={!editable ? handleSubmitCreate : handleSubmitEdit}
+        initValues={initialValues}
+        edit={editable} />
+      {initialValues && currentId && <Alert open={openDelete}
+        handleClose={handleCloseDelete}
+        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
+      {businessData ? <MiTable rows={businessData}
+        headTable={BusinessHeaders}
+        handleEditRow={handleEditRow}
+        handleDeleteRow={handleDeleteRow}></MiTable>
+        : <Loader />}
     </MainContainer>
   );
 };

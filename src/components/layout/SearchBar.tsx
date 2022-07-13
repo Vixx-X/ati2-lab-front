@@ -34,7 +34,7 @@ export default function SearchBar() {
   };
 
   return (
-    <Form initialValues={initValues} onSubmit={handleSubmit} >
+    <Form initialValues={initValues} onSubmit={handleSubmit}>
         <Box display="flex" sx={{color: 'black',
           borderRadius:'.30em',
           background: 'rgba(255, 255, 255, 0.15)'}}>
