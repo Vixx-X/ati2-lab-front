@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://api.ati2.vittorioadesso.com/';
+export const API_BASE_URL = 'https://api.ati2.vittorioadesso.com';
 export * from './ApiUrls';
 export * from './ServerUrls';
 export * from './Auth';
