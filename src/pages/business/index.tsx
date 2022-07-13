@@ -67,7 +67,7 @@ const businessData = [
 const BusinessButton = ({ onclick }: any) => {
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
-      Añadir Empresa
+      Añade Empresa
     </Button>
   );
 };
