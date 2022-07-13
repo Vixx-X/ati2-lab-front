@@ -26,25 +26,6 @@ export const postRegisterUser = async (data: any) => {
   return resp.data;
 };
 
-export const postBusiness = async (data: any) => {
-  const resp = await fetcher.post(
-    API_URLS.URL_BUSINESSES,
-    data,
-    makeFetchOptions()
-  );
-  await assertApiError(resp);
-  return resp.data;
-};
-
-export const getBusiness = async () => {
-  const resp = await fetcher.get(
-    API_URLS.URL_BUSINESSES,
-    makeFetchOptions()
-  );
-  await assertApiError(resp);
-  return resp.data;
-};
-
 export const postOTPRequest = async (data: any) => {
   const resp = await fetcher.post(
     API_URLS.URL_OTP_REQUEST,

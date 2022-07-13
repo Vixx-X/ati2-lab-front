@@ -6,8 +6,7 @@ import { FlagSelector } from '@components/forms/FlagSelector';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import { CreateForm } from '@components/pages/business/CreateForm';
-import { getBusiness, postBusiness } from '@fetches/user';
-
+import { deleteBusiness, getBusiness, getBusinesses, postBusiness } from '@fetches/business';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
@@ -17,48 +16,9 @@ import { AnyPointerEvent } from 'framer-motion/types/gestures/PanSession';
 import useSWR from 'swr';
 import Loader from '@components/Loader';
 import { BusinessHeaders } from '@components/data/Headers';
-
-const businessDataf = [
-  {
-    id: 1,
-    nombre: 'Edu',
-    telefono: '123-123123',
-    servicios: 'Hombre de compañia',
-    curso: 'baile exotico',
-    frencuencia: 'mucha',
-    ciudad: 'caracas',
-    pais: 'venezuela',
-    numero_tributario: '123',
-    direccion: 'por ahi al lado de la mata de mango',
-    web: 'www.eduguapo.com',
-  },
-  {
-    id: 2,
-    nombre: 'Gabriela Valentina',
-    telefono: '123-123123',
-    servicios: 'Estudiante',
-    curso: 'estudiante',
-    frencuencia: 'mucha',
-    ciudad: 'caracas',
-    pais: 'venezuela',
-    numero_tributario: '123',
-    direccion: 'por ahi al lado de la mata de mango',
-    web: 'www.gabisegundonombrevalentina.com',
-  },
-  {
-    id: 3,
-    nombre: 'Edu',
-    telefono: '123-123123',
-    servicios: 'Hombre de compañia',
-    curso: 'baile exotico',
-    frencuencia: 'mucha',
-    ciudad: 'caracas',
-    pais: 'venezuela',
-    numero_tributario: '123',
-    direccion: 'por ahi al lado de la mata de mango',
-    web: 'www.eduguapo.com',
-  },
-];
+import { ENTITYS } from '@components/data/Entitys';
+import Card from '@components/Card';
+import Alert from '@components/layout/Alert';
 
 const BusinessButton = ({ onclick }: any) => {
   return (
@@ -84,47 +44,78 @@ const flattenJSON = (obj: any = {}, res: any = {}) => {
   return res;
 };
 
+
+const initValues = {
+  client: {
+    phone_number: '',
+    fav_course: '',
+    notification_frecuency: '',
+    offered_services: '',
+    whatsapp: '',
+    // line1: '',
+    // line2: '',
+    // city: '',
+    // state: '',
+    // country: '',
+    // socials: []
+  },
+  name: '',
+  email: '',
+  services: '',
+  task_id: '',
+  // website: '',
+};
+// as BusinessForm
+
 const Business: NextPage = () => {
 
-  const handleSelectFlag = (e: any) => {
-    console.log("Se selecciono la bandera de:", e);
-  }
-
-  const [open, setOpen] = useState(false);
   const [businessData, setBusinessData] = useState()
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const [openCreate, setOpenCreate] = useState(false);
+
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const [editable, setEditable] = useState(false);
+
+  const [initialValues, setInitial] = useState(initValues);
+
+  const [currentId, setId] = useState();
+
+  const handleClickOpenCreate = () => {
+    setOpenCreate(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseCreate = () => {
+    setOpenCreate(false);
+    setEditable(false);
+    setInitial(initValues)
   };
-  const [loading, setLoading] = useState(false);
 
-  const { data: business } = useSWR('business', getBusiness);
-
-  const initValues = {
-    client: {
-      phone_number: '',
-      fav_course: '',
-      notification_frecuency: '',
-      offered_services: '',
-      whatsapp: '',
-      // line1: '',
-      // line2: '',
-      // city: '',
-      // state: '',
-      // country: '',
-      // socials: []
-    },
-    name: '',
-    email: '',
-    services: '',
-    task_id: '',
-    // website: '',
+  const handleClickOpenDelete = () => {
+    setOpenDelete(true);
   };
-  // as BusinessForm
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+
+  const handleEditRow = (id: any) => {
+    setId(id)
+    setEditable(true);
+    // get de la variable y setear initial values
+    handleClickOpenCreate()
+  }
+
+  const handleDeleteRow = (id: any) => {
+    console.log("He aqui el id", id)
+    setId(id)
+    handleClickOpenDelete()
+  }
+
+
+  // const [loading, setLoading] = useState(false);
+
+  const { data: business } = useSWR('business', getBusinesses);
 
   useEffect(() => {
     if (business) {
@@ -134,12 +125,10 @@ const Business: NextPage = () => {
       });
       console.log("holi", businessFlaten)
       setBusinessData(businessFlaten)
-      // setLoading(true)
     }
   }, [business]);
 
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
-    // setLoading(true);
     try {
       await postBusiness({
         "client": {
@@ -171,32 +160,79 @@ const Business: NextPage = () => {
         "website": "https://mui.com/material-ui/api/button/"
       });
       setStatus({});
+      handleCloseCreate();
     } catch (exception: any) {
       setStatus(exception.data);
       // setLoading(false);
     }
   };
 
-  const headers = [{},
-  ]
+  const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
+  }
 
+  const handleSubmitDelete = async () => {
+    try {
+      await deleteBusiness(currentId);
+      // setStatus({});
+      handleCloseDelete();
+    } catch (e) {
+      // setStatus(exception.data);
+      // setLoading(false);
+    }
+  }
 
+  const handleSelectFlag = (e: any) => {
+    console.log("Se selecciono la bandera de:", e);
+  }
+
+  const styles = {
+    '& form': {
+      height: '100%'
+    },
+  }
+
+  const stylesCard = {
+    height: 100,
+    '& .MuiSvgIcon-root': {
+      width: '100%',
+      height: '100%',
+    },
+  };
 
   return (
     <MainContainer>
+      <Box sx={{ maxWidth: 500 }}>
+        <Card name={ENTITYS[1].name}
+          icon={ENTITYS[1].icon}
+          color={ENTITYS[1].color}
+          description={ENTITYS[1].description}
+          link={ENTITYS[1].link}
+          style={stylesCard} />
+      </Box>
       <Box display="flex" justifyContent="space-between" className="my-8">
-        <BusinessButton onclick={handleClickOpen} />
-        <SearchBar />
+        <BusinessButton onclick={handleClickOpenCreate} />
+        <Box className="w-1/2 gap-x-4" display="flex" alignItems="center" justifyContent="space-between">
+          <SearchBar />
+          <Box className="w-1/2">
+            <FlagSelector
+              onSelect={handleSelectFlag}
+            ></FlagSelector>
+          </Box>
+        </Box>
       </Box>
       <CreateForm
-        open={open}
-        handleClose={handleClose}
-        handleSubmit={handleSubmitCreate}
-        initValues={initValues} />
-      <FlagSelector
-        onSelect={handleSelectFlag}
-      ></FlagSelector>
-      {businessData ? <MiTable rows={businessData} headTable={BusinessHeaders}></MiTable>
+        open={openCreate}
+        handleClose={handleCloseCreate}
+        handleSubmit={!editable ? handleSubmitCreate : handleSubmitEdit}
+        initValues={initialValues}
+        edit={editable} />
+      {initialValues && currentId && <Alert open={openDelete}
+        handleClose={handleCloseDelete}
+        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
+      {businessData ? <MiTable rows={businessData}
+        headTable={BusinessHeaders}
+        handleEditRow={handleEditRow}
+        handleDeleteRow={handleDeleteRow}></MiTable>
         : <Loader />}
     </MainContainer>
   );

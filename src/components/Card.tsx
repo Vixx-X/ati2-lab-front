@@ -21,11 +21,12 @@ export default function MediaCard({
   color,
   description,
   link,
+  style=styles
 }: any) {
   return (
     <Link href={link} passHref>
       <Card sx={{ bgcolor: color, cursor: 'pointer' }}>
-        <Box display="flex" justifyContent="center" sx={styles}>
+        <Box display="flex" justifyContent="center" sx={style}>
           {icon}
         </Box>
         <CardContent>

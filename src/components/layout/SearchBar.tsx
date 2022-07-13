@@ -24,7 +24,7 @@ const initValues = {
   searchWord: '',
 } as SearchForm;
 
-export default function CustomizedInputBase() {
+export default function SearchBar() {
   const handleChange = (event:any) => {
     console.log('cambie este peo',event);
   };
@@ -34,7 +34,7 @@ export default function CustomizedInputBase() {
   };
 
   return (
-    <Form initialValues={initValues} onSubmit={handleSubmit} >
+    <Form initialValues={initValues} onSubmit={handleSubmit}>
         <Box display="flex" sx={{color: 'black',
           borderRadius:'.30em',
           background: 'rgba(255, 255, 255, 0.15)'}}>
