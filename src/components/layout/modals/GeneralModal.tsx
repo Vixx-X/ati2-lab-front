@@ -29,7 +29,7 @@ export default function Modal({open, handleClose, CancelButton, AcceptButton, ch
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Subscribe</Button>
+                    <Button onClick={handleClose} type="submit">Subscribe</Button>
                 </DialogActions>
             </Dialog>
         </div>
