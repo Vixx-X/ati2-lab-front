@@ -3,7 +3,7 @@ import authStore from '@stores/AuthStore';
 import userStore from '@stores/UserStore';
 import MainContainer from '@components/layout/MainContainer';
 import Grid from '@mui/material/Grid';
-import Card from '@components/card';
+import Card from '@components/Card';
 import BusinessImage from '@public/assets/empresa.png';
 import { ENTITYS } from '@components/data/Entitys';
 

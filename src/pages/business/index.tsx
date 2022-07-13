@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { NextPage } from 'next';
 
@@ -6,15 +6,19 @@ import { FlagSelector } from '@components/forms/FlagSelector';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import { CreateForm } from '@components/pages/business/CreateForm';
-import { postBusiness } from '@fetches/user';
+import { getBusiness, postBusiness } from '@fetches/user';
 
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import MiTable from '@components/table/MiTable';
 import SearchBar from '@components/layout/SearchBar';
+import { AnyPointerEvent } from 'framer-motion/types/gestures/PanSession';
+import useSWR from 'swr';
+import Loader from '@components/Loader';
+import { BusinessHeaders } from '@components/data/Headers';
 
-const businessData = [
+const businessDataf = [
   {
     id: 1,
     nombre: 'Edu',
@@ -64,6 +68,22 @@ const BusinessButton = ({ onclick }: any) => {
   );
 };
 
+const flattenJSON = (obj: any = {}, res: any = {}) => {
+  for (const key in obj) {
+    if (typeof obj[key] !== 'object') {
+      res[key] = obj[key];
+    } else if (key == 'socials') {
+      let a = obj[key].map(function ({ name, value }: any) {
+        return `${name}: ${value}`;
+      }).join("\n");
+      res[key] = a;
+    } else {
+      flattenJSON(obj[key], res);
+    }
+  }
+  return res;
+};
+
 const Business: NextPage = () => {
 
   const handleSelectFlag = (e: any) => {
@@ -71,6 +91,7 @@ const Business: NextPage = () => {
   }
 
   const [open, setOpen] = useState(false);
+  const [businessData, setBusinessData] = useState()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -79,10 +100,12 @@ const Business: NextPage = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  //   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const { data: business } = useSWR('business', getBusiness);
 
   const initValues = {
-    client : {
+    client: {
       phone_number: '',
       fav_course: '',
       notification_frecuency: '',
@@ -103,8 +126,19 @@ const Business: NextPage = () => {
   };
   // as BusinessForm
 
+  useEffect(() => {
+    if (business) {
+      console.log('111', business);
+      const businessFlaten = business.results.map(function (element: any) {
+        return flattenJSON(element);
+      });
+      console.log("holi", businessFlaten)
+      setBusinessData(businessFlaten)
+      // setLoading(true)
+    }
+  }, [business]);
+
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
-    console.log("Buenas poliedro de caracas", values)
     // setLoading(true);
     try {
       await postBusiness({
@@ -143,6 +177,8 @@ const Business: NextPage = () => {
     }
   };
 
+  const headers = [{},
+  ]
 
 
 
@@ -160,7 +196,8 @@ const Business: NextPage = () => {
       <FlagSelector
         onSelect={handleSelectFlag}
       ></FlagSelector>
-      <MiTable rows={businessData}></MiTable>
+      {businessData ? <MiTable rows={businessData} headTable={BusinessHeaders}></MiTable>
+        : <Loader />}
     </MainContainer>
   );
 };

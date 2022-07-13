@@ -7,51 +7,49 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-export default function MiTable({rows} : any) {
-  console.log(rows)
-  const headTable = Object.keys(rows[0]); 
-    return (
-      <Paper
+export default function MiTable({ rows, headTable }: any) {
+  return (
+    <Paper
       elevation={1}
       sx={{
-          padding: '.75em',
+        padding: '.75em',
       }}
-      >
-        <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                {/* <TableCell>Dessert (100g serving)</TableCell> */}
-                {
-                  headTable.map((item,index)=>(
-                    <TableCell key={index}>
-                      {
-                        item[0].toUpperCase() + item.substring(1)
-                      }
-                    </TableCell>
-                  ))
-                }
-              </TableRow>
-            </TableHead>
-            <TableBody>
+    >
+      <TableContainer>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              {/* <TableCell>Dessert (100g serving)</TableCell> */}
               {
-                rows.map((row:any,index:number)=>(
-                  <TableRow
-                    key={index}
-                  >
+                headTable.map(({ value, styles }: any, index: number) => (
+                  <TableCell key={index} sx={styles}>
                     {
-                      headTable.map((prop,index)=>(
-                        <TableCell key={index} >
-                          {row[prop]}
-                        </TableCell>
-                      ))
+                      value[0].toUpperCase() + value.substring(1)
                     }
-                  </TableRow>
+                  </TableCell>
                 ))
               }
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
-    );
-  }
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              rows.map((row: any, index: number) => (
+                <TableRow
+                  key={index}
+                >
+                  {
+                    headTable.map(({ key }: any, index: number) => (
+                      <TableCell key={index} >
+                        {row[key]}
+                      </TableCell>
+                    ))
+                  }
+                </TableRow>
+              ))
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+  );
+}

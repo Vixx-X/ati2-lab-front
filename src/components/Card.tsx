@@ -2,15 +2,9 @@ import * as React from 'react';
 
 import Link from 'next/link';
 
-import { Container } from '@mui/material';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { experimentalStyled as styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 
 const styles = {
@@ -29,7 +23,7 @@ export default function MediaCard({
   link,
 }: any) {
   return (
-    <Link href={link}>
+    <Link href={link} passHref>
       <Card sx={{ bgcolor: color, cursor: 'pointer' }}>
         <Box display="flex" justifyContent="center" sx={styles}>
           {icon}
