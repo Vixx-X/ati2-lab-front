@@ -24,7 +24,7 @@ const initValues = {
   searchWord: '',
 } as SearchForm;
 
-export default function CustomizedInputBase() {
+export default function SearchBar() {
   const handleChange = (event:any) => {
     console.log('cambie este peo',event);
   };
