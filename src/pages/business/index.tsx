@@ -1,22 +1,23 @@
-import type { NextPage } from 'next';
-import { FlagSelector } from '@components/forms/FlagSelector';
-import MainContainer from '@components/layout/MainContainer';
-import MiTable from '../../components/table/MiTable';
-import DomainAddIcon from '@mui/icons-material/DomainAdd';
-import Button from '@components/layout/Button';
-import FormDialog from '@components/layout/modals/GeneralModal';
 import { useState } from 'react';
-import { FormikValues } from 'formik';
-import Form from '@components/forms/Form';
-import { Field } from 'formik';
-import ErrorMsg from '@components/forms/ErrorMsg';
+
+import type { NextPage } from 'next';
+
 import Loader from '@components/Loader';
 import { SOCIAL } from '@components/data/SocialNetworks';
+import ErrorMsg from '@components/forms/ErrorMsg';
+import { FlagSelector } from '@components/forms/FlagSelector';
+import Form from '@components/forms/Form';
 import Select from '@components/forms/Select';
-import AddIcon from '@mui/icons-material/Add';
-import SearchBar from '../../components/layout/SearchBar'
-import { Box } from '@mui/system';
+import Button from '@components/layout/Button';
+import MainContainer from '@components/layout/MainContainer';
+import FormDialog from '@components/layout/modals/GeneralModal';
 import Modal from '@components/layout/modals/GeneralModal';
+
+import AddIcon from '@mui/icons-material/Add';
+import DomainAddIcon from '@mui/icons-material/DomainAdd';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import { Field } from 'formik';
 
 import SearchBar from '../../components/layout/SearchBar';
 import MiTable from '../../components/table/MiTable';
@@ -64,20 +65,17 @@ const businessData = [
 ];
 
 const BusinessButton = ({ onclick }: any) => {
-
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
       Añadir Empresa
     </Button>
-  )
-}
-
+  );
+};
 
 const Business: NextPage = () => {
-
-const handleSelectFlag = (e:any) =>{
-    console.log("Se selecciono la bandera de:", e);
-  }
+  const handleSelectFlag = (e: any) => {
+    console.log('Se selecciono la bandera de:', e);
+  };
 
   const [open, setOpen] = useState(false);
 
@@ -107,26 +105,37 @@ const handleSelectFlag = (e:any) =>{
     }
   };
 
-
   return (
     <MainContainer>
-      <Box display="flex" justifyContent="space-between" className="my-8">  
+      <Box
+        display="flex"
+        alignItems='center'
+        justifyContent="space-between"
+        className="my-8"
+      >
         <BusinessButton onclick={handleClickOpen} />
-        <SearchBar></SearchBar>
-      </Box>  
+        <Box
+          className="w-1/2"
+          display="flex"
+          alignItems='center'
+          justifyContent="space-between"
+        >
+          <SearchBar />
+          <Box className="w-1/2"><FlagSelector onSelect={handleSelectFlag} /></Box>
+        </Box>
+      </Box>
       <Modal
         open={open}
         handleClose={handleClose}
-        CancelButton={""}
-        AcceptButton={""}>
+        CancelButton={''}
+        AcceptButton={''}
+      >
         <Form initialValues={initValues} onSubmit={handleSubmit}>
           <>
             <div className="pt-4">
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                  <label htmlFor="name">
-                    Nombre
-                  </label>
+                  <label htmlFor="name">Nombre</label>
                   <Field
                     label="Nombre de usuario"
                     name="name"
@@ -137,9 +146,7 @@ const handleSelectFlag = (e:any) =>{
                   <ErrorMsg name="name" />
                 </div>
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="id_number"
-                  >
+                  <label htmlFor="id_number">
                     Numero de identificación tributaria
                   </label>
                   <Field
@@ -154,11 +161,7 @@ const handleSelectFlag = (e:any) =>{
               </div>
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="phone_number"
-                  >
-                    Teléfono
-                  </label>
+                  <label htmlFor="phone_number">Teléfono</label>
                   <Field
                     label="Teléfono"
                     name="phone_number"
@@ -169,11 +172,7 @@ const handleSelectFlag = (e:any) =>{
                   <ErrorMsg name="phone_number" />
                 </div>
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="email"
-                  >
-                    E-mail
-                  </label>
+                  <label htmlFor="email">E-mail</label>
                   <Field
                     label="E-mail"
                     name="email"
@@ -187,11 +186,7 @@ const handleSelectFlag = (e:any) =>{
               </div>
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="website"
-                  >
-                    Sitio Web
-                  </label>
+                  <label htmlFor="website">Sitio Web</label>
                   <Field
                     label="Sitio web"
                     name="website"
@@ -202,11 +197,7 @@ const handleSelectFlag = (e:any) =>{
                   <ErrorMsg name="website" />
                 </div>
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="whatsapp"
-                  >
-                    Whatsapp
-                  </label>
+                  <label htmlFor="whatsapp">Whatsapp</label>
                   <Field
                     label="Whatsapp"
                     name="whatsapp"
@@ -220,9 +211,7 @@ const handleSelectFlag = (e:any) =>{
               </div>
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                  <label htmlFor="request_service">
-                    Servicio solicitado
-                  </label>
+                  <label htmlFor="request_service">Servicio solicitado</label>
                   <Field
                     label="Servicio solicitado"
                     name="request_service"
@@ -233,11 +222,7 @@ const handleSelectFlag = (e:any) =>{
                   <ErrorMsg name="request_service" />
                 </div>
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="offert_service"
-                  >
-                    Servicios que ofrezco
-                  </label>
+                  <label htmlFor="offert_service">Servicios que ofrezco</label>
                   <Field
                     label="Servicios que ofrezco"
                     name="offert_service"
@@ -250,9 +235,7 @@ const handleSelectFlag = (e:any) =>{
               </div>
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                  <label htmlFor="pref_course">
-                    Cursos de interés
-                  </label>
+                  <label htmlFor="pref_course">Cursos de interés</label>
                   <Field
                     label="Cursos de interés"
                     name="pref_course"
@@ -263,9 +246,7 @@ const handleSelectFlag = (e:any) =>{
                   <ErrorMsg name="pref_course" />
                 </div>
                 <div className="mb-4 text-sm basis-2/4">
-                  <label
-                    htmlFor="notification_frecuency"
-                  >
+                  <label htmlFor="notification_frecuency">
                     Frecuencia de Notificaciones
                   </label>
                   <Field
@@ -281,9 +262,7 @@ const handleSelectFlag = (e:any) =>{
               <div>
                 <div className="flex gap-x-8">
                   <div className="mb-1 text-sm basis-1/3">
-                    <label htmlFor="country">
-                      País
-                    </label>
+                    <label htmlFor="country">País</label>
                     <Field
                       label="País"
                       name="country"
@@ -294,11 +273,7 @@ const handleSelectFlag = (e:any) =>{
                     <ErrorMsg name="country" />
                   </div>
                   <div className="mb-1 text-sm basis-1/3">
-                    <label
-                      htmlFor="city"
-                    >
-                      Ciudad
-                    </label>
+                    <label htmlFor="city">Ciudad</label>
                     <Field
                       label="Ciudad"
                       name="city"
@@ -309,11 +284,7 @@ const handleSelectFlag = (e:any) =>{
                     <ErrorMsg name="city" />
                   </div>
                   <div className="mb-1 text-sm basis-1/3">
-                    <label
-                      htmlFor="state"
-                    >
-                      Estado
-                    </label>
+                    <label htmlFor="state">Estado</label>
                     <Field
                       label="Estado"
                       name="state"
@@ -326,9 +297,7 @@ const handleSelectFlag = (e:any) =>{
                 </div>
                 <div className="flex gap-x-8">
                   <div className="mb-4 text-sm basis-2/4">
-                    <label htmlFor="line1">
-                      Línea 1
-                    </label>
+                    <label htmlFor="line1">Línea 1</label>
                     <Field
                       label="Línea 1"
                       name="line1"
@@ -339,11 +308,7 @@ const handleSelectFlag = (e:any) =>{
                     <ErrorMsg name="line1" />
                   </div>
                   <div className="mb-4 text-sm basis-2/4">
-                    <label
-                      htmlFor="line2"
-                    >
-                      Línea 2
-                    </label>
+                    <label htmlFor="line2">Línea 2</label>
                     <Field
                       label="Línea 2"
                       name="line2"
@@ -356,13 +321,11 @@ const handleSelectFlag = (e:any) =>{
                 </div>
               </div>
               <div>
-                <label htmlFor="social_newtworks">
-                  Redes sociales
-                </label>
+                <label htmlFor="social_newtworks">Redes sociales</label>
                 <div className="flex gap-x-16 justify-between">
                   <div className="basis-4/5 gap-x-4 text-sm flex">
                     <div className="basis-1/5">
-                    <Select choices={SOCIAL} placeholder='Red Social' />
+                      <Select choices={SOCIAL} placeholder="Red Social" />
                     </div>
                     <Field
                       label=""
@@ -373,25 +336,20 @@ const handleSelectFlag = (e:any) =>{
                     />
                   </div>
                   <div className="basis-1/5">
-                    <Button endIcon={<AddIcon/>}>
-                    </Button>
+                    <Button endIcon={<AddIcon />}></Button>
                   </div>
                 </div>
               </div>
 
-              <div className="mb-6">
-              </div>
+              <div className="mb-6"></div>
             </div>
             <ErrorMsg name="detail" />
             {loading && <Loader />}
           </>
         </Form>
       </Modal>
-<FlagSelector
-        onSelect={handleSelectFlag}
-      ></FlagSelector>
       <MiTable rows={businessData}></MiTable>
-    </MainContainer >
+    </MainContainer>
   );
 };
 

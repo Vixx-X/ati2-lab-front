@@ -14,4 +14,6 @@ export const API_URLS = {
   URL_CHANGE_EMAIL: `/user/change-email/`,
   URL_CHANGE_PASSWORD: `/user/change-password/`,
   URL_OTP_REQUEST: `/user/generate-otp/`,
+  // Country
+  URL_COUNTRY:`/countries/`,
 };
