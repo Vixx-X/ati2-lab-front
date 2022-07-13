@@ -6,7 +6,7 @@ import HandymanIcon from '@mui/icons-material/Handyman';
 import { SERVER_URLS } from '@config';
 
 const { URL_BUSINESS, URL_CLIENTS, URL_EMPLOYEES,
-    URL_PROVIDERS, URL_HOME } = SERVER_URLS;
+    URL_PROVIDERS, URL_LANDING } = SERVER_URLS;
 
 const fullWidth = {width: '100%', height: '100%'}
 
@@ -14,7 +14,7 @@ export const ENTITYS = [
     {
         name: "home",
         icon: <HomeIcon />,
-        link: URL_HOME,
+        link: URL_LANDING,
         color: "#FFFFFF",
         description: "Dashboard con opciones de navegacion"
     },
@@ -44,6 +44,6 @@ export const ENTITYS = [
         icon: <HandymanIcon />,
         link: URL_PROVIDERS,
         color: "#D6234A",
-        description: "Proveen o suministran profesionalmente de un determinado bien o servicio a otros individuos o sociedades, como forma de actividad económica y a cambio de una contra prestación."
+        description: "Proveen o suministran profesionalmente de un determinado bien o servicio a otros individuos o sociedades."
     }
 ] 

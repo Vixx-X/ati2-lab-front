@@ -1,25 +1,27 @@
 import type { NextPage } from 'next';
-import Link from 'next/link';
+import authStore from '@stores/AuthStore';
+import userStore from '@stores/UserStore';
+import MainContainer from '@components/layout/MainContainer';
+import Grid from '@mui/material/Grid';
+import Card from '@components/Card';
+import BusinessImage from '@public/assets/empresa.png';
+import { ENTITYS } from '@components/data/Entitys';
 
-import { SERVER_URLS } from '@config';
 
-const Landing: NextPage = () => {
+const Home: NextPage = () => {
+  const logout = authStore((state: any) => state.logout);
+  const user = userStore((state: any) => state.user);
   return (
-    <>
-      <div className="flex flex-col gap-y-4">
-        <Link href={SERVER_URLS.URL_LOGIN}>
-          <a className="bg-primary hover:bg-blue-700 text-light font-bold py-2 px-4 cursor-pointer rounded-full w-full uppercase text-center transition">
-            Iniciar Sesión
-          </a>
-        </Link>
-        <Link href={SERVER_URLS.URL_REGISTER}>
-          <a className="bg-light hover:bg-slate-50  text-dark font-bold rounded-full py-2 px-4 cursor-pointer uppercase text-center transition">
-            Regístrate
-          </a>
-        </Link>
-      </div>
-    </>
+    <MainContainer>
+        <Grid container spacing={{ xs: 2, md: 3 }}>
+          {ENTITYS.slice(1).map(({name, icon, color, description, link}, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <Card name={name} icon={icon} color={color} description={description} link={link}/>
+            </Grid>
+          ))}
+        </Grid>
+    </MainContainer>
   );
 };
 
-export default Landing;
+export default Home;
