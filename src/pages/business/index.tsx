@@ -18,6 +18,7 @@ import SearchBar from '../../components/layout/SearchBar'
 import { Box } from '@mui/system';
 import Modal from '@components/layout/modals/GeneralModal';
 import { CreateForm } from '@components/pages/business/CreateForm';
+import { postBusiness } from '@fetches/user';
 
 const businessData = [
   {
@@ -89,36 +90,68 @@ const Business: NextPage = () => {
   //   const [loading, setLoading] = useState(false);
 
   const initValues = {
+    client : {
+      phone_number: '',
+      fav_course: '',
+      notification_frecuency: '',
+      offered_services: '',
+      whatsapp: '',
+      // line1: '',
+      // line2: '',
+      // city: '',
+      // state: '',
+      // country: '',
+      // socials: []
+    },
     name: '',
-    id_number: '',
-    phone_number: '',
     email: '',
-    website: '',
-    whatsapp: '',
-    request_service: '',
-    offert_service: '',
-    pref_course: '',
-    notification_frecuency: '',
-    country: '',
-    city: '',
-    state: '',
-    line1: '',
-    line2: '',
-    social_network: ''
+    services: '',
+    task_id: '',
+    // website: '',
   };
   // as BusinessForm
 
-  const handleSubmit = async (values: FormikValues, { setStatus }: any) => {
+  const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
     console.log("Buenas poliedro de caracas", values)
     // setLoading(true);
-    // try {
-    //   // await login(values.username, values.password);
-    //   setStatus({});
-    // } catch (exception: any) {
-    //   setStatus(exception.data);
-    //   setLoading(false);
-    // }
+    try {
+      await postBusiness({
+        "client": {
+          "phone_number": "+584241315948",
+          "fav_course": "PHP",
+          "notification_frecuency": "1 vez al mes",
+          "offered_services": "lulu",
+          "whatsapp": "+584241315946",
+          "addresses": [
+            {
+              "line1": "lin1",
+              "line2": "lin2",
+              "country": "ve",
+              "city": "Caracas",
+              "state": "Distrito Capital",
+            }
+          ],
+          "socials": [
+            {
+              "name": "string",
+              "value": "string"
+            }
+          ]
+        },
+        "name": "Pepa",
+        "email": "gustariz@mahisoft.com",
+        "services": "lili",
+        "tax_id": "2222222",
+        "website": "https://mui.com/material-ui/api/button/"
+      });
+      setStatus({});
+    } catch (exception: any) {
+      setStatus(exception.data);
+      // setLoading(false);
+    }
   };
+
+
 
 
   return (
@@ -130,7 +163,7 @@ const Business: NextPage = () => {
       <CreateForm
         open={open}
         handleClose={handleClose}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleSubmitCreate}
         initValues={initValues} />
       <FlagSelector
         onSelect={handleSelectFlag}
