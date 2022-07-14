@@ -10,15 +10,22 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import { FlagSelector } from '@components/forms/FlagSelector';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
+
+    console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
             maxWidth: '900px'
         },
     }
+
+    const handleSelectFlag = (ISOflag:string) =>{
+        initValues.client.country = ISOflag
+    }
+
     return (
         <Dialog open={open} onClose={handleClose} sx={styles}>
             <DialogTitle>{!edit ? "Crear Empresa" : "Editar Empresa"}</DialogTitle>
@@ -191,13 +198,16 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label htmlFor="country">
                                         País
                                     </label>
-                                    <Field
+                                    {/* <Field
                                         label="País"
                                         name="client.country"
                                         id="country"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="País"
-                                    />
+                                    /> */}
+                                    <FlagSelector
+                                        onSelect={handleSelectFlag}
+                                    ></FlagSelector>
                                     <ErrorMsg name="client.country" />
                                 </div>
                                 <div className="mb-1 text-sm basis-1/3">
