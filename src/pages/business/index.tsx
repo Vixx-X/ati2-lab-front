@@ -47,23 +47,32 @@ const flattenJSON = (obj: any = {}, res: any = {}) => {
 
 const initValues = {
   client: {
-    phone_number: '',
-    fav_course: '',
-    notification_frecuency: '',
-    offered_services: '',
-    whatsapp: '',
-    // line1: '',
-    // line2: '',
-    // city: '',
-    // state: '',
-    // country: '',
-    // socials: []
+    phone_number: "+584241315948",
+    fav_course: "PHP",
+    notification_frecuency: "1 vez al mes",
+    offered_services: "lulu",
+    whatsapp: "+584241315946",
+    addresses: [
+      {
+        line1: "lin1",
+        line2: "lin2",
+        country: "ve",
+        city: "Caracas",
+        state: "Distrito Capital",
+      }
+    ],
+    socials: [
+      {
+        name: "string",
+        value: "string"
+      }
+    ]
   },
-  name: '',
-  email: '',
-  services: '',
-  task_id: '',
-  // website: '',
+  name: "Pepa",
+  email: "gustariz@mahisoft.com",
+  services: "lili",
+  tax_id: "2222222",
+  website: "https://mui.com/material-ui/api/button/"
 };
 // as BusinessForm
 
@@ -129,39 +138,15 @@ const Business: NextPage = () => {
   }, [business]);
 
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
+    console.log("OnSubmit():", values);
     try {
-      await postBusiness({
-        "client": {
-          "phone_number": "+584241315948",
-          "fav_course": "PHP",
-          "notification_frecuency": "1 vez al mes",
-          "offered_services": "lulu",
-          "whatsapp": "+584241315946",
-          "addresses": [
-            {
-              "line1": "lin1",
-              "line2": "lin2",
-              "country": "ve",
-              "city": "Caracas",
-              "state": "Distrito Capital",
-            }
-          ],
-          "socials": [
-            {
-              "name": "string",
-              "value": "string"
-            }
-          ]
-        },
-        "name": "Pepa",
-        "email": "gustariz@mahisoft.com",
-        "services": "lili",
-        "tax_id": "2222222",
-        "website": "https://mui.com/material-ui/api/button/"
-      });
+      // await postBusiness({
+
+      await postBusiness(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
+      console.log("exceptions:", exception)
       setStatus(exception.data);
       // setLoading(false);
     }
