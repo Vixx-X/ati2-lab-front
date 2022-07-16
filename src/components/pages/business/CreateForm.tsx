@@ -23,7 +23,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
     }
 
     const handleSelectFlag = (ISOflag:string) =>{
-        initValues.client.country = ISOflag
+        initValues.client.addresses[0].country = ISOflag;
     }
 
     return (
@@ -200,7 +200,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     {/* <Field
                                         label="País"
-                                        name="client.country"
+                                        name="client.addresses[0].country"
                                         id="country"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="País"
@@ -208,7 +208,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <FlagSelector
                                         onSelect={handleSelectFlag}
                                     ></FlagSelector>
-                                    <ErrorMsg name="client.country" />
+                                    <ErrorMsg name="client.addresses[0].country" />
                                 </div>
                                 <div className="mb-1 text-sm basis-1/3">
                                     <label
@@ -218,12 +218,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Ciudad"
-                                        name="client.city"
+                                        name="client.addresses[0].city"
                                         id="city"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Ciudad"
                                     />
-                                    <ErrorMsg name="client.city" />
+                                    <ErrorMsg name="client.addresses[0].city" />
                                 </div>
                                 <div className="mb-1 text-sm basis-1/3">
                                     <label
@@ -233,12 +233,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Estado"
-                                        name="client.state"
+                                        name="client.addresses[0].state"
                                         id="state"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Estado"
                                     />
-                                    <ErrorMsg name="client.state" />
+                                    <ErrorMsg name="client.addresses[0].state" />
                                 </div>
                             </div>
                             <div className="flex gap-x-8">
@@ -248,12 +248,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Línea 1"
-                                        name="client.line1"
+                                        name="client.addresses[0].line1"
                                         id="line1"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Línea 1"
                                     />
-                                    <ErrorMsg name="client.line1" />
+                                    <ErrorMsg name="client.addresses[0].line1" />
                                 </div>
                                 <div className="mb-4 text-sm basis-2/4">
                                     <label
@@ -263,12 +263,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Línea 2"
-                                        name="client.line2"
+                                        name="client.addresses[0].line2"
                                         id="line2"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Línea 2"
                                     />
-                                    <ErrorMsg name="client.line2" />
+                                    <ErrorMsg name="client.addresses[0].line2" />
                                 </div>
                             </div>
                         </div>
