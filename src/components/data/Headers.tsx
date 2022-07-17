@@ -1,5 +1,5 @@
 export const BusinessHeaders = [
-    { key: 'id', value: 'id', styles: { minWidth: 150 } },
+    { key: 'id', value: 'id'},
     { key: 'name', value: 'nombre', styles: { minWidth: 150 } },
     { key: 'tax_id', value: 'identificación tributaria', styles: { minWidth: 150 } },
     { key: 'email', value: 'email', styles: { minWidth: 150 } },
@@ -10,7 +10,7 @@ export const BusinessHeaders = [
     { key: 'line1', value: 'dirección básica', styles: { minWidth: 150 } },
     { key: 'line2', value: 'dirección (más detalles)', styles: { minWidth: 150 } },
     { key: 'website', value: 'sitio web', styles: { minWidth: 150 } },
-    { key: 'whastapp', value: 'whatsapp', styles: { minWidth: 150 } },
+    { key: 'whatsapp', value: 'whatsapp', styles: { minWidth: 150 } },
     { key: 'socials', value: 'redes sociales', styles: { minWidth: 150 } },
     { key: 'services', value: 'servicios solicitados', styles: { minWidth: 150 } },
     { key: 'offered_services', value: 'servicios que ofrecen', styles: { minWidth: 150 } },
@@ -19,7 +19,7 @@ export const BusinessHeaders = [
 ]
 
 export const ClientsHeaders = [
-    { key: 'id', value: 'id', styles: { minWidth: 150 } },
+    { key: 'id', value: 'id'},
     { key: 'first_name', value: 'nombre', styles: { minWidth: 150 } },
     { key: 'last_name', value: 'apellido', styles: { minWidth: 150 } },
     { key: 'type', value: 'tipo', styles: { minWidth: 150 } },
@@ -31,16 +31,14 @@ export const ClientsHeaders = [
     { key: 'country', value: 'país', styles: { minWidth: 150 } },
     { key: 'city', value: 'ciudad', styles: { minWidth: 150 } },
     { key: 'state', value: 'estado', styles: { minWidth: 150 } },
-    { key: 'line1', value: 'dirección básica', styles: { minWidth: 150 } },
-    { key: 'line2', value: 'dirección (más detalles)', styles: { minWidth: 150 } },
     { key: 'socials', value: 'redes sociales', styles: { minWidth: 150 } },
-    { key: 'offered_services', value: 'servicios que ofrecen', styles: { minWidth: 150 } },
+    { key: 'offered_services', value: 'servicios solicitados', styles: { minWidth: 150 } },
     { key: 'fav_course', value: 'Cursos de interés', styles: { minWidth: 150 } },
     { key: 'notification_frecuency', value: 'Frecuencia de información', styles: { minWidth: 150 } },
 ]
 
 export const EmployeesHeaders = [
-    { key: 'id', value: 'id', styles: { minWidth: 150 } },
+    { key: 'id', value: 'id'},
     { key: 'business_name', value: 'empresa', styles: { minWidth: 150 } },
     { key: 'first_name', value: 'nombre', styles: { minWidth: 150 } },
     { key: 'last_name', value: 'apellido', styles: { minWidth: 150 } },

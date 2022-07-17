@@ -53,7 +53,7 @@ let initValues = {
     contract_modality: "Honorarios profesionales",
     business_email: "user@example.com",
     local_phone_number: "+582125554433",
-    business: 20
+    business: 32
 };
 
 const Employees: NextPage = () => {

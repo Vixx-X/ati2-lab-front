@@ -7,8 +7,8 @@ export const ErrorMsg = ({ name, ...props }: ErrorMessageProps) => {
   const nestedArray = name.split('.');
   const [nested, setNested] = useState<boolean>((nestedArray[1])? true : false) 
   let nameF = name.replaceAll(".", "?.");
-  const errorMessage = eval(`statusData?.${nameF}`)
-  console.log("aaaa", `statusData?.${nameF}`, errorMessage)
+  // const errorMessage = eval(`statusData?.${nameF}`)
+  // console.log("aaaa", `statusData?.${nameF}`, errorMessage)
 
   const Message = ({ error }: any) => {
     return (
@@ -23,7 +23,7 @@ export const ErrorMsg = ({ name, ...props }: ErrorMessageProps) => {
   return (
     <>
       {/* <ErrorMessage name={name} component={Message} {...props} /> */}
-      {errorMessage ? <Message error={errorMessage} /> : null}
+      {/* {errorMessage ? <Message error={errorMessage} /> : null} */}
     </>
   );
 };
