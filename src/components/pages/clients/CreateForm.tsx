@@ -11,6 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import SubmitButton from '@components/forms/SubmitButton';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
@@ -313,7 +314,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <button type="submit">{!edit ? "Crear" : "Editar"}</button>
+                    <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
                 </DialogActions>
             </Form>
         </Dialog>

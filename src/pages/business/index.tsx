@@ -10,13 +10,13 @@ import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import MiTable from '@components/table/MiTable';
 import SearchBar from '@components/layout/SearchBar';
-import { AnyPointerEvent } from 'framer-motion/types/gestures/PanSession';
 import useSWR from 'swr';
 import Loader from '@components/Loader';
 import { BusinessHeaders } from '@components/data/Headers';
 import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
+import { flattenJSON } from '@utils/flattenJSON';
 
 const BusinessButton = ({ onclick }: any) => {
   return (
@@ -25,23 +25,6 @@ const BusinessButton = ({ onclick }: any) => {
     </Button>
   );
 };
-
-const flattenJSON = (obj: any = {}, res: any = {}) => {
-  for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      res[key] = obj[key];
-    } else if (key == 'socials') {
-      let a = obj[key].map(function ({ name, value }: any) {
-        return `${name}: ${value}`;
-      }).join("\n");
-      res[key] = a;
-    } else {
-      flattenJSON(obj[key], res);
-    }
-  }
-  return res;
-};
-
 
 let initValues = {
   client: {

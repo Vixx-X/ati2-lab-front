@@ -27,7 +27,7 @@ export const ClientsHeaders = [
     { key: 'charge', value: 'cargo'},
     { key: 'email', value: 'email' },
     { key: 'phone_number', value: 'teléfono' },
-    { key: 'whastapp', value: 'whatsapp' },
+    { key: 'whatsapp', value: 'whatsapp' },
     { key: 'country', value: 'país' },
     { key: 'city', value: 'ciudad' },
     { key: 'state', value: 'estado' },
@@ -40,6 +40,28 @@ export const ClientsHeaders = [
 ]
 
 export const EmployeesHeaders = [
+    { key: 'id', value: 'id' },
+    { key: 'business_name', value: 'empresa' },
+    { key: 'first_name', value: 'nombre' },
+    { key: 'last_name', value: 'apellido' },
+    { key: 'document_id', value: 'cédula' },
+    { key: 'type', value: 'tipo' },
+    { key: 'company', value: 'compañía'},
+    { key: 'charge', value: 'cargo'},
+    { key: 'contract_modality', value: 'modalidad de contratación' },
+    { key: 'email', value: 'email personal' },
+    { key: 'business_email', value: 'email de la empresa' },
+    { key: 'phone_number', value: 'teléfono celular' },
+    { key: 'local_phone_number', value: 'teléfono local' },
+    { key: 'country', value: 'país' },
+    { key: 'city', value: 'ciudad' },
+    { key: 'state', value: 'estado' },
+    { key: 'line1', value: 'dirección básica', styles: { minWidth: 150 } },
+    { key: 'line2', value: 'dirección (más detalles)', styles: { minWidth: 150 } },
+    { key: 'socials', value: 'redes sociales', styles: { minWidth: 150 } },
+]
+
+export const ProvidersHeaders = [
     { key: 'id', value: 'id' },
     { key: 'business', value: 'empresa' },
     { key: 'first_name', value: 'nombre' },

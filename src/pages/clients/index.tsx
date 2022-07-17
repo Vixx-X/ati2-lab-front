@@ -16,6 +16,7 @@ import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import { flattenJSON } from '@utils/flattenJSON';
 
 const ClientsButton = ({ onclick }: any) => {
   return (
@@ -24,23 +25,6 @@ const ClientsButton = ({ onclick }: any) => {
     </Button>
   );
 };
-
-const flattenJSON = (obj: any = {}, res: any = {}) => {
-  for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      res[key] = obj[key];
-    } else if (key == 'socials') {
-      let a = obj[key].map(function ({ name, value }: any) {
-        return `${name}: ${value}`;
-      }).join("\n");
-      res[key] = a;
-    } else {
-      flattenJSON(obj[key], res);
-    }
-  }
-  return res;
-};
-
 
 let initValues = {
   user: {
@@ -133,6 +117,7 @@ const Clients: NextPage = () => {
     if (clients) {
       console.log('111', clients);
       const clientsFlaten = clients.results.map(function (element: any) {
+        console.log("datica", clientsFlaten)
         return flattenJSON(element);
       });
       console.log("holi", clientsFlaten)
