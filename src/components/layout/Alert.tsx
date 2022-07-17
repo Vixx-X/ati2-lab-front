@@ -5,9 +5,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import useTranslate from '@hooks/useTranslate';
 
 export default function AlertDialog({open, handleClose, handleSubmit, children} : any) {
 
+  const t = useTranslate();
   return (
     <div>
       <Dialog
@@ -26,9 +28,9 @@ export default function AlertDialog({open, handleClose, handleSubmit, children} 
           </DialogContentText>
         </DialogContent> */}
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <button onClick={handleSubmit} autoFocus>
-            Aceptar
+          <Button onClick={handleClose}>{t("Cancel")}</Button>
+          <button onClick={handleSubmit} autoFocus >
+            {t("Acept")}
           </button>
         </DialogActions>
       </Dialog>

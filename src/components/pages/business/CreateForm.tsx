@@ -13,11 +13,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import SubmitButton from '@components/forms/SubmitButton'
 import Box from '@mui/material/Box';
+import useTranslate from '@hooks/useTranslate';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
     // console.log(initValues)
-
+    const t = useTranslate();
     const styles = {
         '& .MuiPaper-root': {
             maxWidth: '900px'
@@ -30,7 +31,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles}>
-            <DialogTitle>{!edit ? "Crear Empresa" : "Editar Empresa"}</DialogTitle>
+            <DialogTitle>{!edit ? `${t("Create Business")}` : `${t("Edit Business")}`}</DialogTitle>
             <Form initialValues={initValues} onSubmit={handleSubmit}>
                 <DialogContent>
                     {/* <DialogContentText>
@@ -41,14 +42,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label htmlFor="name">
-                                    Nombre
+                                    {t("Name")}
                                 </label>
                                 <Field
-                                    label="Nombre de usuario"
+                                    label={t("Enter user name")}
                                     name="name"
                                     id="name"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Nombre de la empresa"
+                                    placeholder={t("Business Name")}
                                 />
                                 <ErrorMsg name="name" />
                             </div>
@@ -56,14 +57,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="tax_id"
                                 >
-                                    Numero de identificación tributaria
+                                    {t("Tax identification number")}
                                 </label>
                                 <Field
-                                    label="Numero de identificación tributaria"
+                                    label={t("Tax identification number")}
                                     name="tax_id"
                                     id="tax_id"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Numero de identificación tributaria"
+                                    placeholder={t("Tax identification number")}
                                 />
                                 <ErrorMsg name="tax_id" />
                             </div>
@@ -73,14 +74,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="phone_number"
                                 >
-                                    Teléfono
+                                    {t("Phone")}
                                 </label>
                                 <Field
-                                    label="Teléfono"
+                                    label={t("Phone")}
                                     name="client.phone_number"
                                     id="phone_numner"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Teléfono"
+                                    placeholder={t("Phone")}
                                 />
                                 <ErrorMsg name="client.phone_number" />
                             </div>
@@ -88,15 +89,15 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="email"
                                 >
-                                    E-mail
+                                    {t("E-Mail")}
                                 </label>
                                 <Field
-                                    label="E-mail"
+                                    label={t("E-Mail")}
                                     name="email"
                                     id="email"
                                     type="email"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
-                                    placeholder="E-mail"
+                                    placeholder={t("E-Mail")}
                                 />
                                 <ErrorMsg name="email" />
                             </div>
@@ -106,14 +107,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="website"
                                 >
-                                    Sitio Web
+                                    {t("Web Side")}
                                 </label>
                                 <Field
-                                    label="Sitio web"
+                                    label={t("Web Side")}
                                     name="website"
                                     id="website"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Sitio Web"
+                                    placeholder={t("Web Side")}
                                 />
                                 <ErrorMsg name="website" />
                             </div>
@@ -137,14 +138,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label htmlFor="services">
-                                    Servicio solicitado
+                                    {t("Solicited service")}
                                 </label>
                                 <Field
-                                    label="Servicio solicitado"
+                                    label= {t("Solicited service")}
                                     name="services"
                                     id="services"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Servicio solicitado"
+                                    placeholder= {t("Solicited service")}
                                 />
                                 <ErrorMsg name="services" />
                             </div>
@@ -152,14 +153,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="offered_services"
                                 >
-                                    Servicios que ofrezco
+                                    {t("Services I offer")}
                                 </label>
                                 <Field
-                                    label="Servicios que ofrezco"
+                                    label={t("Services I offer")}
                                     name="client.offered_services"
                                     id="offered_services"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Servicios que ofrezco"
+                                    placeholder={t("Services I offer")}
                                 />
                                 <ErrorMsg name="client.offered_services" />
                             </div>
@@ -167,14 +168,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label htmlFor="fav_course">
-                                    Cursos de interés
+                                    {t("Courses of interest")}
                                 </label>
                                 <Field
-                                    label="Cursos de interés"
+                                    label={t("Courses of interest")}
                                     name="client.fav_course"
                                     id="fav_course"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Cursos de interés"
+                                    placeholder={t("Courses of interest")}
                                 />
                                 <ErrorMsg name="client.fav_course" />
                             </div>
@@ -182,14 +183,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="notification_frecuency"
                                 >
-                                    Frecuencia de Notificaciones
+                                    {t("Notification Frequency")}
                                 </label>
                                 <Field
-                                    label="Frecuencia de Notificaciones"
+                                    label={t("Notification Frequency")}
                                     name="client.notification_frecuency"
                                     id="notification_frecuency"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Frecuencia de Notificaciones"
+                                    placeholder={t("Notification Frequency")}
                                 />
                                 <ErrorMsg name="client.notification_frecuency" />
                             </div>
@@ -198,7 +199,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             <div className="flex gap-x-8">
                                 <div className="mb-1 text-sm basis-1/3">
                                     <label htmlFor="country">
-                                        País
+                                        {t("Country")}
                                     </label>
                                     <FlagSelector
                                         onSelect={handleSelectFlag}
@@ -209,14 +210,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label
                                         htmlFor="city"
                                     >
-                                        Ciudad
+                                        {t("City")}
                                     </label>
                                     <Field
-                                        label="Ciudad"
+                                        label={t("City")}
                                         name="client.addresses[0].city"
                                         id="city"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Ciudad"
+                                        placeholder={t("City")}
                                     />
                                     <ErrorMsg name="client.addresses[0].city" />
                                 </div>
@@ -224,14 +225,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label
                                         htmlFor="state"
                                     >
-                                        Estado
+                                        {t("State")}
                                     </label>
                                     <Field
-                                        label="Estado"
+                                        label={t("State")}
                                         name="client.addresses[0].state"
                                         id="state"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Estado"
+                                        placeholder={t("State")}
                                     />
                                     <ErrorMsg name="client.addresses[0].state" />
                                 </div>
@@ -239,14 +240,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             <div className="flex gap-x-8">
                                 <div className="mb-4 text-sm basis-2/4">
                                     <label htmlFor="line1">
-                                        Línea 1
+                                        {t("Line 1")}
                                     </label>
                                     <Field
-                                        label="Línea 1"
+                                        label={t("Line 1")}
                                         name="client.addresses[0].line1"
                                         id="line1"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Línea 1"
+                                        placeholder={t("Line 1")}
                                     />
                                     <ErrorMsg name="client.addresses[0].line1" />
                                 </div>
@@ -269,19 +270,19 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         </div>
                         <div>
                             <label htmlFor="social_newtworks">
-                                Redes sociales
+                                {t("Social Media")}
                             </label>
                             <div className="flex gap-x-16 justify-between">
                                 <div className="basis-4/5 gap-x-4 text-sm flex">
                                     <div className="basis-2/5">
-                                        <Select choices={SOCIAL} placeholder='Red Social' />
+                                        <Select choices={SOCIAL} placeholder={t("Social Media")} />
                                     </div>
                                     <Field
-                                        label=""
+                                        label={t("Social Media")}
                                         name="social_network"
                                         id="social_network"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder=""
+                                        placeholder={t("Social Media")}
                                     />
                                 </div>
                                 <div className="basis-1/5">
@@ -299,10 +300,10 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 </DialogContent>
                 <DialogActions>
                     <Box display="flex" className="gap-x-4" justifyContent="space-between">
-                        <Button onclick={handleClose}>Cancelar</Button>
+                        <Button onclick={handleClose}>{t("Cancel")}</Button>
                         {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
                         <SubmitButton>
-                            {!edit ? "CREAR" : "EDITAR"}
+                            {!edit ? t("Create") : t("Editar")}
                         </SubmitButton>
                     </Box>
                 </DialogActions>

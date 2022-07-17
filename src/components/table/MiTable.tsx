@@ -9,8 +9,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import useTranslate from '@hooks/useTranslate';
 
 export default function MiTable({ rows, headTable, handleEditRow, handleDeleteRow }: any) {
+
+  const t = useTranslate();
+
   return (
     <Paper
       elevation={1}
@@ -28,7 +32,7 @@ export default function MiTable({ rows, headTable, handleEditRow, handleDeleteRo
                 headTable.map(({ value, styles }: any, index: number) => (
                   <TableCell key={index} sx={styles}>
                     {
-                      value[0].toUpperCase() + value.substring(1)
+                      t(value)
                     }
                   </TableCell>
                 ))

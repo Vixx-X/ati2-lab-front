@@ -13,6 +13,7 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import MiTable from '@components/table/MiTable';
+import useTranslate from '@hooks/useTranslate';
 
 import {
   deleteBusiness,
@@ -30,9 +31,12 @@ import { FormikValues } from 'formik';
 import useSWR from 'swr';
 
 const BusinessButton = ({ onclick }: any) => {
+
+  const t = useTranslate();
+
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
-      Añadir Empresa
+      {t("Add Business")}
     </Button>
   );
 };
@@ -80,6 +84,8 @@ const Business: NextPage = () => {
   const [initialValues, setInitial] = useState(initValues);
 
   const [currentId, setId] = useState<number>();
+
+  const t = useTranslate();
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
@@ -230,7 +236,7 @@ const Business: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>
+        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
       )}
       {businessData ? (
         <MiTable
