@@ -14,13 +14,9 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Container } from '@mui/material';
-import { SERVER_URLS } from '@config';
 import Link from 'next/link';
 import LanguageSelect from './LanguageSelect';
 import { ENTITYS } from '@components/data/Entitys';
-
-const { URL_BUSINESS, URL_CLIENTS, URL_EMPLOYEES,
-  URL_PROVIDERS, URL_HOME } = SERVER_URLS;
 
 const drawerWidth = 240;
 
@@ -89,7 +85,7 @@ export default function MainContainer({ children }: any) {
       >
         <Toolbar />
         <Box display="flex" alignItems="center" sx={{ height: "calc(100vh - 64px)", bgColor: '#185583' }}>
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             {children}
           </Container>
         </Box>
