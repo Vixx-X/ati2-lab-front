@@ -43,13 +43,13 @@ let initValues = {
         value: "string"
       }
     ],
-    phone_number: "+584241315948",
-    fav_course: "PHP",
-    notification_frecuency: "1 vez al mes",
-    first_name: "string",
-    last_name: "string",
-    personal_email: "user@example.com",
-    business_email: "user@example.com"
+    charge:"string",
+    phone_number: "+584241315948",  //
+    local_phone: "+589774011",  //
+    first_name: "string", //
+    last_name: "string",  //
+    personal_email: "user@example.com", //
+    business_email: "user@example.com"  //
   },
   addresses: [
     {
@@ -66,12 +66,15 @@ let initValues = {
       value: "string"
     }
   ],
-  phone_number: "string",
+  tax_id:"tax_id", //
+  webside:"string", //
+  phone_number: "string", //
   fav_course: "string",
   notification_frecuency: "string",
-  name: "string",
-  email: "user@example.com",
-  business: [0]
+  name: "string", //
+  email: "user@example.com", //
+  business: [0],
+  offered_services:"Servicio que promociona"
 };
 // as ProviderForm
 

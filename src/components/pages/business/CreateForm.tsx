@@ -16,7 +16,7 @@ import { Box } from '@mui/system';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
-    console.log(initValues)
+    // console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
@@ -200,13 +200,6 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label htmlFor="country">
                                         País
                                     </label>
-                                    {/* <Field
-                                        label="País"
-                                        name="client.addresses[0].country"
-                                        id="country"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="País"
-                                    /> */}
                                     <FlagSelector
                                         onSelect={handleSelectFlag}
                                     ></FlagSelector>
@@ -280,14 +273,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             </label>
                             <div className="flex gap-x-16 justify-between">
                                 <div className="basis-4/5 gap-x-4 text-sm flex">
-                                    <div className="basis-1/5">
+                                    <div className="basis-2/5">
                                         <Select choices={SOCIAL} placeholder='Red Social' />
                                     </div>
                                     <Field
                                         label=""
                                         name="social_network"
                                         id="social_network"
-                                        className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
+                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder=""
                                     />
                                 </div>
@@ -306,7 +299,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 </DialogContent>
                 <DialogActions>
                     <Box  display="flex" justifyContent="space-between">
-                        <Button onClick={handleClose}>Cancelar</Button>
+                        <Button onclick={handleClose}>Cancelar</Button>
                         {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
                         <SubmitButton>
                             {!edit ? "CREAR" : "EDITAR"}

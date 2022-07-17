@@ -14,10 +14,11 @@ import { FlagSelector } from '@components/forms/FlagSelector';
 import useSWR from 'swr';
 import { getBusinesses } from '@fetches/business';
 import SubmitButton from '@components/forms/SubmitButton';
+import { Box } from '@mui/system';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
-    console.log(initValues)
+    // console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
@@ -37,18 +38,20 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
             <Form initialValues={initValues} onSubmit={handleSubmit}>
                 <DialogContent>
                     <div className="pt-4">
-                        <div className="mb-4 text-sm basis-2/4">
-                            <label
-                                htmlFor="business"
-                            >
-                                Seleccionar Empresa
-                            </label>
-                            <Field as="select" name="business" id="business">
-                                <option disabled>--Seleccionar--</option>
-                                {business && business.results.map(({ id, name }: any) => (
-                                    <option key={id} value={id}>{name}</option>
-                                ))}
-                            </Field>
+                        <div className="mb-4 text-sm w-1/2">
+                            <Box className="w-full" alignItems="center" display="flex" justifyContent="space-between">    
+                                <label
+                                    htmlFor="business"
+                                >
+                                    Seleccionar Empresa
+                                </label>
+                                <Field className="rounded" as="select" name="business" id="business">
+                                    <option disabled>--Seleccionar--</option>
+                                    {business && business.results.map(({ id, name }: any) => (
+                                        <option key={id} value={id}>{name}</option>
+                                    ))}
+                                </Field>
+                            </Box>
                             <ErrorMsg name="business" />
                         </div>
                         <div className="flex gap-x-8">
