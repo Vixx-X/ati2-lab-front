@@ -237,7 +237,7 @@ const Provider: NextPage = () => {
         edit={editable} />
       {initialValues && currentId && <Alert open={openDelete}
         handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
+        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
       {providerData ? <MiTable rows={providerData}
         headTable={ProvidersHeaders}
         handleEditRow={handleEditRow}

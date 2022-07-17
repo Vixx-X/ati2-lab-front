@@ -17,11 +17,15 @@ import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { flattenJSON } from '@utils/flattenJSON';
+import useTranslate from '@hooks/useTranslate';
 
 const ClientsButton = ({ onclick }: any) => {
+
+  const t = useTranslate()
+
   return (
     <Button endIcon={<GroupAddIcon />} onclick={onclick}>
-      Añadir Cliente
+      {t("Add Client")}
     </Button>
   );
 };
@@ -60,6 +64,9 @@ let initValues = {
 };
 
 const Clients: NextPage = () => {
+
+  const t = useTranslate()
+
   const [clientsData, setClientData] = useState()
 
   const [openCreate, setOpenCreate] = useState(false);
@@ -211,7 +218,7 @@ const Clients: NextPage = () => {
         edit={editable} />
       {initialValues && currentId && <Alert open={openDelete}
         handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
+        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
       {clientsData ? <MiTable rows={clientsData}
         headTable={ClientsHeaders}
         handleEditRow={handleEditRow}

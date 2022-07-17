@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ReactFlagsSelect from 'react-flags-select';
 import useSWR from 'swr';
+import useTranslate from '@hooks/useTranslate';
 
 interface FlagSelectorInterface {
   onSelect(flag: any): any;
@@ -30,10 +31,11 @@ export const FlagSelector: React.FC<FlagSelectorInterface> = ({
     setSelected(e.target.value);
     onSelect(e.target.value);
   };
+  const t = useTranslate();
 
   return (
     <FormControl className="w-full">
-      <InputLabel id="demo-simple-select-label">Selecciona un Pais</InputLabel>
+      <InputLabel id="demo-simple-select-label">{t("Select a country")}</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"

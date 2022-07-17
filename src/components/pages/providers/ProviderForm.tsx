@@ -100,14 +100,14 @@ export const ProviderForm = ({initValues}:any) => {
                 <label
                     htmlFor="offered_services"
                 >
-                    {t("solicited service")}
+                    {t("solicited services")}
                 </label>
                 <Field
-                    label={t("solicited service")}
+                    label={t("solicited services")}
                     name="offered_services"
                     id="offered_services"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder={t("solicited service")}
+                    placeholder={t("solicited services")}
                 />
                 <ErrorMsg name="offered_services" />
             </div>

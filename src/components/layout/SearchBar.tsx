@@ -13,8 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
-
-
+import useTranslate from '@hooks/useTranslate';
 
 interface SearchForm {
   searchWord: string;
@@ -29,6 +28,8 @@ export default function SearchBar() {
     // console.log('cambie este peo',event);
   };
 
+  const t = useTranslate();
+
   const handleSubmit = () => {
     // console.log('Envie este peo');
   };
@@ -38,7 +39,7 @@ export default function SearchBar() {
         <Box display="flex" sx={{color: 'black',
           borderRadius:'.30em',
           background: 'rgba(255, 255, 255, 0.15)'}}>
-        <FField name="search" onChange={handleChange} placeholder="Search..." 
+        <FField name="search" onChange={handleChange} placeholder={t("Search...")} 
                 style={{background: 'transparent', color: '#ffffff', paddingLeft: '1.5em'}}>
         </FField>
         <IconButton type="submit" sx={{ p: '10px', }} aria-label="search">
