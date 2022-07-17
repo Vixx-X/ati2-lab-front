@@ -3,20 +3,20 @@ import type { NextPage } from 'next';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
-import { CreateForm } from '@components/pages/business/CreateForm';
-import { deleteBusiness, getBusiness, getBusinesses, postBusiness, putBusiness } from '@fetches/business';
+import { CreateForm } from '@components/pages/providers/CreateForm';
+import { deleteProvider, getProvider, getProviders, postProvider, putProvider } from '@fetches/providers';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import MiTable from '@components/table/MiTable';
 import SearchBar from '@components/layout/SearchBar';
 import useSWR from 'swr';
 import Loader from '@components/Loader';
-import { BusinessHeaders } from '@components/data/Headers';
+import { ProvidersHeaders } from '@components/data/Headers';
 import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import AddIcon from '@mui/icons-material/Add';
-import { flattenJSON } from '@utils/flattenJSON';
+import {  flattenJSONProvider } from '@utils/flattenJSON';
 
 const ProvidersButton = ({ onclick }: any) => {
   return (
@@ -27,12 +27,7 @@ const ProvidersButton = ({ onclick }: any) => {
 };
 
 let initValues = {
-  client: {
-    phone_number: "+584241315948",
-    fav_course: "PHP",
-    notification_frecuency: "1 vez al mes",
-    offered_services: "lulu",
-    whatsapp: "+584241315946",
+  representant: {
     addresses: [
       {
         line1: "lin1",
@@ -47,19 +42,42 @@ let initValues = {
         name: "string",
         value: "string"
       }
-    ]
+    ],
+    phone_number: "+584241315948",
+    fav_course: "PHP",
+    notification_frecuency: "1 vez al mes",
+    first_name: "string",
+    last_name: "string",
+    personal_email: "user@example.com",
+    business_email: "user@example.com"
   },
-  name: "Pepa",
-  email: "gustariz@mahisoft.com",
-  services: "lili",
-  tax_id: "2222222",
-  website: "https://mui.com/material-ui/api/button/"
+  addresses: [
+    {
+      line1: "lin1",
+      line2: "lin2",
+      country: "ve",
+      city: "Caracas",
+      state: "Distrito Capital",
+    }
+  ],
+  socials: [
+    {
+      name: "string",
+      value: "string"
+    }
+  ],
+  phone_number: "string",
+  fav_course: "string",
+  notification_frecuency: "string",
+  name: "string",
+  email: "user@example.com",
+  business: [0]
 };
-// as BusinessForm
+// as ProviderForm
 
-const Business: NextPage = () => {
+const Provider: NextPage = () => {
 
-  const [businessData, setBusinessData] = useState()
+  const [providerData, setProviderData] = useState()
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -93,7 +111,7 @@ const Business: NextPage = () => {
     setId(id)
     setEditable(true);
     try {
-      initValues = await getBusiness(id);;
+      initValues = await getProvider(id);;
     } catch (exception: any) {
       // setLoading(false);
     }
@@ -110,23 +128,23 @@ const Business: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: business } = useSWR('business', getBusinesses);
+  const { data: provider } = useSWR('provider', getProviders);
 
   useEffect(() => {
-    if (business) {
-      console.log('111', business);
-      const businessFlaten = business.results.map(function (element: any) {
-        return flattenJSON(element);
+    if (provider) {
+      console.log('111', provider);
+      const providerFlaten = provider.results.map(function (element: any) {
+        return flattenJSONProvider(element);
       });
-      console.log("holi", businessFlaten)
-      setBusinessData(businessFlaten)
+      console.log("holi", providerFlaten)
+      setProviderData(providerFlaten)
     }
-  }, [business]);
+  }, [provider]);
 
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
     console.log("OnSubmit():", values);
     try {
-      await postBusiness(values);
+      await postProvider(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
@@ -139,7 +157,7 @@ const Business: NextPage = () => {
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
     try {
       console.log("edit", values, currentId)
-      await putBusiness(values, currentId);
+      await putProvider(values, currentId);
       setStatus({});
       handleCloseDelete();
     } catch (exception: any) {
@@ -150,7 +168,7 @@ const Business: NextPage = () => {
 
   const handleSubmitDelete = async () => {
     try {
-      await deleteBusiness(currentId);
+      await deleteProvider(currentId);
       // setStatus({});
       handleCloseDelete();
     } catch (e) {
@@ -167,7 +185,7 @@ const Business: NextPage = () => {
     '& form': {
       height: '100%'
     },
-    getBusiness
+    getProvider
   }
 
   const stylesCard = {
@@ -208,8 +226,8 @@ const Business: NextPage = () => {
       {initialValues && currentId && <Alert open={openDelete}
         handleClose={handleCloseDelete}
         handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
-      {businessData ? <MiTable rows={businessData}
-        headTable={BusinessHeaders}
+      {providerData ? <MiTable rows={providerData}
+        headTable={ProvidersHeaders}
         handleEditRow={handleEditRow}
         handleDeleteRow={handleDeleteRow}></MiTable>
         : <Loader />}
@@ -217,4 +235,4 @@ const Business: NextPage = () => {
   );
 };
 
-export default Business;
+export default Provider;
