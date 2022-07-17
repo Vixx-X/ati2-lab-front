@@ -3,11 +3,13 @@ import ErrorMsg from '@components/forms/ErrorMsg';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Select from '@components/forms/Select';
 import Button from '@components/layout/Button';
+import useTranslate from '@hooks/useTranslate';
 
 import AddIcon from '@mui/icons-material/Add';
 import { Field } from 'formik';
 
 export const RepresentantForm = ({ initValues }: any) => {
+  
   const handleSelectFlag = (ISOflag: string) => {
     initValues.representant.addresses[0].country = ISOflag;
   };
@@ -111,7 +113,7 @@ export const RepresentantForm = ({ initValues }: any) => {
         <div className="flex gap-x-8">
           <div className="mb-1 text-sm basis-1/3">
             <label htmlFor="representant.addresses[0].country">País</label>
-            <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
+            <FlagSelector name="representant.addresses[0].country"></FlagSelector>
             <ErrorMsg name="representant.addresses[0].country" />
           </div>
           <div className="mb-1 text-sm basis-1/3">

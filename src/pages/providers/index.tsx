@@ -17,6 +17,7 @@ import AddIcon from '@mui/icons-material/Add';
 import useSWR from 'swr';
 import useTranslate from '@hooks/useTranslate';
 import { flattenJSONProvider } from '@utils/flattenJSON';
+import Form from '@components/forms/Form';
 
 import {
   deleteProvider,
@@ -26,11 +27,13 @@ import {
   putProvider,
 } from '@fetches/providers';
 
-
 const ProvidersButton = ({ onclick }: any) => {
+
+  const t = useTranslate();
+
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
-      Añadir Proveedor
+      {t("add provider")}
     </Button>
   );
 };
@@ -77,8 +80,8 @@ let initValues = {
       value: 'string',
     },
   ],
-  tax_id:"222333", // Se deben enviar
-  website:"https://api.ati2.vittorioadesso.com/", //
+  tax_id: "222333", // Se deben enviar
+  website: "https://api.ati2.vittorioadesso.com/", //
   phone_number: "+582123335544", //
   fav_course: "string", // NO
   notification_frecuency: "string", // NO
@@ -91,8 +94,6 @@ let initValues = {
 
 const Provider: NextPage = () => {
 
-  const t = useTranslate()
-
   const [providerData, setProviderData] = useState()
 
   const [openCreate, setOpenCreate] = useState(false);
@@ -104,6 +105,8 @@ const Provider: NextPage = () => {
   const [initialValues, setInitial] = useState(initValues);
 
   const [currentId, setId] = useState<number>();
+
+  const t = useTranslate();
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
@@ -215,6 +218,20 @@ const Provider: NextPage = () => {
     },
   };
 
+  const [query, setQuery] = useState<any>({});
+  const initFilterValues = {
+    type: query?.type ?? '',
+    country: query?.country ?? '',
+  };
+  const handleFilter = (values: FormikValues) => {
+    setQuery((prev: any) => {
+      return {
+        ...prev,
+        ...values,
+      };
+    });
+  };
+
   return (
     <MainContainer>
       <Box sx={{ maxWidth: 500 }}>
@@ -235,10 +252,16 @@ const Provider: NextPage = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <SearchBar />
-          <Box className="w-1/2">
-            <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
-          </Box>
+          <Form
+            initialValues={initFilterValues}
+            onSubmit={handleFilter}
+            autoSubmit
+          >
+            <SearchBar name="type" />
+            <Box className="w-1/2">
+              <FlagSelector name="country" />
+            </Box>
+          </Form>
         </Box>
       </Box>
       <CreateForm

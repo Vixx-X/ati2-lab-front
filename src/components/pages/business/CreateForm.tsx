@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { SOCIAL } from '@components/data/SocialNetworks';
 import ErrorMsg from '@components/forms/ErrorMsg';
 import Field from '@components/forms/Field';
@@ -8,15 +7,13 @@ import Form from '@components/forms/Form';
 import Select from '@components/forms/Select';
 import SubmitButton from '@components/forms/SubmitButton';
 import Button from '@components/layout/Button';
-
-import useTranslate from '@hooks/useTranslate';
-
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import useTranslate from '@hooks/useTranslate';
 
 export const CreateForm = ({
   open,
@@ -25,7 +22,13 @@ export const CreateForm = ({
   initValues,
   edit,
 }: any) => {
+
   const t = useTranslate();
+
+  const handleSelectFlag = (ISOflag: string) => {
+    initValues.client.addresses[0].country = ISOflag;
+  }
+
   const styles = {
     '& .MuiPaper-root': {
       maxWidth: '900px',
@@ -39,10 +42,6 @@ export const CreateForm = ({
       </DialogTitle>
       <Form initialValues={initValues} onSubmit={handleSubmit}>
         <DialogContent>
-          {/* <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We
-                    will send updates occasionally.
-                </DialogContentText> */}
           <div className="pt-4">
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
@@ -174,7 +173,7 @@ export const CreateForm = ({
               <div className="flex gap-x-8">
                 <div className="mb-1 text-sm basis-1/3">
                   <label htmlFor="country">{t('Country')}</label>
-                  <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
+                  <FlagSelector name="client.addresses[0].country"></FlagSelector>
                   <ErrorMsg name="client.addresses[0].country" />
                 </div>
                 <div className="mb-1 text-sm basis-1/3">

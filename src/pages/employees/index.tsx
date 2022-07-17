@@ -17,6 +17,7 @@ import useSWR from 'swr';
 import useTranslate from '@hooks/useTranslate';
 import AddIcon from '@mui/icons-material/Add';
 import { flattenJSON } from '@utils/flattenJSON';
+import Form from '@components/forms/Form';
 
 import {
   deleteEmployee,
@@ -190,6 +191,21 @@ const Employees: NextPage = () => {
       height: '100%',
     },
   };
+
+  const [query, setQuery] = useState<any>({});
+  const initFilterValues = {
+    type: query?.type ?? '',
+    country: query?.country ?? '',
+  };
+  const handleFilter = (values: FormikValues) => {
+    setQuery((prev: any) => {
+      return {
+        ...prev,
+        ...values,
+      };
+    });
+  };
+  
   return (
     <MainContainer>
       <Box sx={{ maxWidth: 500 }}>
@@ -210,10 +226,16 @@ const Employees: NextPage = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <SearchBar />
-          <Box className="w-1/2">
-            <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
-          </Box>
+          <Form
+            initialValues={initFilterValues}
+            onSubmit={handleFilter}
+            autoSubmit
+          >
+            <SearchBar name="type" />
+            <Box className="w-1/2">
+              <FlagSelector name="country" />
+            </Box>
+          </Form>
         </Box>
       </Box>
       <CreateForm

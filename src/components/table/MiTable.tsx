@@ -1,5 +1,3 @@
-import useTranslate from '@hooks/useTranslate';
-
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Box from '@mui/material/Box';
@@ -11,6 +9,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import useTranslate from '@hooks/useTranslate';
 
 export default function MiTable({
   rows,

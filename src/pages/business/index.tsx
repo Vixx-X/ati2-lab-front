@@ -14,6 +14,7 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import MiTable from '@components/table/MiTable';
+import useTranslate from '@hooks/useTranslate';
 
 import { API_URLS } from '@config';
 
@@ -24,8 +25,6 @@ import {
   postBusiness,
   putBusiness,
 } from '@fetches/business';
-
-import useTranslate from '@hooks/useTranslate';
 
 import { flattenJSON } from '@utils/flattenJSON';
 import { makeUrl } from '@utils/makeUrl';
@@ -40,7 +39,7 @@ const BusinessButton = ({ onclick }: any) => {
 
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
-      {t('Add Business')}
+      {t("Add Business")}
     </Button>
   );
 };
@@ -240,7 +239,7 @@ const Business: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
+        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
       )}
       {businessData ? (
         <MiTable

@@ -23,112 +23,138 @@ export const CreateForm = ({
   initValues,
   edit,
 }: any) => {
+
+  const t = useTranslate()
+
+  console.log(initValues)
+
   const styles = {
     '& .MuiPaper-root': {
-      maxWidth: '900px',
+      maxWidth: '900px'
     },
-  };
+  }
 
-<<<<<<< HEAD
   const handleSelectFlag = (ISOflag: string) => {
     initValues.client.addresses[0].country = ISOflag;
-  };
+  }
 
   return (
     <Dialog open={open} onClose={handleClose} sx={styles}>
-      <DialogTitle>
-        {!edit ? 'Crear Cliente Particular' : 'Editar Cliente Particular'}
-      </DialogTitle>
+      <DialogTitle>{!edit ? ` ${t("Create Particular Client")} ` : `${t("Edit Particular Client")}`}</DialogTitle>
       <Form initialValues={initValues} onSubmit={handleSubmit}>
         <DialogContent>
           <div className="pt-4">
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="first_name">Nombre</label>
+                <label htmlFor="first_name">
+                  {t("Name")}
+                </label>
                 <Field
-                  label="Nombre de usuario"
+                  label={t("Name")}
                   name="user.first_name"
                   id="first_name"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Nombre de cliente"
+                  placeholder={t("Name")}
                 />
                 <ErrorMsg name="user.first_name" />
               </div>
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="last_name">Apellido</label>
+                <label htmlFor="last_name">
+                  {t("Lastname")}
+                </label>
                 <Field
-                  label="Apellido de usuario"
+                  label={t("Lastname")}
                   name="user.last_name"
                   id="last_name"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Apellido de cliente"
+                  placeholder={t("Lastname")}
                 />
                 <ErrorMsg name="user.last_name" />
               </div>
             </div>
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="type">Tipo</label>
+                <label htmlFor="type">
+                  {t("Type")}
+                </label>
                 <Field
-                  label="Tipo"
+                  label={t("Type")}
                   name="type"
                   id="type"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Ej: Estudiante, Labora empresa"
+                  placeholder={t("Ej: Student, Employ")}
                 />
                 <ErrorMsg name="type" />
               </div>
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="company">Compañía</label>
+                <label htmlFor="company">
+                  {t("Company")}
+                </label>
                 <Field
-                  label="Compañía"
+                  label={t("Company")}
                   name="company"
                   id="company"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Compañía"
+                  placeholder={t("Company")}
                 />
                 <ErrorMsg name="company" />
               </div>
             </div>
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="charge">Cargo</label>
+                <label
+                  htmlFor="charge"
+                >
+                  {t("Charge")}
+                </label>
                 <Field
-                  label="Cargo"
+                  label={t("Charge")}
                   name="user.charge"
                   id="charge"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Cargo"
+                  placeholder={t("Charge")}
                 />
                 <ErrorMsg name="user.charge" />
               </div>
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="email">E-mail</label>
+                <label
+                  htmlFor="email"
+                >
+                  {t("E-Mail")}
+                </label>
                 <Field
-                  label="E-mail"
+                  label={t("E-Mail")}
                   name="user.email"
                   id="email"
                   type="email"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
-                  placeholder="E-mail"
+                  placeholder={t("E-Mail")}
                 />
                 <ErrorMsg name="user.email" />
               </div>
             </div>
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="phone_number">Teléfono</label>
+                <label
+                  htmlFor="phone_number"
+                >
+                  {t("Phone")}
+                </label>
                 <Field
-                  label="Teléfono"
+                  label={t("Phone")}
                   name="client.phone_number"
                   id="phone_numner"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Teléfono"
+                  placeholder={t("Phone")}
                 />
                 <ErrorMsg name="client.phone_number" />
               </div>
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="whatsapp">Whatsapp</label>
+                <label
+                  htmlFor="whatsapp"
+                >
+                  Whatsapp
+                </label>
                 <Field
                   label="Whatsapp"
                   name="client.whatsapp"
@@ -142,39 +168,47 @@ export const CreateForm = ({
             </div>
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="offered_services">Servicios que ofrezco</label>
+                <label
+                  htmlFor="offered_services"
+                >
+                  {t("Services I offer")}
+                </label>
                 <Field
-                  label="Servicios que ofrezco"
+                  label={t("Services I offer")}
                   name="client.offered_services"
                   id="offered_services"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Servicios que ofrezco"
+                  placeholder={t("Services I offer")}
                 />
                 <ErrorMsg name="client.offered_services" />
               </div>
             </div>
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="fav_course">Cursos de interés</label>
+                <label htmlFor="fav_course">
+                  {t("Courses of interest")}
+                </label>
                 <Field
-                  label="Cursos de interés"
+                  label={t("Courses of interest")}
                   name="client.fav_course"
                   id="fav_course"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Cursos de interés"
+                  placeholder={t("Courses of interest")}
                 />
                 <ErrorMsg name="client.fav_course" />
               </div>
               <div className="mb-4 text-sm basis-2/4">
-                <label htmlFor="notification_frecuency">
-                  Frecuencia de Notificaciones
+                <label
+                  htmlFor="notification_frecuency"
+                >
+                  {t("Notification Frequency")}
                 </label>
                 <Field
-                  label="Frecuencia de Notificaciones"
+                  label={t("Notification Frequency")}
                   name="client.notification_frecuency"
                   id="notification_frecuency"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Frecuencia de Notificaciones"
+                  placeholder={t("Notification Frequency")}
                 />
                 <ErrorMsg name="client.notification_frecuency" />
               </div>
@@ -182,410 +216,111 @@ export const CreateForm = ({
             <div>
               <div className="flex gap-x-8">
                 <div className="mb-1 text-sm basis-1/3">
-                  <label htmlFor="country">País</label>
-                  {/* <Field
-=======
-    const t = useTranslate()
-
-    console.log(initValues)
-
-    const styles = {
-        '& .MuiPaper-root': {
-            maxWidth: '900px'
-        },
-    }
-
-    const handleSelectFlag = (ISOflag: string) => {
-        initValues.client.addresses[0].country = ISOflag;
-    }
-
-    return (
-        <Dialog open={open} onClose={handleClose} sx={styles}>
-            <DialogTitle>{!edit ? ` ${t("Create Particular Client")} ` : `${t("Edit Particular Client")}`}</DialogTitle>
-            <Form initialValues={initValues} onSubmit={handleSubmit}>
-                <DialogContent>
-                    <div className="pt-4">
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="first_name">
-                                    {t("Name")}
-                                </label>
-                                <Field
-                                    label={t("Name")}
-                                    name="user.first_name"
-                                    id="first_name"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Name")}
-                                />
-                                <ErrorMsg name="user.first_name" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="last_name">
-                                    {t("Lastname")}
-                                </label>
-                                <Field
-                                    label={t("Lastname")}
-                                    name="user.last_name"
-                                    id="last_name"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Lastname")}
-                                />
-                                <ErrorMsg name="user.last_name" />
-                            </div>
-                        </div>
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="type">
-                                    {t("Type")}
-                                </label>
-                                <Field
-                                    label={t("Type")}
-                                    name="type"
-                                    id="type"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Ej: Student, Employ")}
-                                />
-                                <ErrorMsg name="type" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="company">
-                                    {t("Company")}
-                                </label>
-                                <Field
-                                    label={t("Company")}
-                                    name="company"
-                                    id="company"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Company")}
-                                />
-                                <ErrorMsg name="company" />
-                            </div>
-                        </div>
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="charge"
-                                >
-                                    {t("Charge")}
-                                </label>
-                                <Field
-                                    label={t("Charge")}
-                                    name="user.charge"
-                                    id="charge"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Charge")}
-                                />
-                                <ErrorMsg name="user.charge" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="email"
-                                >
-                                    {t("E-Mail")}
-                                </label>
-                                <Field
-                                    label={t("E-Mail")}
-                                    name="user.email"
-                                    id="email"
-                                    type="email"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
-                                    placeholder={t("E-Mail")}
-                                />
-                                <ErrorMsg name="user.email" />
-                            </div>
-                        </div>
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="phone_number"
-                                >
-                                    {t("Phone")}
-                                </label>
-                                <Field
-                                    label={t("Phone")}
-                                    name="client.phone_number"
-                                    id="phone_numner"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Phone")}
-                                />
-                                <ErrorMsg name="client.phone_number" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="whatsapp"
-                                >
-                                    Whatsapp
-                                </label>
-                                <Field
-                                    label="Whatsapp"
-                                    name="client.whatsapp"
-                                    id="whatsapp"
-                                    type="whatsapp"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Whatsapp"
-                                />
-                                <ErrorMsg name="client.whatsapp" />
-                            </div>
-                        </div>
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="offered_services"
-                                >
-                                    {t("Services I offer")}
-                                </label>
-                                <Field
-                                    label={t("Services I offer")}
-                                    name="client.offered_services"
-                                    id="offered_services"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Services I offer")}
-                                />
-                                <ErrorMsg name="client.offered_services" />
-                            </div>
-                        </div>
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="fav_course">
-                                    {t("Courses of interest")}
-                                </label>
-                                <Field
-                                    label={t("Courses of interest")}
-                                    name="client.fav_course"
-                                    id="fav_course"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Courses of interest")}
-                                />
-                                <ErrorMsg name="client.fav_course" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="notification_frecuency"
-                                >
-                                    {t("Notification Frequency")}
-                                </label>
-                                <Field
-                                    label={t("Notification Frequency")}
-                                    name="client.notification_frecuency"
-                                    id="notification_frecuency"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder={t("Notification Frequency")}
-                                />
-                                <ErrorMsg name="client.notification_frecuency" />
-                            </div>
-                        </div>
-                        <div>
-                            <div className="flex gap-x-8">
-                                <div className="mb-1 text-sm basis-1/3">
-                                    <label htmlFor="country">
-                                        {t("Country")}
-                                    </label>
-                                    {/* <Field
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
-                                        label="País"
-                                        name="client.addresses[0].country"
-                                        id="country"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="País"
-                                    /> */}
-<<<<<<< HEAD
-                  <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
+                  <label htmlFor="country">
+                    {t("Country")}
+                  </label>
+                  <FlagSelector name="client.addresses[0].country" ></FlagSelector>
                   <ErrorMsg name="client.addresses[0].country" />
                 </div>
                 <div className="mb-1 text-sm basis-1/3">
-                  <label htmlFor="city">Ciudad</label>
+                  <label
+                    htmlFor="city"
+                  >
+                    {t("City")}
+                  </label>
                   <Field
-                    label="Ciudad"
+                    label={t("City")}
                     name="client.addresses[0].city"
                     id="city"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder="Ciudad"
+                    placeholder={t("City")}
                   />
                   <ErrorMsg name="client.addresses[0].city" />
                 </div>
                 <div className="mb-1 text-sm basis-1/3">
-                  <label htmlFor="state">Estado</label>
+                  <label
+                    htmlFor="state"
+                  >
+                    {t("State")}
+                  </label>
                   <Field
-                    label="Estado"
+                    label={t("State")}
                     name="client.addresses[0].state"
                     id="state"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder="Estado"
+                    placeholder={t("State")}
                   />
                   <ErrorMsg name="client.addresses[0].state" />
                 </div>
               </div>
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                  <label htmlFor="line1">Línea 1</label>
+                  <label htmlFor="line1">
+                    {t("Line 1")}
+                  </label>
                   <Field
-                    label="Línea 1"
+                    label={t("Line 1")}
                     name="client.addresses[0].line1"
                     id="line1"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder="Línea 1"
+                    placeholder={t("Line 1")}
                   />
                   <ErrorMsg name="client.addresses[0].line1" />
                 </div>
                 <div className="mb-4 text-sm basis-2/4">
-                  <label htmlFor="line2">Línea 2</label>
+                  <label
+                    htmlFor="line2"
+                  >
+                    {t("Line 2")}
+                  </label>
                   <Field
-                    label="Línea 2"
+                    label={t("Line 1")}
                     name="client.addresses[0].line2"
                     id="line2"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder="Línea 2"
+                    placeholder={t("Line 1")}
                   />
                   <ErrorMsg name="client.addresses[0].line2" />
                 </div>
               </div>
             </div>
             <div>
-              <label htmlFor="social_newtworks">Redes sociales</label>
+              <label htmlFor="social_newtworks">
+                {t("Social Media")}
+              </label>
               <div className="flex gap-x-16 justify-between">
                 <div className="basis-4/5 gap-x-4 text-sm flex">
                   <div className="basis-1/5">
-                    <Select choices={SOCIAL} placeholder="Red Social" />
+                    <Select choices={SOCIAL} placeholder='Red Social' />
                   </div>
                   <Field
                     label=""
-                    name="social_network"
+                    name={t("Social Media")}
                     id="social_network"
                     className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
                     placeholder=""
                   />
                 </div>
                 <div className="basis-1/5">
-                  <Button endIcon={<AddIcon />}></Button>
+                  <Button endIcon={<AddIcon />}>
+                  </Button>
                 </div>
               </div>
             </div>
 
-            <div className="mb-6"></div>
+            <div className="mb-6">
+            </div>
           </div>
           <ErrorMsg name="detail" />
           {/* {loading && <Loader />} */}
         </DialogContent>
         <DialogActions>
-          <Box
-            display="flex"
-            className="gap-x-4"
-            justifyContent="space-between"
-          >
-            <Button onclick={handleClose}>Cancelar</Button>
-            <SubmitButton>{!edit ? 'Crear' : 'Editar'}</SubmitButton>
+          <Box display="flex" className="gap-x-4" justifyContent="space-between">
+            <Button onclick={handleClose}>{t("Cancel")}</Button>
+            <SubmitButton>{!edit ? t("Create") : t("Edit")}</SubmitButton>
           </Box>
         </DialogActions>
       </Form>
     </Dialog>
-  );
-};
-=======
-                                    <FlagSelector
-                                        onSelect={handleSelectFlag}
-                                    ></FlagSelector>
-                                    <ErrorMsg name="client.addresses[0].country" />
-                                </div>
-                                <div className="mb-1 text-sm basis-1/3">
-                                    <label
-                                        htmlFor="city"
-                                    >
-                                        {t("City")}
-                                    </label>
-                                    <Field
-                                        label={t("City")}
-                                        name="client.addresses[0].city"
-                                        id="city"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder={t("City")}
-                                    />
-                                    <ErrorMsg name="client.addresses[0].city" />
-                                </div>
-                                <div className="mb-1 text-sm basis-1/3">
-                                    <label
-                                        htmlFor="state"
-                                    >
-                                        {t("State")}
-                                    </label>
-                                    <Field
-                                        label={t("State")}
-                                        name="client.addresses[0].state"
-                                        id="state"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder={t("State")}
-                                    />
-                                    <ErrorMsg name="client.addresses[0].state" />
-                                </div>
-                            </div>
-                            <div className="flex gap-x-8">
-                                <div className="mb-4 text-sm basis-2/4">
-                                    <label htmlFor="line1">
-                                        {t("Line 1")}
-                                    </label>
-                                    <Field
-                                        label={t("Line 1")}
-                                        name="client.addresses[0].line1"
-                                        id="line1"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder={t("Line 1")}
-                                    />
-                                    <ErrorMsg name="client.addresses[0].line1" />
-                                </div>
-                                <div className="mb-4 text-sm basis-2/4">
-                                    <label
-                                        htmlFor="line2"
-                                    >
-                                        {t("Line 2")}
-                                    </label>
-                                    <Field
-                                        label={t("Line 1")}
-                                        name="client.addresses[0].line2"
-                                        id="line2"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder={t("Line 1")}
-                                    />
-                                    <ErrorMsg name="client.addresses[0].line2" />
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="social_newtworks">
-                                {t("Social Media")}
-                            </label>
-                            <div className="flex gap-x-16 justify-between">
-                                <div className="basis-4/5 gap-x-4 text-sm flex">
-                                    <div className="basis-1/5">
-                                        <Select choices={SOCIAL} placeholder='Red Social' />
-                                    </div>
-                                    <Field
-                                        label=""
-                                        name={t("Social Media")}
-                                        id="social_network"
-                                        className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
-                                        placeholder=""
-                                    />
-                                </div>
-                                <div className="basis-1/5">
-                                    <Button endIcon={<AddIcon />}>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mb-6">
-                        </div>
-                    </div>
-                    <ErrorMsg name="detail" />
-                    {/* {loading && <Loader />} */}
-                </DialogContent>
-                <DialogActions>
-                    <Box display="flex" className="gap-x-4" justifyContent="space-between">
-                        <Button onclick={handleClose}>{t("Cancel")}</Button>
-                        <SubmitButton>{!edit ? t("Create") : t("Edit")}</SubmitButton>
-                    </Box>
-                </DialogActions>
-            </Form>
-        </Dialog>
-    )
+  )
 }
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723

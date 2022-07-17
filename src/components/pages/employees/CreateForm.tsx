@@ -194,7 +194,7 @@ export const CreateForm = ({
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="País"
                                     /> */}
-                  <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
+                  <FlagSelector name="addresses[0].country"></FlagSelector>
                   <ErrorMsg name="addresses[0].country" />
                 </div>
                 <div className="mb-1 text-sm basis-1/3">
