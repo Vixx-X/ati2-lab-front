@@ -8,10 +8,7 @@ import makeFetchOptions, {
 import { makeUrl } from '@utils/makeUrl';
 
 export const getCountry = async () => {
-  const resp = await fetcher.get(
-    API_URLS.URL_COUNTRY,
-    makeFetchOptions()
-  );
+  const resp = await fetcher.get(API_URLS.URL_COUNTRY, makeFetchOptions());
   // console.log(resp);
   await assertApiError(resp);
   return resp.data;

@@ -7,6 +7,7 @@ import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
 import { BusinessHeaders } from '@components/data/Headers';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import Form from '@components/forms/Form';
 import Alert from '@components/layout/Alert';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
@@ -14,6 +15,8 @@ import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import MiTable from '@components/table/MiTable';
 import useTranslate from '@hooks/useTranslate';
+
+import { API_URLS } from '@config';
 
 import {
   deleteBusiness,
@@ -24,6 +27,7 @@ import {
 } from '@fetches/business';
 
 import { flattenJSON } from '@utils/flattenJSON';
+import { makeUrl } from '@utils/makeUrl';
 
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
@@ -31,7 +35,6 @@ import { FormikValues } from 'formik';
 import useSWR from 'swr';
 
 const BusinessButton = ({ onclick }: any) => {
-
   const t = useTranslate();
 
   return (
@@ -70,7 +73,6 @@ let initValues = {
   tax_id: '2222222',
   website: 'https://mui.com/material-ui/api/button/',
 };
-// as BusinessForm
 
 const Business: NextPage = () => {
   const [businessData, setBusinessData] = useState();
@@ -120,22 +122,34 @@ const Business: NextPage = () => {
   };
 
   const handleDeleteRow = (id: number) => {
-    // console.log("He aqui el id", id)
     setId(id);
     handleClickOpenDelete();
   };
 
-  // const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState<any>({});
+  const initFilterValues = {
+    type: query?.type ?? '',
+    country: query?.country ?? '',
+  };
+  const handleFilter = (values: FormikValues) => {
+    setQuery((prev: any) => {
+      return {
+        ...prev,
+        ...values,
+      };
+    });
+  };
 
-  const { data: business, mutate } = useSWR('business', getBusinesses);
+  const { data: business, mutate } = useSWR(
+    makeUrl(API_URLS.URL_BUSINESSES, query),
+    getBusinesses
+  );
 
   useEffect(() => {
     if (business) {
-      // console.log('111', business);
       const businessFlaten = business.results.map(function (element: any) {
         return flattenJSON(element);
       });
-      // console.log("holi", businessFlaten)
       setBusinessData(businessFlaten);
     }
   }, [business]);
@@ -144,26 +158,21 @@ const Business: NextPage = () => {
     values: FormikValues,
     { setStatus }: any
   ) => {
-    // console.log("OnSubmit():", values);
     try {
       await postBusiness(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      // console.log("exceptions:", exception)
       setStatus(exception.data.detail);
-      // setLoading(false);
     }
   };
 
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
     try {
-      console.log('edit', values, currentId);
       await putBusiness(values, currentId);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
@@ -171,23 +180,11 @@ const Business: NextPage = () => {
   const handleSubmitDelete = async () => {
     try {
       await deleteBusiness(currentId);
-      // setStatus({});
       handleCloseDelete();
     } catch (e) {
       // setStatus(exception.data.detail);
       // setLoading(false);
     }
-  };
-
-  const handleSelectFlag = (e: any) => {
-    // console.log("Se selecciono la bandera de:", e);
-  };
-
-  const styles = {
-    '& form': {
-      height: '100%',
-    },
-    getBusiness,
   };
 
   const stylesCard = {
@@ -218,10 +215,16 @@ const Business: NextPage = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <SearchBar />
-          <Box className="w-1/2">
-            <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
-          </Box>
+          <Form
+            initialValues={initFilterValues}
+            onSubmit={handleFilter}
+            autoSubmit
+          >
+            <SearchBar name="type" />
+            <Box className="w-1/2">
+              <FlagSelector name="country" />
+            </Box>
+          </Form>
         </Box>
       </Box>
       <CreateForm

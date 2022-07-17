@@ -1,9 +1,9 @@
 {
   "hello world!": "hola mundo!",
   "consultant x": "consultora x",
-  "Cancel": "Cancel",
-  "Create": "Crear",
-  "Edit": "Editar",
+  "Cancel":"Cancel",
+  "Create":"Crear",
+  "Edit":"Editar",
   "home": "home",
   "businesses": "empresas",
   "particular clients": "clientes particulares",

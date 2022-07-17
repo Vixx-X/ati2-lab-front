@@ -10,7 +10,7 @@ interface UserState {
 
 export const _userStore = _create<UserState>()((set, get) => ({
   user: null,
-  lang: null,
+  lang: '',
   setLang: (lang: string) => set({ lang }),
   refeatcher: null,
   update: (user: User, refeatcher: Function) => set({ user, refeatcher }),
