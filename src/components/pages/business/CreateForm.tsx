@@ -273,7 +273,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             </label>
                             <div className="flex gap-x-16 justify-between">
                                 <div className="basis-4/5 gap-x-4 text-sm flex">
-                                    <div className="basis-1/5">
+                                    <div className="basis-2/5">
                                         <Select choices={SOCIAL} placeholder='Red Social' />
                                     </div>
                                     <Field

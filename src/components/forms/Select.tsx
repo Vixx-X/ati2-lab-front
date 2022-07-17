@@ -9,7 +9,7 @@ export const Select = ({ choices, placeholder, ...props }: SelectProps) => {
   return (
     <Field as="select" {...props}>
       <>
-        <option disabled value={"0"}>{placeholder ?? '--Seleccionar--'}</option>
+        <option disabled >{placeholder ?? '--Seleccionar--'}</option>
         {choices?.map(({ value, text }: any, index: number) => (
           <option value={value} key={index}>
             {text}
