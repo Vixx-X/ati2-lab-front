@@ -14,7 +14,6 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import MiTable from '@components/table/MiTable';
-import useTranslate from '@hooks/useTranslate';
 
 import { API_URLS } from '@config';
 
@@ -26,6 +25,8 @@ import {
   putBusiness,
 } from '@fetches/business';
 
+import useTranslate from '@hooks/useTranslate';
+
 import { flattenJSON } from '@utils/flattenJSON';
 import { makeUrl } from '@utils/makeUrl';
 
@@ -35,12 +36,11 @@ import { FormikValues } from 'formik';
 import useSWR from 'swr';
 
 const BusinessButton = ({ onclick }: any) => {
-
   const t = useTranslate();
 
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
-      {t("Add Business")}
+      {t('Add Business')}
     </Button>
   );
 };
@@ -174,10 +174,6 @@ const Business: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-<<<<<<< HEAD
-=======
-      console.log('exceptions:', exception);
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
       setStatus(exception.data.detail);
     }
   };
@@ -186,25 +182,10 @@ const Business: NextPage = () => {
     try {
       await deleteBusiness(currentId);
       handleCloseDelete();
-<<<<<<< HEAD
-    } catch (e) {}
-=======
     } catch (e) {
       // setStatus(exception.data.detail);
       // setLoading(false);
     }
-  };
-
-  const handleSelectFlag = (e: any) => {
-    // console.log("Se selecciono la bandera de:", e);
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
-  };
-
-  const styles = {
-    '& form': {
-      height: '100%',
-    },
-    getBusiness,
   };
 
   const stylesCard = {
@@ -259,7 +240,7 @@ const Business: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
       )}
       {businessData ? (
         <MiTable
