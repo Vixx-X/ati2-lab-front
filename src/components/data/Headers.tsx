@@ -20,21 +20,21 @@ export const BusinessHeaders = [
 
 export const ClientsHeaders = [
     { key: 'id', value: 'id'},
-    { key: 'first_name', value: 'nombre', styles: { minWidth: 150 } },
-    { key: 'last_name', value: 'apellido', styles: { minWidth: 150 } },
-    { key: 'type', value: 'tipo', styles: { minWidth: 150 } },
-    { key: 'company', value: 'compañía'},
-    { key: 'charge', value: 'cargo'},
+    { key: 'first_name', value: 'Name', styles: { minWidth: 150 } },
+    { key: 'last_name', value: 'Lastname', styles: { minWidth: 150 } },
+    { key: 'type', value: 'Type', styles: { minWidth: 150 } },
+    { key: 'company', value: 'Company'},
+    { key: 'charge', value: 'Charge'},
     { key: 'email', value: 'E-Mail', styles: { minWidth: 150 } },
     { key: 'phone_number', value: 'Phone', styles: { minWidth: 150 } },
     { key: 'whatsapp', value: 'whatsapp', styles: { minWidth: 150 } },
     { key: 'country', value: 'Country', styles: { minWidth: 150 } },
     { key: 'city', value: 'City', styles: { minWidth: 150 } },
     { key: 'state', value: 'State', styles: { minWidth: 150 } },
-    { key: 'socials', value: 'redes sociales', styles: { minWidth: 150 } },
-    { key: 'offered_services', value: 'Solicited service', styles: { minWidth: 150 } },
-    { key: 'fav_course', value: 'Cursos de interés', styles: { minWidth: 150 } },
-    { key: 'notification_frecuency', value: 'Frecuencia de información', styles: { minWidth: 150 } },
+    { key: 'socials', value: 'Social Media', styles: { minWidth: 150 } },
+    { key: 'offered_services', value: 'Services I offer', styles: { minWidth: 150 } },
+    { key: 'fav_course', value: 'Courses of interest', styles: { minWidth: 150 } },
+    { key: 'notification_frecuency', value: 'Notification Frequency', styles: { minWidth: 150 } },
 ]
 
 export const EmployeesHeaders = [

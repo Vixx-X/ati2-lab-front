@@ -17,7 +17,7 @@ import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import AddIcon from '@mui/icons-material/Add';
 import { flattenJSON } from '@utils/flattenJSON';
-
+import useTranslate from '@hooks/useTranslate';
 const EmployeesButton = ({ onclick }: any) => {
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
@@ -57,6 +57,9 @@ let initValues = {
 };
 
 const Employees: NextPage = () => {
+
+  const t = useTranslate()
+
   const [employeesData, setEmployeeData] = useState()
 
   const [openCreate, setOpenCreate] = useState(false);
@@ -206,7 +209,7 @@ const Employees: NextPage = () => {
         edit={editable} />
       {initialValues && currentId && <Alert open={openDelete}
         handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
+        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
       {employeesData ? <MiTable rows={employeesData}
         headTable={EmployeesHeaders}
         handleEditRow={handleEditRow}
