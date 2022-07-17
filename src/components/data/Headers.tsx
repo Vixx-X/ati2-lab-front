@@ -57,8 +57,8 @@ export const EmployeesHeaders = [
 
 export const ProvidersHeaders = [
     { key: 'id', value: 'id' },
-    { key: 'name', value: 'nombre', styles: { minWidth: 100 } },
-    { key: 'services', value: 'sevicios que ofrece', styles: { minWidth: 150 } },
+    { key: 'name', value: 'name', styles: { minWidth: 100 } },
+    { key: 'services', value: 'offered services', styles: { minWidth: 150 } },
     { key: 'tax_id', value: 'tax identification number', styles: { minWidth: 150 } },
     { key: 'phone_number', value: 'phone', styles: { minWidth: 150 } },
     { key: 'email', value: 'e-mail', styles: { minWidth: 150 } },

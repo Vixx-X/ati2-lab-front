@@ -31,6 +31,7 @@
   "social media":"redes sociales",
   "basic address":"dirección básica",
   "more detail address":"dirección (más detalles)",
+  
   "line 1":"línea 1",  
   "Enter user name":"Ingrese nombre de usuario",
   "Business Name":"Nombre de empresa",
@@ -44,5 +45,7 @@
   "rep. personal email": "correo personal de repr.",
   "rep. business email": "correo empresarial de repr.",
   "rep. country": "país de repr.",
-  "rep. socials": "redes sociales de repr."
+  "rep. socials": "redes sociales de repr.",
+
+  "add provider": "añadir proveedor"
 }

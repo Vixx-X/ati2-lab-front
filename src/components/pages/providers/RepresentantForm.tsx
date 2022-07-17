@@ -5,6 +5,7 @@ import { SOCIAL } from '@components/data/SocialNetworks';
 import Select from '@components/forms/Select';
 import AddIcon from '@mui/icons-material/Add';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import useTranslate from '@hooks/useTranslate';
 
 
 export const RepresentantForm = ({ initValues }: any) => {
@@ -12,6 +13,8 @@ export const RepresentantForm = ({ initValues }: any) => {
     const handleSelectFlag = (ISOflag: string) => {
         initValues.representant.addresses[0].country = ISOflag;
     }
+
+    const t = useTranslate();
 
     return (
         <div className="pt-4">

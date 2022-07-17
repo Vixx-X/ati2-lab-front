@@ -11,10 +11,12 @@ import Divider from '@mui/material/Divider';
 import { useState } from 'react';
 import ProviderForm from './ProviderForm';
 import RepresentantForm from './RepresentantForm';
-
+import useTranslate from '@hooks/useTranslate';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
     const [page, setPage] = useState<boolean>(true)
+
+    const t = useTranslate();
 
     const styles = {
         '& .MuiPaper-root': {
@@ -29,9 +31,9 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles}>
-            <DialogTitle>{!edit ? "Crear Proveedor" : "Editar Proveedor"}</DialogTitle>
+            <DialogTitle>{!edit ? t("crear proveedor") : t("editar proveedor")}</DialogTitle>
             <Form initialValues={initValues} onSubmit={handleSubmit}>
-                <DialogTitle className="py-0 text-base">{page ? "Datos proveedor" : "Datos representante"}</DialogTitle>
+                <DialogTitle className="py-0 text-base">{page ? t("datos proveedor") : t("datos representante")}</DialogTitle>
                 <Divider className="mx-4 mt-2"></Divider>
                 <DialogContent sx={{ height: '580px' }}>
                     {page ?
@@ -45,9 +47,9 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     <Box display="flex" className="gap-x-4" justifyContent="space-between">
                         <Button onclick={handleClose}>Cancelar</Button>
                         {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
-                        <Button onclick={handlePage}>{page ? "Siguiente" : "Anterior"}</Button>
+                        <Button onclick={handlePage}>{page ? "siguiente" : "anterior"}</Button>
                         {!page && <SubmitButton>
-                            {!edit ? "CREAR" : "EDITAR"}
+                            {!edit ? "crear" : "editar"}
                         </SubmitButton>}
                     </Box>
                 </DialogActions>

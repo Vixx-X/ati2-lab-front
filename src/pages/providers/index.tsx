@@ -17,11 +17,15 @@ import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import AddIcon from '@mui/icons-material/Add';
 import {  flattenJSONProvider } from '@utils/flattenJSON';
+import useTranslate from '@hooks/useTranslate';
 
 const ProvidersButton = ({ onclick }: any) => {
+
+  const t = useTranslate();
+
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
-      Añadir Proveedor
+      {t("add provider")}
     </Button>
   );
 };
@@ -93,6 +97,8 @@ const Provider: NextPage = () => {
   const [initialValues, setInitial] = useState(initValues);
 
   const [currentId, setId] = useState<number>();
+
+  const t = useTranslate();
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
