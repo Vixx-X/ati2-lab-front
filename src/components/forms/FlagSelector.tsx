@@ -1,55 +1,53 @@
-/* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from 'react';
-import * as React from 'react';
+import { useState } from 'react';
 
 import Image from 'next/image';
 
 import { getCountry } from '@fetches/country';
 
-import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import ReactFlagsSelect from 'react-flags-select';
+import Select from '@mui/material/Select';
+import { useFormikContext } from 'formik';
 import useSWR from 'swr';
 import useTranslate from '@hooks/useTranslate';
 
 interface FlagSelectorInterface {
-  onSelect(flag: any): any;
-  flag?: string;
+  name: string;
 }
-export const FlagSelector: React.FC<FlagSelectorInterface> = ({
-  onSelect,
-  flag,
-}) => {
-  const [selected, setSelected] = useState('');
+
+export const FlagSelector: React.FC<FlagSelectorInterface> = ({ name }) => {
+  const { values, setFieldValue } = useFormikContext();
+  const vals: any = values;
 
   const { data: country } = useSWR('country', getCountry);
 
   const handleChange = (e: any) => {
-    setSelected(e.target.value);
-    onSelect(e.target.value);
+    const value = e.target.value;
+    setFieldValue(name, value);
   };
   const t = useTranslate();
 
   return (
     <FormControl className="w-full">
-      <InputLabel id="demo-simple-select-label">{t("Select a country")}</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={selected}
-        // label="Age"
-        onChange={handleChange}
-      >
-        { country && country.results.map((country: any) => {
+      <InputLabel>Selecciona un Pais</InputLabel>
+      <Select value={vals[name]} onChange={handleChange}>
+        {country &&
+          country.results.map((country: any) => {
             return (
               <MenuItem
                 value={country.iso_3166_1_a2}
                 key={country.iso_3166_1_a2}
               >
-                <img className="mr-2" width="25" src={country.img} alt="" />
+                <div className="mr-2 w-8 h-full">
+                  <Image
+                    width="25"
+                    height="13"
+                    objectFit="contain"
+                    src={country.img}
+                    alt={country.iso_3166_1_a2}
+                  />
+                </div>
                 {country.printable_name}
               </MenuItem>
             );

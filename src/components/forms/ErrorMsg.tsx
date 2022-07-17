@@ -7,7 +7,6 @@ import { ErrorMessage, ErrorMessageProps, useFormikContext } from 'formik';
 export const ErrorMsg = ({ name, ...props }: ErrorMessageProps) => {
   const { status } = useFormikContext();
   const errorMessage = useMemo(() => {
-    console.log(name, status);
     return recursiveGetter(status, name, null);
   }, [status, name]);
 

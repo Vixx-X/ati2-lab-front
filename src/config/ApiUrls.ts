@@ -1,5 +1,3 @@
-
-
 // Api urls for client
 export const API_URLS = {
   // Token
@@ -16,7 +14,7 @@ export const API_URLS = {
   URL_CHANGE_EMAIL: `/user/change-email/`,
   URL_CHANGE_PASSWORD: `/user/change-password/`,
   URL_OTP_REQUEST: `/user/generate-otp/`,
-  
+
   //Bussiness
   URL_BUSINESSES: `/businesses/`,
   URL_BUSINESS: `/businesses/[id]/`,
@@ -34,5 +32,5 @@ export const API_URLS = {
   URL_PROVIDER: `/provider/[id]/`,
 
   // Country
-  URL_COUNTRY:`/countries/`,
+  URL_COUNTRY: `/countries/`,
 };

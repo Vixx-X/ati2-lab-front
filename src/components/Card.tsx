@@ -22,7 +22,7 @@ export default function MediaCard({
   color,
   description,
   link,
-  style=styles
+  style = styles,
 }: any) {
 
   const t = useTranslate();

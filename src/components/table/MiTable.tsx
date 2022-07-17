@@ -11,8 +11,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import useTranslate from '@hooks/useTranslate';
 
-export default function MiTable({ rows, headTable, handleEditRow, handleDeleteRow }: any) {
-
+export default function MiTable({
+  rows,
+  headTable,
+  handleEditRow,
+  handleDeleteRow,
+}: any) {
   const t = useTranslate();
 
   return (
@@ -21,60 +25,52 @@ export default function MiTable({ rows, headTable, handleEditRow, handleDeleteRo
       sx={{
         padding: '.75em',
       }}
-      className='mb-40'
+      className="mb-40"
     >
       <TableContainer>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
-              {
-                headTable.map(({ value, styles }: any, index: number) => (
-                  <TableCell key={index} sx={styles}>
-                    {
-                      t(value)
-                    }
-                  </TableCell>
-                ))
-              }
+              {headTable.map(({ value, styles }: any, index: number) => (
+                <TableCell key={index} sx={styles}>
+                  {t(value)}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {
-              rows.map((row: any, index: number) => (
-                <TableRow
-                  key={index}
-                >
-                  <TableCell key={'buttons'}>
-                    <Box display="flex" justifyContent="center">
-                      <IconButton
-                        color="primary"
-                        aria-label="upload picture"
-                        component="label"
-                        onClick={() => { handleEditRow(row.id) }}
-                      >
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton
-                        color="primary"
-                        aria-label="upload picture"
-                        component="label"
-                        onClick={() => { handleDeleteRow(row.id) }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Box>
-                  </TableCell>
-                  {
-                    headTable.map(({ key }: any, index: number) => (
-                      <TableCell key={index} >
-                        {row[key]}
-                      </TableCell>
-                    ))
-                  }
-                </TableRow>
-              ))
-            }
+            {rows.map((row: any, index: number) => (
+              <TableRow key={index}>
+                <TableCell key={'buttons'}>
+                  <Box display="flex" justifyContent="center">
+                    <IconButton
+                      color="primary"
+                      aria-label="upload picture"
+                      component="label"
+                      onClick={() => {
+                        handleEditRow(row.id);
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      color="primary"
+                      aria-label="upload picture"
+                      component="label"
+                      onClick={() => {
+                        handleDeleteRow(row.id);
+                      }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                </TableCell>
+                {headTable.map(({ key }: any, index: number) => (
+                  <TableCell key={index}>{row[key]}</TableCell>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
