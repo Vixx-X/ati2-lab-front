@@ -16,6 +16,7 @@ import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import { flattenJSON } from '@utils/flattenJSON';
 
 const ClientsButton = ({ onclick }: any) => {
   return (
@@ -24,23 +25,6 @@ const ClientsButton = ({ onclick }: any) => {
     </Button>
   );
 };
-
-const flattenJSON = (obj: any = {}, res: any = {}) => {
-  for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      res[key] = obj[key];
-    } else if (key == 'socials') {
-      let a = obj[key].map(function ({ name, value }: any) {
-        return `${name}: ${value}`;
-      }).join("\n");
-      res[key] = a;
-    } else {
-      flattenJSON(obj[key], res);
-    }
-  }
-  return res;
-};
-
 
 let initValues = {
   user: {
@@ -95,7 +79,8 @@ const Clients: NextPage = () => {
   const handleCloseCreate = () => {
     setOpenCreate(false);
     setEditable(false);
-    setInitial(initValues)
+    setInitial(initValues);
+    mutate();
   };
 
   const handleClickOpenDelete = () => {
@@ -104,6 +89,7 @@ const Clients: NextPage = () => {
 
   const handleCloseDelete = () => {
     setOpenDelete(false);
+    mutate();
   };
 
   const handleEditRow = async (id: number) => {
@@ -127,12 +113,13 @@ const Clients: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: clients } = useSWR('clients', getClients);
+  const { data: clients, mutate } = useSWR('clients', getClients);
 
   useEffect(() => {
     if (clients) {
       console.log('111', clients);
       const clientsFlaten = clients.results.map(function (element: any) {
+        console.log("datica", clientsFlaten)
         return flattenJSON(element);
       });
       console.log("holi", clientsFlaten)
@@ -158,7 +145,7 @@ const Clients: NextPage = () => {
       console.log("edit", values, currentId)
       await putClient(values, currentId);
       setStatus({});
-      handleCloseDelete();
+      handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
       setStatus(exception.data);

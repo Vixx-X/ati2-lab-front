@@ -11,6 +11,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import SubmitButton from '@components/forms/SubmitButton';
+import Box from '@mui/material/Box';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
@@ -312,8 +314,10 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     {/* {loading && <Loader />} */}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancelar</Button>
-                    <button type="submit">{!edit ? "Crear" : "Editar"}</button>
+                    <Box display="flex" className="gap-x-4" justifyContent="space-between">
+                        <Button onclick={handleClose}>Cancelar</Button>
+                        <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
+                    </Box>
                 </DialogActions>
             </Form>
         </Dialog>

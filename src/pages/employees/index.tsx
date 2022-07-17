@@ -16,6 +16,7 @@ import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import AddIcon from '@mui/icons-material/Add';
+import { flattenJSON } from '@utils/flattenJSON';
 
 const EmployeesButton = ({ onclick }: any) => {
   return (
@@ -24,23 +25,6 @@ const EmployeesButton = ({ onclick }: any) => {
     </Button>
   );
 };
-
-const flattenJSON = (obj: any = {}, res: any = {}) => {
-  for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      res[key] = obj[key];
-    } else if (key == 'socials') {
-      let a = obj[key].map(function ({ name, value }: any) {
-        return `${name}: ${value}`;
-      }).join("\n");
-      res[key] = a;
-    } else {
-      flattenJSON(obj[key], res);
-    }
-  }
-  return res;
-};
-
 
 let initValues = {
     user: {
@@ -69,9 +53,7 @@ let initValues = {
     contract_modality: "Honorarios profesionales",
     business_email: "user@example.com",
     local_phone_number: "+582125554433",
-    fav_course: "la",
-    notification_frecuency: "1 vez a la cuaresma",
-    business: 20
+    business: 32
 };
 
 const Employees: NextPage = () => {
@@ -94,7 +76,8 @@ const Employees: NextPage = () => {
   const handleCloseCreate = () => {
     setOpenCreate(false);
     setEditable(false);
-    setInitial(initValues)
+    setInitial(initValues);
+    mutate();
   };
 
   const handleClickOpenDelete = () => {
@@ -103,6 +86,7 @@ const Employees: NextPage = () => {
 
   const handleCloseDelete = () => {
     setOpenDelete(false);
+    mutate();
   };
 
   const handleEditRow = async (id: number) => {
@@ -126,7 +110,7 @@ const Employees: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: employees } = useSWR('employees', getEmployees);
+  const { data: employees, mutate} = useSWR('employees', getEmployees);
 
   useEffect(() => {
     if (employees) {
@@ -157,7 +141,7 @@ const Employees: NextPage = () => {
       console.log("edit", values, currentId)
       await putEmployee(values, currentId);
       setStatus({});
-      handleCloseDelete();
+      handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
       setStatus(exception.data);

@@ -7,7 +7,7 @@ import { ENTITYS } from '@components/data/Entitys';
 import useTranslate from '@hooks/useTranslate';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Container } from '@mui/material';
+import { Container, Toolbar, Typography } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,8 +19,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 
 import LanguageSelect from './LanguageSelect';
 
@@ -101,7 +99,9 @@ export default function MainContainer({ children }: any) {
           alignItems="center"
           sx={{ height: 'calc(100vh - 64px)', bgColor: '#185583' }}
         >
-          <Container maxWidth="lg">{children}</Container>
+          <Container className="mt-40 h-full" maxWidth="xl">
+            {children}
+          </Container>
         </Box>
       </Box>
     </Box>

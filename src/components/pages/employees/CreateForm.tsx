@@ -13,10 +13,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import useSWR from 'swr';
 import { getBusinesses } from '@fetches/business';
+import SubmitButton from '@components/forms/SubmitButton';
+import Box from '@mui/material/Box';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
-    console.log(initValues)
+    // console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
@@ -36,18 +38,20 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
             <Form initialValues={initValues} onSubmit={handleSubmit}>
                 <DialogContent>
                     <div className="pt-4">
-                        <div className="mb-4 text-sm basis-2/4">
-                            <label
-                                htmlFor="business"
-                            >
-                                Seleccionar Empresa
-                            </label>
-                            <Field as="select" name="business" id="business">
-                                <option disabled>--Seleccionar--</option>
-                                {business && business.results.map(({ id, name }: any) => (
-                                    <option key={id} value={id}>{name}</option>
-                                ))}
-                            </Field>
+                        <div className="mb-4 text-sm w-1/2">
+                            <Box className="w-full" alignItems="center" display="flex" justifyContent="space-between">
+                                <label
+                                    htmlFor="business"
+                                >
+                                    Seleccionar Empresa
+                                </label>
+                                <Field className="rounded" as="select" name="business" id="business">
+                                    <option disabled>--Seleccionar--</option>
+                                    {business && business.results.map(({ id, name }: any) => (
+                                        <option key={id} value={id}>{name}</option>
+                                    ))}
+                                </Field>
+                            </Box>
                             <ErrorMsg name="business" />
                         </div>
                         <div className="flex gap-x-8">
@@ -303,8 +307,10 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     {/* {loading && <Loader />} */}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancelar</Button>
-                    <button type="submit">{!edit ? "Crear" : "Editar"}</button>
+                    <Box display="flex" className="gap-x-4" justifyContent="space-between">
+                        <Button onclick={handleClose}>Cancelar</Button>
+                        <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
+                    </Box>
                 </DialogActions>
             </Form>
         </Dialog>

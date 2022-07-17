@@ -10,13 +10,13 @@ import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import MiTable from '@components/table/MiTable';
 import SearchBar from '@components/layout/SearchBar';
-import { AnyPointerEvent } from 'framer-motion/types/gestures/PanSession';
 import useSWR from 'swr';
 import Loader from '@components/Loader';
 import { BusinessHeaders } from '@components/data/Headers';
 import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
+import { flattenJSON } from '@utils/flattenJSON';
 
 const BusinessButton = ({ onclick }: any) => {
   return (
@@ -25,23 +25,6 @@ const BusinessButton = ({ onclick }: any) => {
     </Button>
   );
 };
-
-const flattenJSON = (obj: any = {}, res: any = {}) => {
-  for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      res[key] = obj[key];
-    } else if (key == 'socials') {
-      let a = obj[key].map(function ({ name, value }: any) {
-        return `${name}: ${value}`;
-      }).join("\n");
-      res[key] = a;
-    } else {
-      flattenJSON(obj[key], res);
-    }
-  }
-  return res;
-};
-
 
 let initValues = {
   client: {
@@ -96,6 +79,7 @@ const Business: NextPage = () => {
     setOpenCreate(false);
     setEditable(false);
     setInitial(initValues)
+    mutate();
   };
 
   const handleClickOpenDelete = () => {
@@ -104,6 +88,7 @@ const Business: NextPage = () => {
 
   const handleCloseDelete = () => {
     setOpenDelete(false);
+    mutate();
   };
 
   const handleEditRow = async (id: number) => {
@@ -119,7 +104,7 @@ const Business: NextPage = () => {
   }
 
   const handleDeleteRow = (id: number) => {
-    console.log("He aqui el id", id)
+    // console.log("He aqui el id", id)
     setId(id)
     handleClickOpenDelete()
   }
@@ -127,27 +112,27 @@ const Business: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: business } = useSWR('business', getBusinesses);
+  const { data: business, mutate} = useSWR('business', getBusinesses);
 
   useEffect(() => {
     if (business) {
-      console.log('111', business);
+      // console.log('111', business);
       const businessFlaten = business.results.map(function (element: any) {
         return flattenJSON(element);
       });
-      console.log("holi", businessFlaten)
+      // console.log("holi", businessFlaten)
       setBusinessData(businessFlaten)
     }
   }, [business]);
 
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
-    console.log("OnSubmit():", values);
+    // console.log("OnSubmit():", values);
     try {
       await postBusiness(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception)
+      // console.log("exceptions:", exception)
       setStatus(exception.data);
       // setLoading(false);
     }
@@ -158,7 +143,7 @@ const Business: NextPage = () => {
       console.log("edit", values, currentId)
       await putBusiness(values, currentId);
       setStatus({});
-      handleCloseDelete();
+      handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
       setStatus(exception.data);
@@ -177,7 +162,7 @@ const Business: NextPage = () => {
   }
 
   const handleSelectFlag = (e: any) => {
-    console.log("Se selecciono la bandera de:", e);
+    // console.log("Se selecciono la bandera de:", e);
   }
 
   const styles = {
