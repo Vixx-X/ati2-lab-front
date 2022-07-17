@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react';
-
 import type { NextPage } from 'next';
-
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import { CreateForm } from '@components/pages/business/CreateForm';
-import { deleteBusiness, getBusiness, getBusinesses, postBusiness } from '@fetches/business';
+import { deleteBusiness, getBusiness, getBusinesses, postBusiness, putBusiness } from '@fetches/business';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import MiTable from '@components/table/MiTable';
 import SearchBar from '@components/layout/SearchBar';
-import { AnyPointerEvent } from 'framer-motion/types/gestures/PanSession';
 import useSWR from 'swr';
 import Loader from '@components/Loader';
 import { BusinessHeaders } from '@components/data/Headers';
 import { ENTITYS } from '@components/data/Entitys';
 import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
+import { flattenJSON } from '@utils/flattenJSON';
 
 const BusinessButton = ({ onclick }: any) => {
   return (
@@ -28,24 +26,7 @@ const BusinessButton = ({ onclick }: any) => {
   );
 };
 
-const flattenJSON = (obj: any = {}, res: any = {}) => {
-  for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      res[key] = obj[key];
-    } else if (key == 'socials') {
-      let a = obj[key].map(function ({ name, value }: any) {
-        return `${name}: ${value}`;
-      }).join("\n");
-      res[key] = a;
-    } else {
-      flattenJSON(obj[key], res);
-    }
-  }
-  return res;
-};
-
-
-const initValues = {
+let initValues = {
   client: {
     phone_number: "+584241315948",
     fav_course: "PHP",
@@ -88,7 +69,7 @@ const Business: NextPage = () => {
 
   const [initialValues, setInitial] = useState(initValues);
 
-  const [currentId, setId] = useState();
+  const [currentId, setId] = useState<number>();
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
@@ -108,14 +89,19 @@ const Business: NextPage = () => {
     setOpenDelete(false);
   };
 
-  const handleEditRow = (id: any) => {
+  const handleEditRow = async (id: number) => {
     setId(id)
     setEditable(true);
+    try {
+      initValues = await getBusiness(id);;
+    } catch (exception: any) {
+      // setLoading(false);
+    }
     // get de la variable y setear initial values
     handleClickOpenCreate()
   }
 
-  const handleDeleteRow = (id: any) => {
+  const handleDeleteRow = (id: number) => {
     // console.log("He aqui el id", id)
     setId(id)
     handleClickOpenDelete()
@@ -140,8 +126,6 @@ const Business: NextPage = () => {
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
     // console.log("OnSubmit():", values);
     try {
-      // await postBusiness({
-
       await postBusiness(values);
       setStatus({});
       handleCloseCreate();
@@ -153,6 +137,15 @@ const Business: NextPage = () => {
   };
 
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
+    try {
+      console.log("edit", values, currentId)
+      await putBusiness(values, currentId);
+      setStatus({});
+      handleCloseDelete();
+    } catch (exception: any) {
+      console.log("exceptions:", exception);
+      setStatus(exception.data);
+    }
   }
 
   const handleSubmitDelete = async () => {
@@ -174,6 +167,7 @@ const Business: NextPage = () => {
     '& form': {
       height: '100%'
     },
+    getBusiness
   }
 
   const stylesCard = {

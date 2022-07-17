@@ -11,12 +11,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
-import SubmitButton from '@components/forms/SubmitButton'
-import { Box } from '@mui/system';
+import SubmitButton from '@components/forms/SubmitButton';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
-    // console.log(initValues)
+    console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
@@ -24,48 +23,103 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
         },
     }
 
-    const handleSelectFlag = (ISOflag:string) =>{
+    const handleSelectFlag = (ISOflag: string) => {
         initValues.client.addresses[0].country = ISOflag;
     }
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles}>
-            <DialogTitle>{!edit ? "Crear Empresa" : "Editar Empresa"}</DialogTitle>
+            <DialogTitle>{!edit ? "Crear Cliente Particular" : "Editar Cliente Particular"}</DialogTitle>
             <Form initialValues={initValues} onSubmit={handleSubmit}>
                 <DialogContent>
-                    {/* <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We
-                    will send updates occasionally.
-                </DialogContentText> */}
                     <div className="pt-4">
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="name">
+                                <label htmlFor="first_name">
                                     Nombre
                                 </label>
                                 <Field
                                     label="Nombre de usuario"
-                                    name="name"
-                                    id="name"
+                                    name="user.first_name"
+                                    id="first_name"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Nombre de la empresa"
+                                    placeholder="Nombre de cliente"
                                 />
-                                <ErrorMsg name="name" />
+                                <ErrorMsg name="user.first_name" />
+                            </div>
+                            <div className="mb-4 text-sm basis-2/4">
+                                <label htmlFor="last_name">
+                                    Apellido
+                                </label>
+                                <Field
+                                    label="Apellido de usuario"
+                                    name="user.last_name"
+                                    id="last_name"
+                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                    placeholder="Apellido de cliente"
+                                />
+                                <ErrorMsg name="user.last_name" />
+                            </div>
+                        </div>
+                        <div className="flex gap-x-8">
+                            <div className="mb-4 text-sm basis-2/4">
+                                <label htmlFor="type">
+                                    Tipo
+                                </label>
+                                <Field
+                                    label="Tipo"
+                                    name="type"
+                                    id="type"
+                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                    placeholder="Ej: Estudiante, Labora empresa"
+                                />
+                                <ErrorMsg name="type" />
+                            </div>
+                            <div className="mb-4 text-sm basis-2/4">
+                                <label htmlFor="company">
+                                    Compañía
+                                </label>
+                                <Field
+                                    label="Compañía"
+                                    name="company"
+                                    id="company"
+                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                    placeholder="Compañía"
+                                />
+                                <ErrorMsg name="company" />
+                            </div>
+                        </div>
+                        <div className="flex gap-x-8">
+                            <div className="mb-4 text-sm basis-2/4">
+                                <label
+                                    htmlFor="charge"
+                                >
+                                    Cargo
+                                </label>
+                                <Field
+                                    label="Cargo"
+                                    name="user.charge"
+                                    id="charge"
+                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                    placeholder="Cargo"
+                                />
+                                <ErrorMsg name="user.charge" />
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="tax_id"
+                                    htmlFor="email"
                                 >
-                                    Numero de identificación tributaria
+                                    E-mail
                                 </label>
                                 <Field
-                                    label="Numero de identificación tributaria"
-                                    name="tax_id"
-                                    id="tax_id"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Numero de identificación tributaria"
+                                    label="E-mail"
+                                    name="user.email"
+                                    id="email"
+                                    type="email"
+                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
+                                    placeholder="E-mail"
                                 />
-                                <ErrorMsg name="tax_id" />
+                                <ErrorMsg name="user.email" />
                             </div>
                         </div>
                         <div className="flex gap-x-8">
@@ -86,39 +140,6 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="email"
-                                >
-                                    E-mail
-                                </label>
-                                <Field
-                                    label="E-mail"
-                                    name="email"
-                                    id="email"
-                                    type="email"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
-                                    placeholder="E-mail"
-                                />
-                                <ErrorMsg name="email" />
-                            </div>
-                        </div>
-                        <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="website"
-                                >
-                                    Sitio Web
-                                </label>
-                                <Field
-                                    label="Sitio web"
-                                    name="website"
-                                    id="website"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Sitio Web"
-                                />
-                                <ErrorMsg name="website" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label
                                     htmlFor="whatsapp"
                                 >
                                     Whatsapp
@@ -135,19 +156,6 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             </div>
                         </div>
                         <div className="flex gap-x-8">
-                            <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="services">
-                                    Servicio solicitado
-                                </label>
-                                <Field
-                                    label="Servicio solicitado"
-                                    name="services"
-                                    id="services"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Servicio solicitado"
-                                />
-                                <ErrorMsg name="services" />
-                            </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
                                     htmlFor="offered_services"
@@ -200,6 +208,13 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label htmlFor="country">
                                         País
                                     </label>
+                                    {/* <Field
+                                        label="País"
+                                        name="client.addresses[0].country"
+                                        id="country"
+                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                        placeholder="País"
+                                    /> */}
                                     <FlagSelector
                                         onSelect={handleSelectFlag}
                                     ></FlagSelector>
@@ -280,7 +295,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                         label=""
                                         name="social_network"
                                         id="social_network"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                        className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
                                         placeholder=""
                                     />
                                 </div>
@@ -298,13 +313,8 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     {/* {loading && <Loader />} */}
                 </DialogContent>
                 <DialogActions>
-                    <Box  display="flex" justifyContent="space-between">
-                        <Button onclick={handleClose}>Cancelar</Button>
-                        {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
-                        <SubmitButton>
-                            {!edit ? "CREAR" : "EDITAR"}
-                        </SubmitButton>
-                    </Box>
+                    <Button onClick={handleClose}>Cancelar</Button>
+                    <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
                 </DialogActions>
             </Form>
         </Dialog>

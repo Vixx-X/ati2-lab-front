@@ -11,12 +11,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
-import SubmitButton from '@components/forms/SubmitButton'
-import { Box } from '@mui/system';
+import useSWR from 'swr';
+import { getBusinesses } from '@fetches/business';
+import SubmitButton from '@components/forms/SubmitButton';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
-    // console.log(initValues)
+    console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
@@ -24,65 +25,75 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
         },
     }
 
-    const handleSelectFlag = (ISOflag:string) =>{
+    const handleSelectFlag = (ISOflag: string) => {
         initValues.client.addresses[0].country = ISOflag;
     }
 
+    const { data: business } = useSWR('business', getBusinesses);
+
     return (
         <Dialog open={open} onClose={handleClose} sx={styles}>
-            <DialogTitle>{!edit ? "Crear Empresa" : "Editar Empresa"}</DialogTitle>
+            <DialogTitle>{!edit ? "Crear Empleado" : "Editar Empleado"}</DialogTitle>
             <Form initialValues={initValues} onSubmit={handleSubmit}>
                 <DialogContent>
-                    {/* <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We
-                    will send updates occasionally.
-                </DialogContentText> */}
                     <div className="pt-4">
+                        <div className="mb-4 text-sm basis-2/4">
+                            <label
+                                htmlFor="business"
+                            >
+                                Seleccionar Empresa
+                            </label>
+                            <Field as="select" name="business" id="business">
+                                <option disabled>--Seleccionar--</option>
+                                {business && business.results.map(({ id, name }: any) => (
+                                    <option key={id} value={id}>{name}</option>
+                                ))}
+                            </Field>
+                            <ErrorMsg name="business" />
+                        </div>
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="name">
+                                <label htmlFor="first_name">
                                     Nombre
                                 </label>
                                 <Field
                                     label="Nombre de usuario"
-                                    name="name"
-                                    id="name"
+                                    name="user.first_name"
+                                    id="first_name"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Nombre de la empresa"
+                                    placeholder="Nombre de cliente"
                                 />
-                                <ErrorMsg name="name" />
+                                <ErrorMsg name="user.first_name" />
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
-                                <label
-                                    htmlFor="tax_id"
-                                >
-                                    Numero de identificación tributaria
+                                <label htmlFor="last_name">
+                                    Apellido
                                 </label>
                                 <Field
-                                    label="Numero de identificación tributaria"
-                                    name="tax_id"
-                                    id="tax_id"
+                                    label="Apellido de usuario"
+                                    name="user.last_name"
+                                    id="last_name"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Numero de identificación tributaria"
+                                    placeholder="Apellido de cliente"
                                 />
-                                <ErrorMsg name="tax_id" />
+                                <ErrorMsg name="user.last_name" />
                             </div>
                         </div>
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="phone_number"
+                                    htmlFor="charge"
                                 >
-                                    Teléfono
+                                    Cargo
                                 </label>
                                 <Field
-                                    label="Teléfono"
-                                    name="client.phone_number"
-                                    id="phone_numner"
+                                    label="Cargo"
+                                    name="user.charge"
+                                    id="charge"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Teléfono"
+                                    placeholder="Cargo"
                                 />
-                                <ErrorMsg name="client.phone_number" />
+                                <ErrorMsg name="user.charge" />
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
@@ -92,106 +103,94 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 </label>
                                 <Field
                                     label="E-mail"
-                                    name="email"
+                                    name="user.email"
                                     id="email"
                                     type="email"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
                                     placeholder="E-mail"
                                 />
-                                <ErrorMsg name="email" />
+                                <ErrorMsg name="user.email" />
                             </div>
                         </div>
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="website"
+                                    htmlFor="phone_number"
                                 >
-                                    Sitio Web
+                                    Teléfono Celular
                                 </label>
                                 <Field
-                                    label="Sitio web"
-                                    name="website"
-                                    id="website"
+                                    label="Teléfono Celular"
+                                    name="phone_number"
+                                    id="phone_number"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Sitio Web"
+                                    placeholder="Teléfono Celular"
                                 />
-                                <ErrorMsg name="website" />
+                                <ErrorMsg name="phone_number" />
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="whatsapp"
+                                    htmlFor="local_phone_number"
                                 >
-                                    Whatsapp
+                                    Teléfono Local
                                 </label>
                                 <Field
-                                    label="Whatsapp"
-                                    name="client.whatsapp"
-                                    id="whatsapp"
-                                    type="whatsapp"
+                                    label="Teléfono Local"
+                                    name="local_phone_number"
+                                    id="local_phone_number"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Whatsapp"
+                                    placeholder="Teléfono Local"
                                 />
-                                <ErrorMsg name="client.whatsapp" />
+                                <ErrorMsg name="local_phone_number" />
                             </div>
                         </div>
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="services">
-                                    Servicio solicitado
+                                <label
+                                    htmlFor="document_id"
+                                >
+                                    Cedula o nro pasaporte
                                 </label>
                                 <Field
-                                    label="Servicio solicitado"
-                                    name="services"
-                                    id="services"
+                                    label="Cedula o nro pasaporte"
+                                    name="document_id"
+                                    id="document_id"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Servicio solicitado"
+                                    placeholder="Cedula o nro pasaporte"
                                 />
-                                <ErrorMsg name="services" />
+                                <ErrorMsg name="document_id" />
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="offered_services"
+                                    htmlFor="contract_modality"
                                 >
-                                    Servicios que ofrezco
+                                    Modalidad de contratación
                                 </label>
                                 <Field
-                                    label="Servicios que ofrezco"
-                                    name="client.offered_services"
-                                    id="offered_services"
+                                    label="Teléfono Local"
+                                    name="contract_modality"
+                                    id="contract_modality"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Servicios que ofrezco"
+                                    placeholder="Ej: fijo, honorarios profesionales"
                                 />
-                                <ErrorMsg name="client.offered_services" />
+                                <ErrorMsg name="contract_modality" />
                             </div>
                         </div>
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
-                                <label htmlFor="fav_course">
-                                    Cursos de interés
-                                </label>
-                                <Field
-                                    label="Cursos de interés"
-                                    name="client.fav_course"
-                                    id="fav_course"
-                                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Cursos de interés"
-                                />
-                                <ErrorMsg name="client.fav_course" />
-                            </div>
-                            <div className="mb-4 text-sm basis-2/4">
                                 <label
-                                    htmlFor="notification_frecuency"
+                                    htmlFor="business_email"
                                 >
-                                    Frecuencia de Notificaciones
+                                    Correo electrónico de empresa
                                 </label>
                                 <Field
-                                    label="Frecuencia de Notificaciones"
-                                    name="client.notification_frecuency"
-                                    id="notification_frecuency"
+                                    label="Correo electrónico de empresa"
+                                    name="business_email"
+                                    id="business_email"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Frecuencia de Notificaciones"
+                                    placeholder="Correo electrónico de empresa"
                                 />
-                                <ErrorMsg name="client.notification_frecuency" />
+                                <ErrorMsg name="business_email" />
                             </div>
                         </div>
                         <div>
@@ -200,10 +199,17 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label htmlFor="country">
                                         País
                                     </label>
+                                    {/* <Field
+                                        label="País"
+                                        name="addresses[0].country"
+                                        id="country"
+                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                        placeholder="País"
+                                    /> */}
                                     <FlagSelector
                                         onSelect={handleSelectFlag}
                                     ></FlagSelector>
-                                    <ErrorMsg name="client.addresses[0].country" />
+                                    <ErrorMsg name="addresses[0].country" />
                                 </div>
                                 <div className="mb-1 text-sm basis-1/3">
                                     <label
@@ -213,12 +219,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Ciudad"
-                                        name="client.addresses[0].city"
+                                        name="addresses[0].city"
                                         id="city"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Ciudad"
                                     />
-                                    <ErrorMsg name="client.addresses[0].city" />
+                                    <ErrorMsg name="addresses[0].city" />
                                 </div>
                                 <div className="mb-1 text-sm basis-1/3">
                                     <label
@@ -228,12 +234,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Estado"
-                                        name="client.addresses[0].state"
+                                        name="addresses[0].state"
                                         id="state"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Estado"
                                     />
-                                    <ErrorMsg name="client.addresses[0].state" />
+                                    <ErrorMsg name="addresses[0].state" />
                                 </div>
                             </div>
                             <div className="flex gap-x-8">
@@ -243,12 +249,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Línea 1"
-                                        name="client.addresses[0].line1"
+                                        name="addresses[0].line1"
                                         id="line1"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Línea 1"
                                     />
-                                    <ErrorMsg name="client.addresses[0].line1" />
+                                    <ErrorMsg name="addresses[0].line1" />
                                 </div>
                                 <div className="mb-4 text-sm basis-2/4">
                                     <label
@@ -258,12 +264,12 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     </label>
                                     <Field
                                         label="Línea 2"
-                                        name="client.addresses[0].line2"
+                                        name="addresses[0].line2"
                                         id="line2"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                                         placeholder="Línea 2"
                                     />
-                                    <ErrorMsg name="client.addresses[0].line2" />
+                                    <ErrorMsg name="addresses[0].line2" />
                                 </div>
                             </div>
                         </div>
@@ -280,7 +286,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                         label=""
                                         name="social_network"
                                         id="social_network"
-                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                        className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
                                         placeholder=""
                                     />
                                 </div>
@@ -298,13 +304,8 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     {/* {loading && <Loader />} */}
                 </DialogContent>
                 <DialogActions>
-                    <Box  display="flex" justifyContent="space-between">
-                        <Button onclick={handleClose}>Cancelar</Button>
-                        {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
-                        <SubmitButton>
-                            {!edit ? "CREAR" : "EDITAR"}
-                        </SubmitButton>
-                    </Box>
+                    <Button onClick={handleClose}>Cancelar</Button>
+                    <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
                 </DialogActions>
             </Form>
         </Dialog>
