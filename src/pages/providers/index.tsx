@@ -39,9 +39,9 @@ let initValues = {
     ],
     socials: [
       {
-        name: "string",
-        value: "string"
-      }
+        name: "instagram",
+        value: "@juanito"
+      },
     ],
     // charge:"string", Tiene que estar y no esta 
     phone_number: "+584241315948",  //
@@ -73,7 +73,7 @@ let initValues = {
   phone_number: "+582123335544", //
   fav_course: "string", // NO
   notification_frecuency: "string", // NO
-  name: "string", //
+  name: "PROVEEDOR CHEVERE", //
   email: "user@example.com", //
   business: [22], // NO
   // services:"Servicio que promociona"
@@ -141,7 +141,7 @@ const Provider: NextPage = () => {
       const providerFlaten = provider.results.map(function (element: any) {
         return flattenJSONProvider(element);
       });
-      console.log("holi", providerFlaten)
+      // console.log("formateo", flattenJSONProvider(initValues))
       setProviderData(providerFlaten)
     }
   }, [provider]);

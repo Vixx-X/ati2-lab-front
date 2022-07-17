@@ -24,7 +24,6 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
     }
 
     const handlePage = () => {
-        console.log("paginita", page)
         setPage(!page);
     }
 
