@@ -28,9 +28,12 @@ import {
 } from '@fetches/employees';
 
 const EmployeesButton = ({ onclick }: any) => {
+
+  const t = useTranslate();
+
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
-      Añadir Empleado
+      {t("add employee")}
     </Button>
   );
 };

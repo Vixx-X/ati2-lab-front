@@ -33,11 +33,7 @@ export const CreateForm = ({
       maxWidth: '900px'
     },
   }
-
-  const handleSelectFlag = (ISOflag: string) => {
-    initValues.client.addresses[0].country = ISOflag;
-  }
-
+  
   return (
     <Dialog open={open} onClose={handleClose} sx={styles}>
       <DialogTitle>{!edit ? ` ${t("Create Particular Client")} ` : `${t("Edit Particular Client")}`}</DialogTitle>
@@ -47,27 +43,27 @@ export const CreateForm = ({
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
                 <label htmlFor="first_name">
-                  {t("Name")}
+                  {t("name")}
                 </label>
                 <Field
-                  label={t("Name")}
+                  label={t("name")}
                   name="user.first_name"
                   id="first_name"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Name")}
+                  placeholder={t("name")}
                 />
                 <ErrorMsg name="user.first_name" />
               </div>
               <div className="mb-4 text-sm basis-2/4">
                 <label htmlFor="last_name">
-                  {t("Lastname")}
+                  {t("lastname")}
                 </label>
                 <Field
-                  label={t("Lastname")}
+                  label={t("lastname")}
                   name="user.last_name"
                   id="last_name"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Lastname")}
+                  placeholder={t("lastname")}
                 />
                 <ErrorMsg name="user.last_name" />
               </div>
@@ -75,10 +71,10 @@ export const CreateForm = ({
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
                 <label htmlFor="type">
-                  {t("Type")}
+                  {t("type")}
                 </label>
                 <Field
-                  label={t("Type")}
+                  label={t("type")}
                   name="type"
                   id="type"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
@@ -88,14 +84,14 @@ export const CreateForm = ({
               </div>
               <div className="mb-4 text-sm basis-2/4">
                 <label htmlFor="company">
-                  {t("Company")}
+                  {t("company")}
                 </label>
                 <Field
-                  label={t("Company")}
+                  label={t("company")}
                   name="company"
                   id="company"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Company")}
+                  placeholder={t("company")}
                 />
                 <ErrorMsg name="company" />
               </div>
@@ -105,14 +101,14 @@ export const CreateForm = ({
                 <label
                   htmlFor="charge"
                 >
-                  {t("Charge")}
+                  {t("charge")}
                 </label>
                 <Field
-                  label={t("Charge")}
+                  label={t("charge")}
                   name="user.charge"
                   id="charge"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Charge")}
+                  placeholder={t("charge")}
                 />
                 <ErrorMsg name="user.charge" />
               </div>
@@ -120,15 +116,15 @@ export const CreateForm = ({
                 <label
                   htmlFor="email"
                 >
-                  {t("E-Mail")}
+                  {t("e-mail")}
                 </label>
                 <Field
-                  label={t("E-Mail")}
+                  label={t("e-mail")}
                   name="user.email"
                   id="email"
                   type="email"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
-                  placeholder={t("E-Mail")}
+                  placeholder={t("e-mail")}
                 />
                 <ErrorMsg name="user.email" />
               </div>
@@ -138,14 +134,14 @@ export const CreateForm = ({
                 <label
                   htmlFor="phone_number"
                 >
-                  {t("Phone")}
+                  {t("phone")}
                 </label>
                 <Field
-                  label={t("Phone")}
+                  label={t("phone")}
                   name="client.phone_number"
                   id="phone_numner"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Phone")}
+                  placeholder={t("phone")}
                 />
                 <ErrorMsg name="client.phone_number" />
               </div>
@@ -153,15 +149,15 @@ export const CreateForm = ({
                 <label
                   htmlFor="whatsapp"
                 >
-                  Whatsapp
+                  whatsapp
                 </label>
                 <Field
-                  label="Whatsapp"
+                  label="whatsapp"
                   name="client.whatsapp"
                   id="whatsapp"
                   type="whatsapp"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder="Whatsapp"
+                  placeholder="whatsapp"
                 />
                 <ErrorMsg name="client.whatsapp" />
               </div>
@@ -171,14 +167,14 @@ export const CreateForm = ({
                 <label
                   htmlFor="offered_services"
                 >
-                  {t("Services I offer")}
+                  {t("solicited services")}
                 </label>
                 <Field
-                  label={t("Services I offer")}
+                  label={t("solicited services")}
                   name="client.offered_services"
                   id="offered_services"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Services I offer")}
+                  placeholder={t("solicited services")}
                 />
                 <ErrorMsg name="client.offered_services" />
               </div>
@@ -186,14 +182,14 @@ export const CreateForm = ({
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
                 <label htmlFor="fav_course">
-                  {t("Courses of interest")}
+                  {t("courses of interest")}
                 </label>
                 <Field
-                  label={t("Courses of interest")}
+                  label={t("courses of interest")}
                   name="client.fav_course"
                   id="fav_course"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Courses of interest")}
+                  placeholder={t("courses of interest")}
                 />
                 <ErrorMsg name="client.fav_course" />
               </div>
@@ -201,14 +197,14 @@ export const CreateForm = ({
                 <label
                   htmlFor="notification_frecuency"
                 >
-                  {t("Notification Frequency")}
+                  {t("notification frequency")}
                 </label>
                 <Field
-                  label={t("Notification Frequency")}
+                  label={t("notification frequency")}
                   name="client.notification_frecuency"
                   id="notification_frecuency"
                   className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                  placeholder={t("Notification Frequency")}
+                  placeholder={t("notification frequency")}
                 />
                 <ErrorMsg name="client.notification_frecuency" />
               </div>
@@ -217,23 +213,30 @@ export const CreateForm = ({
               <div className="flex gap-x-8">
                 <div className="mb-1 text-sm basis-1/3">
                   <label htmlFor="country">
-                    {t("Country")}
+                    {t("country")}
                   </label>
-                  <FlagSelector name="client.addresses[0].country" ></FlagSelector>
+                  {/* <Field
+                                        label="País"
+                                        name="client.addresses[0].country"
+                                        id="country"
+                                        className="rounded py-2 px-2 text-gray-600 w-full mt-1"
+                                        placeholder="País"
+                                    /> */}
+                  <FlagSelector name="client.addresses[0].country"></FlagSelector>
                   <ErrorMsg name="client.addresses[0].country" />
                 </div>
                 <div className="mb-1 text-sm basis-1/3">
                   <label
                     htmlFor="city"
                   >
-                    {t("City")}
+                    {t("city")}
                   </label>
                   <Field
-                    label={t("City")}
+                    label={t("city")}
                     name="client.addresses[0].city"
                     id="city"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder={t("City")}
+                    placeholder={t("city")}
                   />
                   <ErrorMsg name="client.addresses[0].city" />
                 </div>
@@ -241,14 +244,14 @@ export const CreateForm = ({
                   <label
                     htmlFor="state"
                   >
-                    {t("State")}
+                    {t("state")}
                   </label>
                   <Field
-                    label={t("State")}
+                    label={t("state")}
                     name="client.addresses[0].state"
                     id="state"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder={t("State")}
+                    placeholder={t("state")}
                   />
                   <ErrorMsg name="client.addresses[0].state" />
                 </div>
@@ -256,14 +259,14 @@ export const CreateForm = ({
               <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
                   <label htmlFor="line1">
-                    {t("Line 1")}
+                    {t("basic address")}
                   </label>
                   <Field
-                    label={t("Line 1")}
+                    label={t("basic address")}
                     name="client.addresses[0].line1"
                     id="line1"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder={t("Line 1")}
+                    placeholder={t("basic address")}
                   />
                   <ErrorMsg name="client.addresses[0].line1" />
                 </div>
@@ -271,14 +274,14 @@ export const CreateForm = ({
                   <label
                     htmlFor="line2"
                   >
-                    {t("Line 2")}
+                    {t("more detail address")}
                   </label>
                   <Field
-                    label={t("Line 1")}
+                    label={t("more detail address")}
                     name="client.addresses[0].line2"
                     id="line2"
                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder={t("Line 1")}
+                    placeholder={t("more detail address")}
                   />
                   <ErrorMsg name="client.addresses[0].line2" />
                 </div>
@@ -286,7 +289,7 @@ export const CreateForm = ({
             </div>
             <div>
               <label htmlFor="social_newtworks">
-                {t("Social Media")}
+                {t("social media")}
               </label>
               <div className="flex gap-x-16 justify-between">
                 <div className="basis-4/5 gap-x-4 text-sm flex">
@@ -295,7 +298,7 @@ export const CreateForm = ({
                   </div>
                   <Field
                     label=""
-                    name={t("Social Media")}
+                    name={t("social media")}
                     id="social_network"
                     className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
                     placeholder=""
