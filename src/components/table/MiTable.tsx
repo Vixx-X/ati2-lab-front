@@ -9,13 +9,21 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import useTranslate from '@hooks/useTranslate';
 
+<<<<<<< HEAD
 export default function MiTable({
   rows,
   headTable,
   handleEditRow,
   handleDeleteRow,
 }: any) {
+=======
+export default function MiTable({ rows, headTable, handleEditRow, handleDeleteRow }: any) {
+
+  const t = useTranslate();
+
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
   return (
     <Paper
       elevation={1}
@@ -29,11 +37,23 @@ export default function MiTable({
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
+<<<<<<< HEAD
               {headTable.map(({ value, styles }: any, index: number) => (
                 <TableCell key={index} sx={styles}>
                   {value[0].toUpperCase() + value.substring(1)}
                 </TableCell>
               ))}
+=======
+              {
+                headTable.map(({ value, styles }: any, index: number) => (
+                  <TableCell key={index} sx={styles}>
+                    {
+                      t(value)
+                    }
+                  </TableCell>
+                ))
+              }
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
             </TableRow>
           </TableHead>
           <TableBody>

@@ -1,10 +1,10 @@
 import * as React from 'react';
 
+import useTranslate from '@hooks/useTranslate';
+
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 export default function AlertDialog({
@@ -13,6 +13,7 @@ export default function AlertDialog({
   handleSubmit,
   children,
 }: any) {
+  const t = useTranslate();
   return (
     <div>
       <Dialog
@@ -29,9 +30,9 @@ export default function AlertDialog({
           </DialogContentText>
         </DialogContent> */}
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleClose}>{t('Cancel')}</Button>
           <button onClick={handleSubmit} autoFocus>
-            Aceptar
+            {t('Acept')}
           </button>
         </DialogActions>
       </Dialog>

@@ -14,6 +14,7 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import MiTable from '@components/table/MiTable';
+import useTranslate from '@hooks/useTranslate';
 
 import { API_URLS } from '@config';
 
@@ -34,9 +35,12 @@ import { FormikValues } from 'formik';
 import useSWR from 'swr';
 
 const BusinessButton = ({ onclick }: any) => {
+
+  const t = useTranslate();
+
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
-      Añadir Empresa
+      {t("Add Business")}
     </Button>
   );
 };
@@ -83,6 +87,8 @@ const Business: NextPage = () => {
   const [initialValues, setInitial] = useState(initValues);
 
   const [currentId, setId] = useState<number>();
+
+  const t = useTranslate();
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
@@ -168,6 +174,10 @@ const Business: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
+<<<<<<< HEAD
+=======
+      console.log('exceptions:', exception);
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
       setStatus(exception.data.detail);
     }
   };
@@ -176,7 +186,18 @@ const Business: NextPage = () => {
     try {
       await deleteBusiness(currentId);
       handleCloseDelete();
+<<<<<<< HEAD
     } catch (e) {}
+=======
+    } catch (e) {
+      // setStatus(exception.data.detail);
+      // setLoading(false);
+    }
+  };
+
+  const handleSelectFlag = (e: any) => {
+    // console.log("Se selecciono la bandera de:", e);
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
   };
 
   const styles = {
@@ -238,7 +259,7 @@ const Business: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>
+        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
       )}
       {businessData ? (
         <MiTable

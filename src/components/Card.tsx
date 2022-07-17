@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
+import useTranslate from '@hooks/useTranslate';
 
 const styles = {
   height: 200,
@@ -23,6 +24,9 @@ export default function MediaCard({
   link,
   style = styles,
 }: any) {
+
+  const t = useTranslate();
+
   return (
     <Link href={link} passHref>
       <Card sx={{ bgcolor: color, cursor: 'pointer' }}>
@@ -36,10 +40,10 @@ export default function MediaCard({
             component="div"
             sx={{ textTransform: 'capitalize' }}
           >
-            {name}
+            {t(name)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            {t(description)}
           </Typography>
         </CardContent>
       </Card>

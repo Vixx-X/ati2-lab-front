@@ -28,7 +28,18 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
 import useSWR from 'swr';
+<<<<<<< HEAD
 
+=======
+import Loader from '@components/Loader';
+import { ProvidersHeaders } from '@components/data/Headers';
+import { ENTITYS } from '@components/data/Entitys';
+import Card from '@components/Card';
+import Alert from '@components/layout/Alert';
+import AddIcon from '@mui/icons-material/Add';
+import {  flattenJSONProvider } from '@utils/flattenJSON';
+import useTranslate from '@hooks/useTranslate';
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 const ProvidersButton = ({ onclick }: any) => {
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
@@ -54,6 +65,7 @@ let initValues = {
         value: '@juanito',
       },
     ],
+<<<<<<< HEAD
     // charge:"string", Tiene que estar y no esta
     phone_number: '+584241315948', //
     // local_phone_number: "+584241315948",  //
@@ -63,6 +75,17 @@ let initValues = {
     last_name: 'perez', //
     personal_email: 'user2@example.com', //
     business_email: 'user5@example.com', //
+=======
+    charge: "CE02",
+    phone_number: "+584241315948",  //
+    local_phone: "+582121315948",  //
+    fav_course: "curso bonito", // No debe estar
+    notification_frecuency: "1 vez al mes", // No debe estar
+    first_name: "juan", //
+    last_name: "perez",  //
+    personal_email: "user2@example.com", //
+    business_email: "user5@example.com"  //
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
   },
   addresses: [
     {
@@ -79,6 +102,7 @@ let initValues = {
       value: 'string',
     },
   ],
+<<<<<<< HEAD
   // tax_id:"222333", // Se deben enviar
   // website:"string", //
   phone_number: '+582123335544', //
@@ -87,12 +111,29 @@ let initValues = {
   name: 'PROVEEDOR CHEVERE', //
   email: 'user@example.com', //
   business: [22], // NO
+=======
+  tax_id:"222333", // Se deben enviar
+  website:"https://api.ati2.vittorioadesso.com/", //
+  phone_number: "+582123335544", //
+  fav_course: "string", // NO
+  notification_frecuency: "string", // NO
+  name: "PROVEEDOR CHEVERE", //
+  email: "user@example.com", //
+  business: [36], // NO
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
   // services:"Servicio que promociona"
 };
 // as ProviderForm
 
 const Provider: NextPage = () => {
+<<<<<<< HEAD
   const [providerData, setProviderData] = useState();
+=======
+
+  const t = useTranslate()
+
+  const [providerData, setProviderData] = useState()
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -166,8 +207,13 @@ const Provider: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
+<<<<<<< HEAD
       console.log('exceptions:', exception);
       setStatus(exception.data);
+=======
+      console.log("exceptions:", exception)
+      setStatus(exception.data.detail);
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
       // setLoading(false);
     }
   };
@@ -179,8 +225,13 @@ const Provider: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
+<<<<<<< HEAD
       console.log('exceptions:', exception);
       setStatus(exception.data);
+=======
+      console.log("exceptions:", exception);
+      setStatus(exception.data.detail);
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
     }
   };
 
@@ -190,7 +241,7 @@ const Provider: NextPage = () => {
       // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data);
+      // setStatus(exception.data.detail);
       // setLoading(false);
     }
   };
@@ -245,6 +296,7 @@ const Provider: NextPage = () => {
         handleClose={handleCloseCreate}
         handleSubmit={!editable ? handleSubmitCreate : handleSubmitEdit}
         initValues={initialValues}
+<<<<<<< HEAD
         edit={editable}
       />
       {initialValues && currentId && (
@@ -264,6 +316,17 @@ const Provider: NextPage = () => {
       ) : (
         <Loader />
       )}
+=======
+        edit={editable} />
+      {initialValues && currentId && <Alert open={openDelete}
+        handleClose={handleCloseDelete}
+        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
+      {providerData ? <MiTable rows={providerData}
+        headTable={ProvidersHeaders}
+        handleEditRow={handleEditRow}
+        handleDeleteRow={handleDeleteRow}></MiTable>
+        : <Loader />}
+>>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
     </MainContainer>
   );
 };
