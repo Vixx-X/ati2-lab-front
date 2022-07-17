@@ -164,7 +164,7 @@ const Business: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log('exceptions:', exception);
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
     }
   };
 
@@ -174,7 +174,7 @@ const Business: NextPage = () => {
       // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data);
+      // setStatus(exception.data.detail);
       // setLoading(false);
     }
   };

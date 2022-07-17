@@ -43,9 +43,9 @@ let initValues = {
         value: "@juanito"
       },
     ],
-    // charge:"string", Tiene que estar y no esta 
+    charge: "CE02",
     phone_number: "+584241315948",  //
-    // local_phone_number: "+584241315948",  //
+    local_phone: "+582121315948",  //
     fav_course: "curso bonito", // No debe estar
     notification_frecuency: "1 vez al mes", // No debe estar
     first_name: "juan", //
@@ -68,14 +68,14 @@ let initValues = {
       value: "string"
     }
   ],
-  // tax_id:"222333", // Se deben enviar
-  // website:"string", //
+  tax_id:"222333", // Se deben enviar
+  website:"https://api.ati2.vittorioadesso.com/", //
   phone_number: "+582123335544", //
   fav_course: "string", // NO
   notification_frecuency: "string", // NO
   name: "PROVEEDOR CHEVERE", //
   email: "user@example.com", //
-  business: [22], // NO
+  business: [36], // NO
   // services:"Servicio que promociona"
 };
 // as ProviderForm
@@ -155,7 +155,7 @@ const Provider: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception)
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
       // setLoading(false);
     }
   };
@@ -168,7 +168,7 @@ const Provider: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
     }
   }
 
@@ -178,7 +178,7 @@ const Provider: NextPage = () => {
       // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data);
+      // setStatus(exception.data.detail);
       // setLoading(false);
     }
   }

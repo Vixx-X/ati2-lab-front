@@ -131,7 +131,7 @@ const Employees: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception)
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
       // setLoading(false);
     }
   };
@@ -144,7 +144,7 @@ const Employees: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
     }
   }
 
@@ -154,7 +154,7 @@ const Employees: NextPage = () => {
       // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data);
+      // setStatus(exception.data.detail);
       // setLoading(false);
     }
   }

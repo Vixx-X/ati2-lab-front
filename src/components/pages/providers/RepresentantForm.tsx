@@ -101,17 +101,17 @@ export const RepresentantForm = ({ initValues }: any) => {
             </div>
             <div className="flex gap-x-8">
                 <div className="mb-4 text-sm basis-2/4">
-                    <label htmlFor="representant.local_phone_number">
+                    <label htmlFor="representant.local_phone">
                         Teléfono Local
                     </label>
                     <Field
                         label="Teléfono Local"
-                        name="representant.local_phone_number"
-                        id="representant.local_phone_number"
+                        name="representant.local_phone"
+                        id="representant.local_phone"
                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
                         placeholder="Teléfono Local"
                     />
-                    <ErrorMsg name="representant.local_phone_number" />
+                    <ErrorMsg name="representant.local_phone" />
                 </div>
             </div>
             <div >
