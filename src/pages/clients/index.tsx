@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
 import type { NextPage } from 'next';
-
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
@@ -13,6 +11,11 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/clients/CreateForm';
 import MiTable from '@components/table/MiTable';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import useTranslate from '@hooks/useTranslate';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import useSWR from 'swr';
 
 import {
   deleteClient,
@@ -21,24 +24,8 @@ import {
   postClient,
   putClient,
 } from '@fetches/clients';
-
 import { flattenJSON } from '@utils/flattenJSON';
 
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import { Box } from '@mui/system';
-import { FormikValues } from 'formik';
-import useSWR from 'swr';
-<<<<<<< HEAD
-=======
-import Loader from '@components/Loader';
-import { ClientsHeaders } from '@components/data/Headers';
-import { ENTITYS } from '@components/data/Entitys';
-import Card from '@components/Card';
-import Alert from '@components/layout/Alert';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import { flattenJSON } from '@utils/flattenJSON';
-import useTranslate from '@hooks/useTranslate';
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 
 const ClientsButton = ({ onclick }: any) => {
 
@@ -85,14 +72,10 @@ let initValues = {
 };
 
 const Clients: NextPage = () => {
-<<<<<<< HEAD
-  const [clientsData, setClientData] = useState();
-=======
 
   const t = useTranslate()
 
   const [clientsData, setClientData] = useState()
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -168,13 +151,8 @@ const Clients: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-<<<<<<< HEAD
-      console.log('exceptions:', exception);
-      setStatus(exception.data);
-=======
       console.log("exceptions:", exception)
       setStatus(exception.data.detail);
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
       // setLoading(false);
     }
   };
@@ -186,13 +164,8 @@ const Clients: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-<<<<<<< HEAD
-      console.log('exceptions:', exception);
-      setStatus(exception.data);
-=======
       console.log("exceptions:", exception);
       setStatus(exception.data.detail);
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
     }
   };
 
@@ -257,7 +230,6 @@ const Clients: NextPage = () => {
         handleClose={handleCloseCreate}
         handleSubmit={!editable ? handleSubmitCreate : handleSubmitEdit}
         initValues={initialValues}
-<<<<<<< HEAD
         edit={editable}
       />
       {initialValues && currentId && (
@@ -265,7 +237,7 @@ const Clients: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>
+        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
       )}
       {clientsData ? (
         <MiTable
@@ -277,17 +249,6 @@ const Clients: NextPage = () => {
       ) : (
         <Loader />
       )}
-=======
-        edit={editable} />
-      {initialValues && currentId && <Alert open={openDelete}
-        handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
-      {clientsData ? <MiTable rows={clientsData}
-        headTable={ClientsHeaders}
-        handleEditRow={handleEditRow}
-        handleDeleteRow={handleDeleteRow}></MiTable>
-        : <Loader />}
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
     </MainContainer>
   );
 };

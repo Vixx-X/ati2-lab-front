@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
 import type { NextPage } from 'next';
-
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
@@ -13,6 +11,12 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/employees/CreateForm';
 import MiTable from '@components/table/MiTable';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import useSWR from 'swr';
+import useTranslate from '@hooks/useTranslate';
+import AddIcon from '@mui/icons-material/Add';
+import { flattenJSON } from '@utils/flattenJSON';
 
 import {
   deleteEmployee,
@@ -22,24 +26,6 @@ import {
   putEmployee,
 } from '@fetches/employees';
 
-import { flattenJSON } from '@utils/flattenJSON';
-
-import AddIcon from '@mui/icons-material/Add';
-import { Box } from '@mui/system';
-import { FormikValues } from 'formik';
-import useSWR from 'swr';
-<<<<<<< HEAD
-
-=======
-import Loader from '@components/Loader';
-import { EmployeesHeaders } from '@components/data/Headers';
-import { ENTITYS } from '@components/data/Entitys';
-import Card from '@components/Card';
-import Alert from '@components/layout/Alert';
-import AddIcon from '@mui/icons-material/Add';
-import { flattenJSON } from '@utils/flattenJSON';
-import useTranslate from '@hooks/useTranslate';
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 const EmployeesButton = ({ onclick }: any) => {
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
@@ -79,14 +65,10 @@ let initValues = {
 };
 
 const Employees: NextPage = () => {
-<<<<<<< HEAD
-  const [employeesData, setEmployeeData] = useState();
-=======
 
   const t = useTranslate()
 
   const [employeesData, setEmployeeData] = useState()
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -161,13 +143,8 @@ const Employees: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-<<<<<<< HEAD
-      console.log('exceptions:', exception);
-      setStatus(exception.data);
-=======
       console.log("exceptions:", exception)
       setStatus(exception.data.detail);
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
       // setLoading(false);
     }
   };
@@ -179,13 +156,8 @@ const Employees: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-<<<<<<< HEAD
-      console.log('exceptions:', exception);
-      setStatus(exception.data);
-=======
       console.log("exceptions:", exception);
       setStatus(exception.data.detail);
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
     }
   };
 
@@ -249,7 +221,6 @@ const Employees: NextPage = () => {
         handleClose={handleCloseCreate}
         handleSubmit={!editable ? handleSubmitCreate : handleSubmitEdit}
         initValues={initialValues}
-<<<<<<< HEAD
         edit={editable}
       />
       {initialValues && currentId && (
@@ -257,7 +228,7 @@ const Employees: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>
+        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
       )}
       {employeesData ? (
         <MiTable
@@ -269,17 +240,6 @@ const Employees: NextPage = () => {
       ) : (
         <Loader />
       )}
-=======
-        edit={editable} />
-      {initialValues && currentId && <Alert open={openDelete}
-        handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
-      {employeesData ? <MiTable rows={employeesData}
-        headTable={EmployeesHeaders}
-        handleEditRow={handleEditRow}
-        handleDeleteRow={handleDeleteRow}></MiTable>
-        : <Loader />}
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
     </MainContainer>
   );
 };

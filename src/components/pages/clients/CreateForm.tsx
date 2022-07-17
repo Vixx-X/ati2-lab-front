@@ -7,21 +7,14 @@ import Form from '@components/forms/Form';
 import Select from '@components/forms/Select';
 import SubmitButton from '@components/forms/SubmitButton';
 import Button from '@components/layout/Button';
-
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-<<<<<<< HEAD
 import { Field } from 'formik';
-=======
-import { FlagSelector } from '@components/forms/FlagSelector';
-import SubmitButton from '@components/forms/SubmitButton';
-import Box from '@mui/material/Box';
 import useTranslate from '@hooks/useTranslate';
->>>>>>> eccb51c07c379f2fe86a6aa15b27588c933e1723
 
 export const CreateForm = ({
   open,
