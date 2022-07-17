@@ -17,7 +17,7 @@ import Card from '@components/Card';
 import Alert from '@components/layout/Alert';
 import AddIcon from '@mui/icons-material/Add';
 import {  flattenJSONProvider } from '@utils/flattenJSON';
-
+import useTranslate from '@hooks/useTranslate';
 const ProvidersButton = ({ onclick }: any) => {
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
@@ -81,6 +81,8 @@ let initValues = {
 // as ProviderForm
 
 const Provider: NextPage = () => {
+
+  const t = useTranslate()
 
   const [providerData, setProviderData] = useState()
 
@@ -231,7 +233,7 @@ const Provider: NextPage = () => {
         edit={editable} />
       {initialValues && currentId && <Alert open={openDelete}
         handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
+        handleSubmit={handleSubmitDelete}>{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>}
       {providerData ? <MiTable rows={providerData}
         headTable={ProvidersHeaders}
         handleEditRow={handleEditRow}

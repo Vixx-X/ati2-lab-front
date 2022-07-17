@@ -35,5 +35,12 @@
   "Are you sure do you want to delete":"¿Está seguro que desea eliminar a",
   "Add Business":"Añadir Empresa",
   "Basic Addreses":"Direccion Basica",
-  "More Detail Addreses":"Dirección (más detalles)"
+  "More Detail Addreses":"Dirección (más detalles)",
+  "Lastname":"Apellido",
+  "Type":"Tipo",
+  "Company":"Compañia",
+  "Charge":"Cargo",
+  "Add Client":"Añadir Cliente",
+  "Ej: Student, Employ":"Ej: Estudiante, Labora empresa",
+  "Create Particular Client":"Crear Cliente Particular"
 }
