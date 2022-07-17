@@ -21,7 +21,7 @@ export default function MediaCard({
   color,
   description,
   link,
-  style=styles
+  style = styles,
 }: any) {
   return (
     <Link href={link} passHref>

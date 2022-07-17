@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,8 +7,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function AlertDialog({open, handleClose, handleSubmit, children} : any) {
-
+export default function AlertDialog({
+  open,
+  handleClose,
+  handleSubmit,
+  children,
+}: any) {
   return (
     <div>
       <Dialog
@@ -16,9 +21,7 @@ export default function AlertDialog({open, handleClose, handleSubmit, children} 
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {children}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{children}</DialogTitle>
         {/* <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Let Google help apps determine location. This means sending anonymous

@@ -2,7 +2,7 @@ import { Field } from './Field';
 
 interface SelectProps extends Props {
   placeholder?: string;
-  choices: { value: string; text: string }[];
+  choices: { value: string; text: any }[];
   noPlaceholder?: boolean;
 }
 
@@ -10,10 +10,11 @@ export const Select = ({
   choices,
   placeholder,
   noPlaceholder,
+  name,
   ...props
 }: SelectProps) => {
   return (
-    <Field as="select" {...props}>
+    <Field as="select" name={name} {...props}>
       <>
         {!noPlaceholder && (
           <option disabled>{placeholder ?? '--Seleccionar--'}</option>

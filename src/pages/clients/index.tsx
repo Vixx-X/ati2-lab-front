@@ -1,22 +1,33 @@
 import { useEffect, useState } from 'react';
+
 import type { NextPage } from 'next';
+
+import Card from '@components/Card';
+import Loader from '@components/Loader';
+import { ENTITYS } from '@components/data/Entitys';
+import { ClientsHeaders } from '@components/data/Headers';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import Alert from '@components/layout/Alert';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
+import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/clients/CreateForm';
-import { deleteClient, getClient, getClients, postClient, putClient } from '@fetches/clients';
+import MiTable from '@components/table/MiTable';
+
+import {
+  deleteClient,
+  getClient,
+  getClients,
+  postClient,
+  putClient,
+} from '@fetches/clients';
+
+import { flattenJSON } from '@utils/flattenJSON';
+
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
-import MiTable from '@components/table/MiTable';
-import SearchBar from '@components/layout/SearchBar';
 import useSWR from 'swr';
-import Loader from '@components/Loader';
-import { ClientsHeaders } from '@components/data/Headers';
-import { ENTITYS } from '@components/data/Entitys';
-import Card from '@components/Card';
-import Alert from '@components/layout/Alert';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import { flattenJSON } from '@utils/flattenJSON';
 
 const ClientsButton = ({ onclick }: any) => {
   return (
@@ -28,39 +39,39 @@ const ClientsButton = ({ onclick }: any) => {
 
 let initValues = {
   user: {
-    charge: "CEO",
-    first_name: "gaby",
-    last_name: "ustariz",
-    email: "gabyustariz@hotmail.com"
+    charge: 'CEO',
+    first_name: 'gaby',
+    last_name: 'ustariz',
+    email: 'gabyustariz@hotmail.com',
   },
-  type: "estudiante",
-  company: "COMPANY COOL",
+  type: 'estudiante',
+  company: 'COMPANY COOL',
   client: {
-    phone_number: "+584245556677",
-    whatsapp: "+584245556677",
-    fav_course: "PHP",
-    notification_frecuency: "1 vez al mes",
-    offered_services: "Curso de programacion",
+    phone_number: '+584245556677',
+    whatsapp: '+584245556677',
+    fav_course: 'PHP',
+    notification_frecuency: '1 vez al mes',
+    offered_services: 'Curso de programacion',
     addresses: [
       {
-        line1: "casita1",
-        line2: "la calle bonita",
-        city: "caracas",
-        state: "distrito capital",
-        country: "ve"
-      }
+        line1: 'casita1',
+        line2: 'la calle bonita',
+        city: 'caracas',
+        state: 'distrito capital',
+        country: 've',
+      },
     ],
     socials: [
       {
-        name: "instagram",
-        value: "@micasita"
-      }
-    ]
-  }
+        name: 'instagram',
+        value: '@micasita',
+      },
+    ],
+  },
 };
 
 const Clients: NextPage = () => {
-  const [clientsData, setClientData] = useState()
+  const [clientsData, setClientData] = useState();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -93,23 +104,22 @@ const Clients: NextPage = () => {
   };
 
   const handleEditRow = async (id: number) => {
-    setId(id)
+    setId(id);
     setEditable(true);
     try {
-      initValues = await getClient(id);;
+      initValues = await getClient(id);
     } catch (exception: any) {
       // setLoading(false);
     }
     // get de la variable y setear initial values
-    handleClickOpenCreate()
-  }
+    handleClickOpenCreate();
+  };
 
   const handleDeleteRow = (id: number) => {
-    console.log("He aqui el id", id)
-    setId(id)
-    handleClickOpenDelete()
-  }
-
+    console.log('He aqui el id', id);
+    setId(id);
+    handleClickOpenDelete();
+  };
 
   // const [loading, setLoading] = useState(false);
 
@@ -119,22 +129,25 @@ const Clients: NextPage = () => {
     if (clients) {
       console.log('111', clients);
       const clientsFlaten = clients.results.map(function (element: any) {
-        console.log("datica", clientsFlaten)
+        console.log('datica', clientsFlaten);
         return flattenJSON(element);
       });
-      console.log("holi", clientsFlaten)
-      setClientData(clientsFlaten)
+      console.log('holi', clientsFlaten);
+      setClientData(clientsFlaten);
     }
   }, [clients]);
 
-  const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
-    console.log("OnSubmit():", values);
+  const handleSubmitCreate = async (
+    values: FormikValues,
+    { setStatus }: any
+  ) => {
+    console.log('OnSubmit():', values);
     try {
       await postClient(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception)
+      console.log('exceptions:', exception);
       setStatus(exception.data);
       // setLoading(false);
     }
@@ -142,15 +155,15 @@ const Clients: NextPage = () => {
 
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
     try {
-      console.log("edit", values, currentId)
+      console.log('edit', values, currentId);
       await putClient(values, currentId);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception);
+      console.log('exceptions:', exception);
       setStatus(exception.data);
     }
-  }
+  };
 
   const handleSubmitDelete = async () => {
     try {
@@ -161,18 +174,18 @@ const Clients: NextPage = () => {
       // setStatus(exception.data);
       // setLoading(false);
     }
-  }
+  };
 
   const handleSelectFlag = (e: any) => {
-    console.log("Se selecciono la bandera de:", e);
-  }
+    console.log('Se selecciono la bandera de:', e);
+  };
 
   const styles = {
     '& form': {
-      height: '100%'
+      height: '100%',
     },
-    getClient
-  }
+    getClient,
+  };
 
   const stylesCard = {
     height: 100,
@@ -184,22 +197,27 @@ const Clients: NextPage = () => {
   return (
     <MainContainer>
       <Box sx={{ maxWidth: 500 }}>
-        <Card name={ENTITYS[2].name}
+        <Card
+          name={ENTITYS[2].name}
           icon={ENTITYS[2].icon}
           color={ENTITYS[2].color}
           description={ENTITYS[2].description}
           link={ENTITYS[2].link}
-          style={stylesCard} />
+          style={stylesCard}
+        />
       </Box>
       {/* <MiTable rows={clientData}></MiTable> */}
       <Box display="flex" justifyContent="space-between" className="my-8">
         <ClientsButton onclick={handleClickOpenCreate} />
-        <Box className="w-1/2 gap-x-4" display="flex" alignItems="center" justifyContent="space-between">
+        <Box
+          className="w-1/2 gap-x-4"
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <SearchBar />
           <Box className="w-1/2">
-            <FlagSelector
-              onSelect={handleSelectFlag}
-            ></FlagSelector>
+            <FlagSelector onSelect={handleSelectFlag}></FlagSelector>
           </Box>
         </Box>
       </Box>
@@ -208,15 +226,25 @@ const Clients: NextPage = () => {
         handleClose={handleCloseCreate}
         handleSubmit={!editable ? handleSubmitCreate : handleSubmitEdit}
         initValues={initialValues}
-        edit={editable} />
-      {initialValues && currentId && <Alert open={openDelete}
-        handleClose={handleCloseDelete}
-        handleSubmit={handleSubmitDelete}>{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>}
-      {clientsData ? <MiTable rows={clientsData}
-        headTable={ClientsHeaders}
-        handleEditRow={handleEditRow}
-        handleDeleteRow={handleDeleteRow}></MiTable>
-        : <Loader />}
+        edit={editable}
+      />
+      {initialValues && currentId && (
+        <Alert
+          open={openDelete}
+          handleClose={handleCloseDelete}
+          handleSubmit={handleSubmitDelete}
+        >{`¿Está seguro que desea eliminar a ${currentId}?`}</Alert>
+      )}
+      {clientsData ? (
+        <MiTable
+          rows={clientsData}
+          headTable={ClientsHeaders}
+          handleEditRow={handleEditRow}
+          handleDeleteRow={handleDeleteRow}
+        ></MiTable>
+      ) : (
+        <Loader />
+      )}
     </MainContainer>
   );
 };

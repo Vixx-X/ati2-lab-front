@@ -73,7 +73,7 @@ export default function MainContainer({ children }: any) {
         <Toolbar />
         <Divider />
         <List>
-          {ENTITYS.map(({ name, icon, link }, index) => (
+          {ENTITYS.map(({ name, icon, link }) => (
             <Link href={link} passHref key={name}>
               <ListItem disablePadding>
                 <ListItemButton>
