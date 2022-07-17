@@ -30,8 +30,8 @@ let initValues = {
   representant: {
     addresses: [
       {
-        line1: "lin1",
-        line2: "lin2",
+        line1: "lin1 re",
+        line2: "lin2 re",
         country: "ve",
         city: "Caracas",
         state: "Distrito Capital",
@@ -43,13 +43,15 @@ let initValues = {
         value: "string"
       }
     ],
-    charge:"string",
+    // charge:"string", Tiene que estar y no esta 
     phone_number: "+584241315948",  //
-    local_phone: "+589774011",  //
-    first_name: "string", //
-    last_name: "string",  //
-    personal_email: "user@example.com", //
-    business_email: "user@example.com"  //
+    // local_phone_number: "+584241315948",  //
+    fav_course: "curso bonito", // No debe estar
+    notification_frecuency: "1 vez al mes", // No debe estar
+    first_name: "juan", //
+    last_name: "perez",  //
+    personal_email: "user2@example.com", //
+    business_email: "user5@example.com"  //
   },
   addresses: [
     {
@@ -66,15 +68,15 @@ let initValues = {
       value: "string"
     }
   ],
-  tax_id:"tax_id", //
-  webside:"string", //
-  phone_number: "string", //
-  fav_course: "string",
-  notification_frecuency: "string",
+  // tax_id:"222333", // Se deben enviar
+  // website:"string", //
+  phone_number: "+582123335544", //
+  fav_course: "string", // NO
+  notification_frecuency: "string", // NO
   name: "string", //
   email: "user@example.com", //
-  business: [0],
-  offered_services:"Servicio que promociona"
+  business: [22], // NO
+  // services:"Servicio que promociona"
 };
 // as ProviderForm
 

@@ -12,7 +12,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import SubmitButton from '@components/forms/SubmitButton'
-import { Box } from '@mui/system';
+import Box from '@mui/material/Box';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
@@ -24,7 +24,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
         },
     }
 
-    const handleSelectFlag = (ISOflag:string) =>{
+    const handleSelectFlag = (ISOflag: string) => {
         initValues.client.addresses[0].country = ISOflag;
     }
 
@@ -298,7 +298,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     {/* {loading && <Loader />} */}
                 </DialogContent>
                 <DialogActions>
-                    <Box  display="flex" justifyContent="space-between">
+                    <Box display="flex" className="gap-x-4" justifyContent="space-between">
                         <Button onclick={handleClose}>Cancelar</Button>
                         {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
                         <SubmitButton>

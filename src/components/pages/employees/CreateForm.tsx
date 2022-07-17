@@ -14,7 +14,7 @@ import { FlagSelector } from '@components/forms/FlagSelector';
 import useSWR from 'swr';
 import { getBusinesses } from '@fetches/business';
 import SubmitButton from '@components/forms/SubmitButton';
-import { Box } from '@mui/system';
+import Box from '@mui/material/Box';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
@@ -39,7 +39,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 <DialogContent>
                     <div className="pt-4">
                         <div className="mb-4 text-sm w-1/2">
-                            <Box className="w-full" alignItems="center" display="flex" justifyContent="space-between">    
+                            <Box className="w-full" alignItems="center" display="flex" justifyContent="space-between">
                                 <label
                                     htmlFor="business"
                                 >
@@ -307,8 +307,10 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                     {/* {loading && <Loader />} */}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancelar</Button>
-                    <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
+                    <Box display="flex" className="gap-x-4" justifyContent="space-between">
+                        <Button onClick={handleClose}>Cancelar</Button>
+                        <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
+                    </Box>
                 </DialogActions>
             </Form>
         </Dialog>
