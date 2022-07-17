@@ -101,7 +101,8 @@ const Provider: NextPage = () => {
   const handleCloseCreate = () => {
     setOpenCreate(false);
     setEditable(false);
-    setInitial(initValues)
+    setInitial(initValues);
+    mutate();
   };
 
   const handleClickOpenDelete = () => {
@@ -133,7 +134,7 @@ const Provider: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: provider } = useSWR('provider', getProviders);
+  const { data: provider, mutate} = useSWR('provider', getProviders);
 
   useEffect(() => {
     if (provider) {
@@ -164,7 +165,7 @@ const Provider: NextPage = () => {
       console.log("edit", values, currentId)
       await putProvider(values, currentId);
       setStatus({});
-      handleCloseDelete();
+      handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
       setStatus(exception.data);

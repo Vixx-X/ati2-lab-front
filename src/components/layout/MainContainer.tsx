@@ -85,7 +85,7 @@ export default function MainContainer({ children }: any) {
       >
         <Toolbar />
         <Box display="flex" alignItems="center" sx={{ height: "calc(100vh - 64px)", bgColor: '#185583' }}>
-          <Container maxWidth="xl">
+          <Container className='mt-40 h-full' maxWidth="xl">
             {children}
           </Container>
         </Box>

@@ -79,7 +79,8 @@ const Clients: NextPage = () => {
   const handleCloseCreate = () => {
     setOpenCreate(false);
     setEditable(false);
-    setInitial(initValues)
+    setInitial(initValues);
+    mutate();
   };
 
   const handleClickOpenDelete = () => {
@@ -88,6 +89,7 @@ const Clients: NextPage = () => {
 
   const handleCloseDelete = () => {
     setOpenDelete(false);
+    mutate();
   };
 
   const handleEditRow = async (id: number) => {
@@ -111,7 +113,7 @@ const Clients: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: clients } = useSWR('clients', getClients);
+  const { data: clients, mutate } = useSWR('clients', getClients);
 
   useEffect(() => {
     if (clients) {
@@ -143,7 +145,7 @@ const Clients: NextPage = () => {
       console.log("edit", values, currentId)
       await putClient(values, currentId);
       setStatus({});
-      handleCloseDelete();
+      handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
       setStatus(exception.data);

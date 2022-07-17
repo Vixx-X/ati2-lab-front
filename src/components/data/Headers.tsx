@@ -45,8 +45,6 @@ export const EmployeesHeaders = [
     { key: 'first_name', value: 'nombre', styles: { minWidth: 150 } },
     { key: 'last_name', value: 'apellido', styles: { minWidth: 150 } },
     { key: 'document_id', value: 'cédula', styles: { minWidth: 150 } },
-    { key: 'type', value: 'tipo', styles: { minWidth: 150 } },
-    { key: 'company', value: 'compañía'},
     { key: 'charge', value: 'cargo'},
     { key: 'contract_modality', value: 'modalidad de contratación', styles: { minWidth: 150 } },
     { key: 'email', value: 'email personal', styles: { minWidth: 150 } },
@@ -56,8 +54,6 @@ export const EmployeesHeaders = [
     { key: 'country', value: 'país', styles: { minWidth: 150 } },
     { key: 'city', value: 'ciudad', styles: { minWidth: 150 } },
     { key: 'state', value: 'estado', styles: { minWidth: 150 } },
-    { key: 'line1', value: 'dirección básica', styles: { minWidth: 150 } },
-    { key: 'line2', value: 'dirección (más detalles)', styles: { minWidth: 150 } },
     { key: 'socials', value: 'redes sociales', styles: { minWidth: 150 } },
 ]
 

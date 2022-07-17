@@ -17,6 +17,7 @@ export default function MiTable({ rows, headTable, handleEditRow, handleDeleteRo
       sx={{
         padding: '.75em',
       }}
+      className='mb-40'
     >
       <TableContainer>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
