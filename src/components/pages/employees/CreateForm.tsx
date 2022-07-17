@@ -308,7 +308,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 </DialogContent>
                 <DialogActions>
                     <Box display="flex" className="gap-x-4" justifyContent="space-between">
-                        <Button onClick={handleClose}>Cancelar</Button>
+                        <Button onclick={handleClose}>Cancelar</Button>
                         <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
                     </Box>
                 </DialogActions>
