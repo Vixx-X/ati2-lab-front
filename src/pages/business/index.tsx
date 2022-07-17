@@ -116,7 +116,7 @@ const Business: NextPage = () => {
   }
 
   const handleDeleteRow = (id: any) => {
-    console.log("He aqui el id", id)
+    // console.log("He aqui el id", id)
     setId(id)
     handleClickOpenDelete()
   }
@@ -128,17 +128,17 @@ const Business: NextPage = () => {
 
   useEffect(() => {
     if (business) {
-      console.log('111', business);
+      // console.log('111', business);
       const businessFlaten = business.results.map(function (element: any) {
         return flattenJSON(element);
       });
-      console.log("holi", businessFlaten)
+      // console.log("holi", businessFlaten)
       setBusinessData(businessFlaten)
     }
   }, [business]);
 
   const handleSubmitCreate = async (values: FormikValues, { setStatus }: any) => {
-    console.log("OnSubmit():", values);
+    // console.log("OnSubmit():", values);
     try {
       // await postBusiness({
 
@@ -146,7 +146,7 @@ const Business: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception)
+      // console.log("exceptions:", exception)
       setStatus(exception.data);
       // setLoading(false);
     }
@@ -167,7 +167,7 @@ const Business: NextPage = () => {
   }
 
   const handleSelectFlag = (e: any) => {
-    console.log("Se selecciono la bandera de:", e);
+    // console.log("Se selecciono la bandera de:", e);
   }
 
   const styles = {

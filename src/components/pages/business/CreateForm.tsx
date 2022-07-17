@@ -16,7 +16,7 @@ import { Box } from '@mui/system';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
-    console.log(initValues)
+    // console.log(initValues)
 
     const styles = {
         '& .MuiPaper-root': {
@@ -306,7 +306,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 </DialogContent>
                 <DialogActions>
                     <Box  display="flex" justifyContent="space-between">
-                        <Button onClick={handleClose}>Cancelar</Button>
+                        <Button onclick={handleClose}>Cancelar</Button>
                         {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
                         <SubmitButton>
                             {!edit ? "CREAR" : "EDITAR"}

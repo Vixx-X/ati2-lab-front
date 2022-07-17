@@ -26,11 +26,11 @@ const initValues = {
 
 export default function SearchBar() {
   const handleChange = (event:any) => {
-    console.log('cambie este peo',event);
+    // console.log('cambie este peo',event);
   };
 
   const handleSubmit = () => {
-    console.log('Envie este peo');
+    // console.log('Envie este peo');
   };
 
   return (
