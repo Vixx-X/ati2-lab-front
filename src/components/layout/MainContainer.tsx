@@ -1,31 +1,33 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
+
+import Link from 'next/link';
+
+import { ENTITYS } from '@components/data/Entitys';
+
+import useTranslate from '@hooks/useTranslate';
+
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Container } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Container } from '@mui/material';
-import { SERVER_URLS } from '@config';
-import Link from 'next/link';
-import LanguageSelect from './LanguageSelect';
-import { ENTITYS } from '@components/data/Entitys';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
-const { URL_BUSINESS, URL_CLIENTS, URL_EMPLOYEES,
-  URL_PROVIDERS, URL_HOME } = SERVER_URLS;
+import LanguageSelect from './LanguageSelect';
 
 const drawerWidth = 240;
 
-
 export default function MainContainer({ children }: any) {
+  const t = useTranslate();
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -34,8 +36,13 @@ export default function MainContainer({ children }: any) {
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{ textTransform: "uppercase" }}>
-            Consultora x
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ textTransform: 'uppercase' }}
+          >
+            {t('consultant x')}
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -72,10 +79,11 @@ export default function MainContainer({ children }: any) {
             <Link href={link} passHref key={name}>
               <ListItem disablePadding>
                 <ListItemButton>
-                  <ListItemIcon>
-                    {icon}
-                  </ListItemIcon>
-                  <ListItemText sx={{ textTransform: "capitalize" }} primary={name} />
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText
+                    sx={{ textTransform: 'capitalize' }}
+                    primary={t(name)}
+                  />
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -88,10 +96,12 @@ export default function MainContainer({ children }: any) {
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-        <Box display="flex" alignItems="center" sx={{ height: "calc(100vh - 64px)", bgColor: '#185583' }}>
-          <Container maxWidth="lg">
-            {children}
-          </Container>
+        <Box
+          display="flex"
+          alignItems="center"
+          sx={{ height: 'calc(100vh - 64px)', bgColor: '#185583' }}
+        >
+          <Container maxWidth="lg">{children}</Container>
         </Box>
       </Box>
     </Box>

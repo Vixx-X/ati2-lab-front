@@ -1,32 +1,42 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import { useCallback } from 'react';
+
+import Form from '@components/forms/Form';
+import Select from '@components/forms/Select';
+
+import userStore from '@stores/UserStore';
+
+import { FormikValues } from 'formik';
 
 export default function LanguageSelect() {
-  const [language, setLanguage] = React.useState('es');
+  const language = userStore((state: any) => state.lang);
+  const setLanguage = userStore((state: any) => state.setLang);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setLanguage(event.target.value as string);
+  const handleChange = useCallback(
+    (values: FormikValues) => {
+      setLanguage(values.lang);
+    },
+    [setLanguage]
+  );
+
+  const initVal = {
+    lang: language,
   };
 
+  const langs = [
+    {
+      value: 'es',
+      text: 'Español',
+    },
+    {
+      value: 'en',
+      text: 'English',
+    },
+  ];
+
   return (
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={language}
-          label="Language"
-          onChange={handleChange}
-          inputProps={{ 'aria-label': 'Without label' }}
-          input={<OutlinedInput />}
-        >
-          <MenuItem value="es">Español</MenuItem>
-          <MenuItem value="en">English</MenuItem>
-        </Select>
-      </FormControl>
+    <Form initialValues={initVal} onSubmit={handleChange} autoSubmit>
+      <Select choices={langs} name="lang" noPlaceholder />
+    </Form>
   );
 }
+
