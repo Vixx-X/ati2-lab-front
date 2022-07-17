@@ -19,7 +19,19 @@ export const API_URLS = {
   
   //Bussiness
   URL_BUSINESSES: `/businesses/`,
-  URL_BUSINESS: `/businesses/[id]`,
+  URL_BUSINESS: `/businesses/[id]/`,
+
+  //Clientes
+  URL_CLIENTS: `/particular-clients/`,
+  URL_CLIENT: `/particular-clients/[id]/`,
+
+  //Employee
+  URL_EMPLOYEES: `/employee/`,
+  URL_EMPLOYEE: `/employee/[id]/`,
+
+  //Providers
+  URL_PROVIDERS: `/provider/`,
+  URL_PROVIDER: `/provider/[id]/`,
 
   // Country
   URL_COUNTRY:`/countries/`,
