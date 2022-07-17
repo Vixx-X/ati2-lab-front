@@ -135,7 +135,7 @@ const Clients: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception)
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
       // setLoading(false);
     }
   };
@@ -148,7 +148,7 @@ const Clients: NextPage = () => {
       handleCloseCreate();
     } catch (exception: any) {
       console.log("exceptions:", exception);
-      setStatus(exception.data);
+      setStatus(exception.data.detail);
     }
   }
 
@@ -158,7 +158,7 @@ const Clients: NextPage = () => {
       // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data);
+      // setStatus(exception.data.detail);
       // setLoading(false);
     }
   }

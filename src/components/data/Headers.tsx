@@ -73,7 +73,7 @@ export const ProvidersHeaders = [
     { key: 'representant.last_name', value: 'apellido de repr', styles: { minWidth: 150 } },
     { key: 'representant.charge', value: 'cargo de repr', styles: { minWidth: 150 } },
     { key: 'representant.phone_number', value: 'teléfono celular de repr', styles: { minWidth: 150 } },
-    { key: 'representant.local_phone_number', value: 'teléfono local de repr', styles: { minWidth: 150 } },
+    { key: 'representant.local_number', value: 'teléfono local de repr', styles: { minWidth: 150 } },
     { key: 'representant.personal_email', value: 'email personal de repr', styles: { minWidth: 150 } },
     { key: 'representant.business_email', value: 'email de empresa de repr', styles: { minWidth: 150 } },
     { key: 'representant.country', value: 'país de repr', styles: { minWidth: 150 } },
