@@ -146,15 +146,15 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="whatsapp"
                                 >
-                                    Whatsapp
+                                    whatsapp
                                 </label>
                                 <Field
-                                    label="Whatsapp"
+                                    label="whatsapp"
                                     name="client.whatsapp"
                                     id="whatsapp"
                                     type="whatsapp"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Whatsapp"
+                                    placeholder="whatsapp"
                                 />
                                 <ErrorMsg name="client.whatsapp" />
                             </div>

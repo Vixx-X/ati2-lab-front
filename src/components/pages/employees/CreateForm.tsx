@@ -15,10 +15,13 @@ import useSWR from 'swr';
 import { getBusinesses } from '@fetches/business';
 import SubmitButton from '@components/forms/SubmitButton';
 import Box from '@mui/material/Box';
+import useTranslate from '@hooks/useTranslate';
 
 export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }: any) => {
 
     // console.log(initValues)
+
+    const t = useTranslate();
 
     const styles = {
         '& .MuiPaper-root': {
@@ -34,7 +37,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles}>
-            <DialogTitle>{!edit ? "Crear Empleado" : "Editar Empleado"}</DialogTitle>
+            <DialogTitle>{!edit ? `${"Create employee"}` : `${"Edit employee"}`}</DialogTitle>
             <Form initialValues={initValues} onSubmit={handleSubmit}>
                 <DialogContent>
                     <div className="pt-4">
@@ -43,10 +46,10 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="business"
                                 >
-                                    Seleccionar Empresa
+                                    {t("Select Employees")}
                                 </label>
                                 <Field className="rounded" as="select" name="business" id="business">
-                                    <option disabled>--Seleccionar--</option>
+                                    <option disabled>--{t("Select")}--</option>
                                     {business && business.results.map(({ id, name }: any) => (
                                         <option key={id} value={id}>{name}</option>
                                     ))}
@@ -57,27 +60,27 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label htmlFor="first_name">
-                                    Nombre
+                                    {t("name")}
                                 </label>
                                 <Field
-                                    label="Nombre de usuario"
+                                    label={t("name")}
                                     name="user.first_name"
                                     id="first_name"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Nombre de cliente"
+                                    placeholder={t("name")}
                                 />
                                 <ErrorMsg name="user.first_name" />
                             </div>
                             <div className="mb-4 text-sm basis-2/4">
                                 <label htmlFor="last_name">
-                                    Apellido
+                                    {t("lastname")}
                                 </label>
                                 <Field
-                                    label="Apellido de usuario"
+                                    label={t("lastname")}
                                     name="user.last_name"
                                     id="last_name"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Apellido de cliente"
+                                    placeholder={t("Lastname")}
                                 />
                                 <ErrorMsg name="user.last_name" />
                             </div>
@@ -87,14 +90,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="charge"
                                 >
-                                    Cargo
+                                    {t("charge")}
                                 </label>
                                 <Field
-                                    label="Cargo"
+                                    label={t("charge")}
                                     name="user.charge"
                                     id="charge"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Cargo"
+                                    placeholder={t("charge")}
                                 />
                                 <ErrorMsg name="user.charge" />
                             </div>
@@ -102,15 +105,15 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="email"
                                 >
-                                    E-mail
+                                    {t("e-mail")}
                                 </label>
                                 <Field
-                                    label="E-mail"
+                                    label={t("e-mail")}
                                     name="user.email"
                                     id="email"
                                     type="email"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1 text-sm"
-                                    placeholder="E-mail"
+                                    placeholder={t("e-mail")}
                                 />
                                 <ErrorMsg name="user.email" />
                             </div>
@@ -120,14 +123,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="phone_number"
                                 >
-                                    Teléfono Celular
+                                   {t("phone")}
                                 </label>
                                 <Field
-                                    label="Teléfono Celular"
+                                    label={t("phone")}
                                     name="phone_number"
                                     id="phone_number"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Teléfono Celular"
+                                    placeholder={t("phone")}
                                 />
                                 <ErrorMsg name="phone_number" />
                             </div>
@@ -135,14 +138,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="local_phone_number"
                                 >
-                                    Teléfono Local
+                                    {t("rep. phone")}
                                 </label>
                                 <Field
                                     label="Teléfono Local"
-                                    name="local_phone_number"
+                                    name={t("rep. phone")}
                                     id="local_phone_number"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Teléfono Local"
+                                    placeholder={t("rep. phone")}
                                 />
                                 <ErrorMsg name="local_phone_number" />
                             </div>
@@ -152,14 +155,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="document_id"
                                 >
-                                    Cedula o nro pasaporte
+                                    {t("document id or passport")}
                                 </label>
                                 <Field
-                                    label="Cedula o nro pasaporte"
+                                    label={t("document id or passport")}
                                     name="document_id"
                                     id="document_id"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Cedula o nro pasaporte"
+                                    placeholder={t("document id or passport")}
                                 />
                                 <ErrorMsg name="document_id" />
                             </div>
@@ -167,14 +170,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="contract_modality"
                                 >
-                                    Modalidad de contratación
+                                    {t("contract modality")}
                                 </label>
                                 <Field
-                                    label="Teléfono Local"
+                                    label={t("contract modality")}
                                     name="contract_modality"
                                     id="contract_modality"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Ej: fijo, honorarios profesionales"
+                                    placeholder={t("Ex: fixed, professional fees")}
                                 />
                                 <ErrorMsg name="contract_modality" />
                             </div>
@@ -184,14 +187,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="business_email"
                                 >
-                                    Correo electrónico de empresa
+                                    {t("business e-mail")}
                                 </label>
                                 <Field
-                                    label="Correo electrónico de empresa"
+                                    label={t("business e-mail")}
                                     name="business_email"
                                     id="business_email"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Correo electrónico de empresa"
+                                    placeholder={t("business e-mail")}
                                 />
                                 <ErrorMsg name="business_email" />
                             </div>
@@ -200,7 +203,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             <div className="flex gap-x-8">
                                 <div className="mb-1 text-sm basis-1/3">
                                     <label htmlFor="country">
-                                        País
+                                        {t("country")}
                                     </label>
                                     {/* <Field
                                         label="País"
@@ -218,14 +221,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label
                                         htmlFor="city"
                                     >
-                                        Ciudad
+                                        {t("city")}
                                     </label>
                                     <Field
-                                        label="Ciudad"
+                                        label={t("city")}
                                         name="addresses[0].city"
                                         id="city"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Ciudad"
+                                        placeholder={t("city")}
                                     />
                                     <ErrorMsg name="addresses[0].city" />
                                 </div>
@@ -233,14 +236,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label
                                         htmlFor="state"
                                     >
-                                        Estado
+                                        {t("state")}
                                     </label>
                                     <Field
-                                        label="Estado"
+                                        label={t("state")}
                                         name="addresses[0].state"
                                         id="state"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Estado"
+                                        placeholder={t("state")}
                                     />
                                     <ErrorMsg name="addresses[0].state" />
                                 </div>
@@ -248,14 +251,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                             <div className="flex gap-x-8">
                                 <div className="mb-4 text-sm basis-2/4">
                                     <label htmlFor="line1">
-                                        Línea 1
+                                        {t("basic address")}
                                     </label>
                                     <Field
-                                        label="Línea 1"
+                                        label={t("basic address")}
                                         name="addresses[0].line1"
                                         id="line1"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Línea 1"
+                                        placeholder={t("basic address")}
                                     />
                                     <ErrorMsg name="addresses[0].line1" />
                                 </div>
@@ -263,14 +266,14 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                     <label
                                         htmlFor="line2"
                                     >
-                                        Línea 2
+                                        {t("more detail address")}
                                     </label>
                                     <Field
-                                        label="Línea 2"
+                                        label={t("more detail address")}
                                         name="addresses[0].line2"
                                         id="line2"
                                         className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                        placeholder="Línea 2"
+                                        placeholder={t("more detail address")}
                                     />
                                     <ErrorMsg name="addresses[0].line2" />
                                 </div>
@@ -278,7 +281,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         </div>
                         <div>
                             <label htmlFor="social_newtworks">
-                                Redes sociales
+                                    {t("social media")}
                             </label>
                             <div className="flex gap-x-16 justify-between">
                                 <div className="basis-4/5 gap-x-4 text-sm flex">
@@ -308,8 +311,8 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                 </DialogContent>
                 <DialogActions>
                     <Box display="flex" className="gap-x-4" justifyContent="space-between">
-                        <Button onclick={handleClose}>Cancelar</Button>
-                        <SubmitButton>{!edit ? "Crear" : "Editar"}</SubmitButton>
+                        <Button onclick={handleClose}>{t("Cancel")}</Button>
+                        <SubmitButton>{!edit ? `${t("Create")}` : `${t("Edit")}`}</SubmitButton>
                     </Box>
                 </DialogActions>
             </Form>

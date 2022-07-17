@@ -19,9 +19,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { flattenJSON } from '@utils/flattenJSON';
 import useTranslate from '@hooks/useTranslate';
 const EmployeesButton = ({ onclick }: any) => {
+
+  const t = useTranslate();
+
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
-      Añadir Empleado
+      {t("add employee")}
     </Button>
   );
 };

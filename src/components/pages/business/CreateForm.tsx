@@ -42,7 +42,7 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                         <div className="flex gap-x-8">
                             <div className="mb-4 text-sm basis-2/4">
                                 <label htmlFor="name">
-                                    {t("Name")}
+                                    {t("name")}
                                 </label>
                                 <Field
                                     label={t("Enter user name")}
@@ -122,15 +122,15 @@ export const CreateForm = ({ open, handleClose, handleSubmit, initValues, edit }
                                 <label
                                     htmlFor="whatsapp"
                                 >
-                                    Whatsapp
+                                    whatsapp
                                 </label>
                                 <Field
-                                    label="Whatsapp"
+                                    label="whatsapp"
                                     name="client.whatsapp"
                                     id="whatsapp"
                                     type="whatsapp"
                                     className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                                    placeholder="Whatsapp"
+                                    placeholder="whatsapp"
                                 />
                                 <ErrorMsg name="client.whatsapp" />
                             </div>
