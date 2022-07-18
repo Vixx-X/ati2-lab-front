@@ -25,8 +25,8 @@ export const putClient = async (data: any, id: any) => {
   return resp.data;
 };
 
-export const getClients = async () => {
-  const resp = await fetcher.get(API_URLS.URL_CLIENTS, makeFetchOptions());
+export const getClients = async (url:string) => {
+  const resp = await fetcher.get(url, makeFetchOptions());
   await assertApiError(resp);
   return resp.data;
 };

@@ -25,8 +25,8 @@ export const putEmployee = async (data: any, id: any) => {
   return resp.data;
 };
 
-export const getEmployees = async () => {
-  const resp = await fetcher.get(API_URLS.URL_EMPLOYEES, makeFetchOptions());
+export const getEmployees = async (url:string) => {
+  const resp = await fetcher.get(url, makeFetchOptions());
   await assertApiError(resp);
   return resp.data;
 };

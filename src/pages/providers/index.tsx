@@ -15,6 +15,9 @@ import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/providers/CreateForm';
 import MiTable from '@components/table/MiTable';
 
+import { API_URLS } from '@config';
+import { makeUrl } from '@utils/makeUrl';
+
 import {
   deleteProvider,
   getProvider,
@@ -150,19 +153,6 @@ const Provider: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: provider, mutate } = useSWR('provider', getProviders);
-
-  useEffect(() => {
-    if (provider) {
-      console.log('111', provider);
-      const providerFlaten = provider.results.map(function (element: any) {
-        return flattenJSONProvider(element);
-      });
-      // console.log("formateo", flattenJSONProvider(initValues))
-      setProviderData(providerFlaten);
-    }
-  }, [provider]);
-
   const handleSubmitCreate = async (
     values: FormikValues,
     { setStatus }: any
@@ -223,7 +213,7 @@ const Provider: NextPage = () => {
 
   const [query, setQuery] = useState<any>({});
   const initFilterValues = {
-    type: query?.type ?? '',
+    name: query?.name ?? '',
     country: query?.country ?? '',
   };
   const handleFilter = (values: FormikValues) => {
@@ -234,6 +224,21 @@ const Provider: NextPage = () => {
       };
     });
   };
+
+  const { data: provider, mutate } = useSWR(
+    makeUrl(API_URLS.URL_PROVIDERS, query),
+     getProviders);
+
+  useEffect(() => {
+    if (provider) {
+      console.log('111', provider);
+      const providerFlaten = provider.results.map(function (element: any) {
+        return flattenJSONProvider(element);
+      });
+      // console.log("formateo", flattenJSONProvider(initValues))
+      setProviderData(providerFlaten);
+    }
+  }, [provider]);
 
   return (
     <MainContainer>
@@ -264,7 +269,7 @@ const Provider: NextPage = () => {
                 <FlagSelector name="country" />
               </Box>
               <Box width="40%">
-                <SearchBar name="type" />
+                <SearchBar name="name" />
               </Box>
             </Box>
           </Form>

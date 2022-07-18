@@ -129,11 +129,12 @@ const Business: NextPage = () => {
 
   const [query, setQuery] = useState<any>({});
   const initFilterValues = {
-    type: query?.type ?? '',
+    name: query?.name ?? '',
     country: query?.country ?? '',
   };
   const handleFilter = (values: FormikValues) => {
     setQuery((prev: any) => {
+      console.log("setQuery()",{...prev,...values})
       return {
         ...prev,
         ...values,
@@ -226,7 +227,7 @@ const Business: NextPage = () => {
                 <FlagSelector name="country" />
               </Box>
               <Box width="40%">
-                <SearchBar name="type" />
+                <SearchBar name="name" />
               </Box>
             </Box>
           </Form>
