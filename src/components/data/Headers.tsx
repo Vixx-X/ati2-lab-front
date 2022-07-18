@@ -138,7 +138,7 @@ export const ProvidersHeaders = [
     styles: { minWidth: 150 },
   },
   {
-    key: 'representant.local_number',
+    key: 'representant.local_phone',
     value: 'rep. localphone',
     styles: { minWidth: 150 },
   },
