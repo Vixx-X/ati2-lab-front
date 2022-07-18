@@ -134,7 +134,7 @@ const Business: NextPage = () => {
   };
   const handleFilter = (values: FormikValues) => {
     setQuery((prev: any) => {
-      console.log("setQuery()",{...prev,...values})
+      console.log('setQuery()', { ...prev, ...values });
       return {
         ...prev,
         ...values,

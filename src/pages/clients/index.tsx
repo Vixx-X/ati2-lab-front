@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 
 import type { NextPage } from 'next';
 
-import { API_URLS } from '@config';
-
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
@@ -16,7 +14,8 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/clients/CreateForm';
 import MiTable from '@components/table/MiTable';
-import { makeUrl } from '@utils/makeUrl';
+
+import { API_URLS } from '@config';
 
 import {
   deleteClient,
@@ -29,6 +28,7 @@ import {
 import useTranslate from '@hooks/useTranslate';
 
 import { flattenJSONProvider } from '@utils/flattenJSON';
+import { makeUrl } from '@utils/makeUrl';
 
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Box } from '@mui/system';
@@ -202,8 +202,8 @@ const Clients: NextPage = () => {
   };
 
   const { data: clients, mutate } = useSWR(
-      makeUrl(API_URLS.URL_CLIENTS, query),
-      getClients
+    makeUrl(API_URLS.URL_CLIENTS, query),
+    getClients
   );
 
   useEffect(() => {

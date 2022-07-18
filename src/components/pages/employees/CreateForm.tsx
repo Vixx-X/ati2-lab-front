@@ -7,6 +7,7 @@ import Field from '@components/forms/Field';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Form from '@components/forms/Form';
 import Select from '@components/forms/Select';
+import SocialsArrayField from '@components/forms/SocialsArrayField';
 import SubmitButton from '@components/forms/SubmitButton';
 import Button from '@components/layout/Button';
 
@@ -18,7 +19,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import SocialsArrayField from '@components/forms/SocialsArrayField';
 
 export const CreateForm = ({
   open,

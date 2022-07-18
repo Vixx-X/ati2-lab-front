@@ -203,8 +203,8 @@ const Employees: NextPage = () => {
   };
 
   const { data: employees, mutate } = useSWR(
-      makeUrl(API_URLS.URL_EMPLOYEES, query),
-      getEmployees
+    makeUrl(API_URLS.URL_EMPLOYEES, query),
+    getEmployees
   );
 
   useEffect(() => {

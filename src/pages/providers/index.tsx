@@ -16,7 +16,6 @@ import { CreateForm } from '@components/pages/providers/CreateForm';
 import MiTable from '@components/table/MiTable';
 
 import { API_URLS } from '@config';
-import { makeUrl } from '@utils/makeUrl';
 
 import {
   deleteProvider,
@@ -29,6 +28,7 @@ import {
 import useTranslate from '@hooks/useTranslate';
 
 import { flattenJSONProvider } from '@utils/flattenJSON';
+import { makeUrl } from '@utils/makeUrl';
 
 import AddIcon from '@mui/icons-material/Add';
 import { Box } from '@mui/system';
@@ -227,7 +227,8 @@ const Provider: NextPage = () => {
 
   const { data: provider, mutate } = useSWR(
     makeUrl(API_URLS.URL_PROVIDERS, query),
-     getProviders);
+    getProviders
+  );
 
   useEffect(() => {
     if (provider) {
