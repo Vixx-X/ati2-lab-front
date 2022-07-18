@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import recursiveGetter from '@utils/recursiveGetter';
+
 import { TextField } from '@mui/material';
 import { useFormikContext } from 'formik';
 
@@ -31,7 +33,7 @@ export const Field = ({
   return (
     <TextField
       onChange={onChangeCallback(handleChange)}
-      value={vals[name]}
+      value={recursiveGetter(vals, name)}
       error={hasError}
       {...props}
     >

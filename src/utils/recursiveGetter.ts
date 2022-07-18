@@ -1,4 +1,8 @@
-export default function recursiveGetter(obj: any, name: string, _default: any) {
+export default function recursiveGetter(
+  obj: any,
+  name: string,
+  _default: any = undefined
+) {
   const _name = name.replace(/\[/g, '.[');
   const names = _name.split('.');
   let val = obj;

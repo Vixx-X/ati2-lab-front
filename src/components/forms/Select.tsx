@@ -31,7 +31,14 @@ export const Select = ({
   return (
     <FormControl className="w-full">
       {!noPlaceholder && <InputLabel>{t(placeholder ?? 'Select')}</InputLabel>}
-      <SSelect value={vals[name]} onChange={handleChange} {...props}>
+      <SSelect
+        value={vals[name]}
+        onChange={handleChange}
+        {...props}
+        sx={{
+          display: 'flex',
+        }}
+      >
         {choices?.map(({ text, value }) => {
           return (
             <MenuItem value={value} key={value}>

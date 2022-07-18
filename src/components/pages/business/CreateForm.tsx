@@ -158,7 +158,6 @@ export const CreateForm = ({
                   <ErrorMsg name="client.addresses[0].city" />
                 </div>
                 <div className="mb-1 text-sm basis-1/3">
-                  <label htmlFor="state">{t('state')}</label>
                   <Field
                     label={t('state')}
                     name="client.addresses[0].state"
