@@ -12,6 +12,7 @@ interface BusinessSelectProps extends Props {
 
 export const BusinessSelect = ({ name, ...props }: BusinessSelectProps) => {
   const { data } = useSWR('businesses', getAllBusinesses);
+  
   const businesses = useMemo(() => {
     return (
       data?.map((el: any) => {
@@ -23,5 +24,7 @@ export const BusinessSelect = ({ name, ...props }: BusinessSelectProps) => {
     );
   }, [data]);
 
-  return <Select choices={businesses} name={name} {...props} />;
+  console.log("businesses:",businesses)
+
+  return <Select multiple choices={businesses} name={name} {...props} />;
 };
