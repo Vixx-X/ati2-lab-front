@@ -24,7 +24,7 @@ export const flattenJSONProvider = (
   for (const key in obj) {
     if (typeof obj[key] !== 'object') {
       res[extraKey + key] = obj[key];
-    } else if (key == 'representant') {
+    } else if (key == 'representant' || key == 'client') {
       flattenJSONProvider(obj[key], res, `${extraKey}${key}.`);
     } else if (key == 'socials') {
       let a = obj[key]
@@ -34,7 +34,7 @@ export const flattenJSONProvider = (
         .join('\n');
       res[extraKey + key] = a;
     } else {
-      flattenJSONProvider(obj[key], res);
+      flattenJSONProvider(obj[key], res, extraKey);
     }
   }
   return res;
