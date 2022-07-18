@@ -34,7 +34,7 @@ export const getBusinesses = async (url: string) => {
 export const getAllBusinesses = async () => {
   const resp = await fetcher.get(API_URLS.URL_BUSINESSES, makeFetchOptions());
   await assertApiError(resp);
-  return resp.data;
+  return resp.data.results;
 };
 
 export const getBusiness = async (id: any) => {

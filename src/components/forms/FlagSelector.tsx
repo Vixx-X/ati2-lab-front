@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Image from 'next/image';
 
 import { getCountry } from '@fetches/country';
@@ -10,13 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useFormikContext } from 'formik';
 import useSWR from 'swr';
-import useTranslate from '@hooks/useTranslate';
 
 interface FlagSelectorInterface {
   name: string;
 }
 
-export const FlagSelector: React.FC<FlagSelectorInterface> = ({ name }) => {
+export const FlagSelector = ({ name }: FlagSelectorInterface) => {
   const { values, setFieldValue } = useFormikContext();
   const vals: any = values;
 
@@ -26,7 +23,6 @@ export const FlagSelector: React.FC<FlagSelectorInterface> = ({ name }) => {
     const value = e.target.value;
     setFieldValue(name, value);
   };
-  const t = useTranslate();
 
   return (
     <FormControl className="w-full">

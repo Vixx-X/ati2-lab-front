@@ -1,3 +1,5 @@
+import useTranslate from '@hooks/useTranslate';
+
 import { Field } from './Field';
 
 interface SelectProps extends Props {
@@ -13,11 +15,12 @@ export const Select = ({
   name,
   ...props
 }: SelectProps) => {
+  const t = useTranslate();
   return (
     <Field as="select" name={name} {...props}>
       <>
         {!noPlaceholder && (
-          <option disabled>{placeholder ?? '--Seleccionar--'}</option>
+          <option disabled>{placeholder ?? `--${t('Select')}--`}</option>
         )}
         {choices?.map(({ value, text }: any, index: number) => (
           <option value={value} key={index}>
