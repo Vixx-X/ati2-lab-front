@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 interface SelectProps extends Props {
   choices: { value: string; text: any }[];
   noPlaceholder?: boolean;
-  placeholder: string;
+  placeholder?: string;
   name: string;
 }
 

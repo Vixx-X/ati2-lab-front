@@ -50,11 +50,7 @@ export const CreateForm = ({
         </DialogTitle>
         <Divider className="mx-4 mt-2"></Divider>
         <DialogContent sx={{ height: '580px' }}>
-          {page ? (
-            <ProviderForm initValues={initValues} />
-          ) : (
-            <RepresentantForm initValues={initValues} />
-          )}
+          {page ? <ProviderForm /> : <RepresentantForm />}
           <ErrorMsg name="detail" />
         </DialogContent>
         <DialogActions>

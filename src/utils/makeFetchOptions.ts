@@ -14,7 +14,7 @@ export function _makeFetchOptions(
     headers: {
       // 'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Type': 'application/json',
-      'Accept-Language': user.lang,
+      'Accept-Language': user.lang ?? 'es',
     },
   };
 

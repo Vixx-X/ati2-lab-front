@@ -17,6 +17,7 @@ const darkTheme = createTheme({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const Comp: any = Component;
   return (
     <SWRConfig
       value={{
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <UserContextProvider>
           <AnimatePresence>
             <ThemeProvider theme={darkTheme}>
-              <Component {...pageProps} />
+              <Comp {...pageProps} />
             </ThemeProvider>
           </AnimatePresence>
         </UserContextProvider>

@@ -4,6 +4,8 @@ import recursiveGetter from '@utils/recursiveGetter';
 
 import { ErrorMessage, ErrorMessageProps, useFormikContext } from 'formik';
 
+const ErrorMess: any = ErrorMessage;
+
 export const ErrorMsg = ({ name, ...props }: ErrorMessageProps) => {
   const { status } = useFormikContext();
   const errorMessage = useMemo(() => {
@@ -19,7 +21,7 @@ export const ErrorMsg = ({ name, ...props }: ErrorMessageProps) => {
   };
   return (
     <>
-      <ErrorMessage name={name} component={Message} {...props} />
+      <ErrorMess name={name} component={Message} {...props} />
       {errorMessage != null ? <Message error={errorMessage} /> : null}
     </>
   );
