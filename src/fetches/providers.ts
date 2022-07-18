@@ -25,8 +25,8 @@ export const putProvider = async (data: any, id: any) => {
   return resp.data;
 };
 
-export const getProviders = async () => {
-  const resp = await fetcher.get(API_URLS.URL_PROVIDERS, makeFetchOptions());
+export const getProviders = async (url:string) => {
+  const resp = await fetcher.get(url, makeFetchOptions());
   await assertApiError(resp);
   return resp.data;
 };
