@@ -66,5 +66,14 @@
   "document id or passport":"cedula o pasaporte",
   "document id":"cedula",
   "contract modality":"modalidad de contratacion",
-  "Ex: fixed, professional fees":"Ej: fijo, honorarios profesionales"
+  "Ex: fixed, professional fees":"Ej: fijo, honorarios profesionales",
+  "create provider":"crear proveedor",
+  "edit provider":"editar proveedor",
+  "provider data":"datos proveedor",
+  "representant data":"datos representante",
+  "next":"siguiente",
+  "back":"anterior",
+  "Name Representant":"Nombre del Representante",
+  "Lastname Representant":"Apellido del Representante",
+  "Change Representant":"Cargo del Representante"
 }
