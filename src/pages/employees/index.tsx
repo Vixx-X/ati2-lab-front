@@ -15,6 +15,8 @@ import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/employees/CreateForm';
 import MiTable from '@components/table/MiTable';
 
+import { API_URLS } from '@config';
+
 import {
   deleteEmployee,
   getEmployee,
@@ -25,7 +27,8 @@ import {
 
 import useTranslate from '@hooks/useTranslate';
 
-import { flattenJSON } from '@utils/flattenJSON';
+import { flattenJSONProvider } from '@utils/flattenJSON';
+import { makeUrl } from '@utils/makeUrl';
 
 import AddIcon from '@mui/icons-material/Add';
 import { Box } from '@mui/system';
@@ -127,19 +130,6 @@ const Employees: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: employees, mutate } = useSWR('employees', getEmployees);
-
-  useEffect(() => {
-    if (employees) {
-      console.log('111', employees);
-      const employeesFlaten = employees.results.map(function (element: any) {
-        return flattenJSON(element);
-      });
-      console.log('holi', employeesFlaten);
-      setEmployeeData(employeesFlaten);
-    }
-  }, [employees]);
-
   const handleSubmitCreate = async (
     values: FormikValues,
     { setStatus }: any
@@ -200,7 +190,7 @@ const Employees: NextPage = () => {
 
   const [query, setQuery] = useState<any>({});
   const initFilterValues = {
-    type: query?.type ?? '',
+    contract_modality: query?.contract_modality ?? '',
     country: query?.country ?? '',
   };
   const handleFilter = (values: FormikValues) => {
@@ -211,6 +201,20 @@ const Employees: NextPage = () => {
       };
     });
   };
+
+  const { data: employees, mutate } = useSWR(
+      makeUrl(API_URLS.URL_EMPLOYEES, query),
+      getEmployees
+  );
+
+  useEffect(() => {
+    if (employees) {
+      const employeesFlaten = employees.results.map(function (element: any) {
+        return flattenJSONProvider(element);
+      });
+      setEmployeeData(employeesFlaten);
+    }
+  }, [employees]);
 
   return (
     <MainContainer>
@@ -241,7 +245,7 @@ const Employees: NextPage = () => {
                 <FlagSelector name="country" />
               </Box>
               <Box width="40%">
-                <SearchBar name="type" />
+                <SearchBar name="contract_modality" />
               </Box>
             </Box>
           </Form>

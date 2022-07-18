@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import type { NextPage } from 'next';
 
+import { API_URLS } from '@config';
+
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
@@ -14,6 +16,7 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/clients/CreateForm';
 import MiTable from '@components/table/MiTable';
+import { makeUrl } from '@utils/makeUrl';
 
 import {
   deleteClient,
@@ -25,7 +28,7 @@ import {
 
 import useTranslate from '@hooks/useTranslate';
 
-import { flattenJSON } from '@utils/flattenJSON';
+import { flattenJSONProvider } from '@utils/flattenJSON';
 
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Box } from '@mui/system';
@@ -130,20 +133,6 @@ const Clients: NextPage = () => {
 
   // const [loading, setLoading] = useState(false);
 
-  const { data: clients, mutate } = useSWR('clients', getClients);
-
-  useEffect(() => {
-    if (clients) {
-      console.log('111', clients);
-      const clientsFlaten = clients.results.map(function (element: any) {
-        console.log('datica', clientsFlaten);
-        return flattenJSON(element);
-      });
-      console.log('holi', clientsFlaten);
-      setClientData(clientsFlaten);
-    }
-  }, [clients]);
-
   const handleSubmitCreate = async (
     values: FormikValues,
     { setStatus }: any
@@ -183,10 +172,6 @@ const Clients: NextPage = () => {
     }
   };
 
-  const handleSelectFlag = (e: any) => {
-    console.log('Se selecciono la bandera de:', e);
-  };
-
   const styles = {
     '& form': {
       height: '100%',
@@ -215,6 +200,20 @@ const Clients: NextPage = () => {
       };
     });
   };
+
+  const { data: clients, mutate } = useSWR(
+      makeUrl(API_URLS.URL_CLIENTS, query),
+      getClients
+  );
+
+  useEffect(() => {
+    if (clients) {
+      const clientsFlaten = clients.results.map(function (element: any) {
+        return flattenJSONProvider(element);
+      });
+      setClientData(clientsFlaten);
+    }
+  }, [clients]);
 
   return (
     <MainContainer>
