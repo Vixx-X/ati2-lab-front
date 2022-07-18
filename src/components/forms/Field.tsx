@@ -35,6 +35,7 @@ export const Field = ({
       onChange={onChangeCallback(handleChange)}
       value={recursiveGetter(vals, name)}
       error={hasError}
+      className="w-full"
       {...props}
     >
       {children}

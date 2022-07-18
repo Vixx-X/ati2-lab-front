@@ -4,6 +4,7 @@ import Field from '@components/forms/Field';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Form from '@components/forms/Form';
 import Select from '@components/forms/Select';
+import SocialsArrayField from '@components/forms/SocialsArrayField';
 import SubmitButton from '@components/forms/SubmitButton';
 import Button from '@components/layout/Button';
 
@@ -50,6 +51,7 @@ export const CreateForm = ({
                   name="user.first_name"
                   id="first_name"
                   placeholder={t('name')}
+                  className="w-full"
                 />
                 <ErrorMsg name="user.first_name" />
               </div>
@@ -202,30 +204,8 @@ export const CreateForm = ({
               </div>
             </div>
             <div>
-              <label htmlFor="social_newtworks">{t('social media')}</label>
-              <div className="flex gap-x-16 justify-between">
-                <div className="basis-4/5 gap-x-4 text-sm flex">
-                  <div className="basis-1/5">
-                    <Select
-                      name="social.text"
-                      choices={SOCIAL}
-                      placeholder="Red Social"
-                    />
-                  </div>
-                  <Field
-                    label=""
-                    name={t('social media')}
-                    id="social_network"
-                    className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
-                    placeholder=""
-                  />
-                </div>
-                <div className="basis-1/5">
-                  <Button endIcon={<AddIcon />}></Button>
-                </div>
-              </div>
+              <SocialsArrayField name="client.socials" />
             </div>
-
             <div className="mb-6"></div>
           </div>
           <ErrorMsg name="detail" />

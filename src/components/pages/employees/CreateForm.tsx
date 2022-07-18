@@ -18,6 +18,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import SocialsArrayField from '@components/forms/SocialsArrayField';
 
 export const CreateForm = ({
   open,
@@ -192,29 +193,8 @@ export const CreateForm = ({
               </div>
             </div>
             <div>
-              <label htmlFor="social_newtworks">{t('social media')}</label>
-              <div className="flex gap-x-16 justify-between">
-                <div className="basis-4/5 gap-x-4 text-sm flex">
-                  <div className="basis-1/5">
-                    <Select
-                      choices={SOCIAL}
-                      placeholder="Red Social"
-                      name="social"
-                    />
-                  </div>
-                  <Field
-                    label=""
-                    name="social_network"
-                    id="social_network"
-                    placeholder=""
-                  />
-                </div>
-                <div className="basis-1/5">
-                  <Button endIcon={<AddIcon />}></Button>
-                </div>
-              </div>
+              <SocialsArrayField name="socials" />
             </div>
-
             <div className="mb-6"></div>
           </div>
           <ErrorMsg name="detail" />
