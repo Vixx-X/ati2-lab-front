@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
+
 import type { NextPage } from 'next';
+
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
 import { EmployeesHeaders } from '@components/data/Headers';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import Form from '@components/forms/Form';
 import Alert from '@components/layout/Alert';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/employees/CreateForm';
 import MiTable from '@components/table/MiTable';
-import { Box } from '@mui/system';
-import { FormikValues } from 'formik';
-import useSWR from 'swr';
-import useTranslate from '@hooks/useTranslate';
-import AddIcon from '@mui/icons-material/Add';
-import { flattenJSON } from '@utils/flattenJSON';
-import Form from '@components/forms/Form';
 
 import {
   deleteEmployee,
@@ -27,13 +23,21 @@ import {
   putEmployee,
 } from '@fetches/employees';
 
-const EmployeesButton = ({ onclick }: any) => {
+import useTranslate from '@hooks/useTranslate';
 
+import { flattenJSON } from '@utils/flattenJSON';
+
+import AddIcon from '@mui/icons-material/Add';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import useSWR from 'swr';
+
+const EmployeesButton = ({ onclick }: any) => {
   const t = useTranslate();
 
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
-      {t("add employee")}
+      {t('add employee')}
     </Button>
   );
 };
@@ -69,10 +73,9 @@ let initValues = {
 };
 
 const Employees: NextPage = () => {
+  const t = useTranslate();
 
-  const t = useTranslate()
-
-  const [employeesData, setEmployeeData] = useState()
+  const [employeesData, setEmployeeData] = useState();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -147,7 +150,7 @@ const Employees: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception)
+      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
       // setLoading(false);
     }
@@ -160,7 +163,7 @@ const Employees: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception);
+      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
@@ -208,7 +211,7 @@ const Employees: NextPage = () => {
       };
     });
   };
-  
+
   return (
     <MainContainer>
       <Box sx={{ maxWidth: 500 }}>
@@ -221,25 +224,24 @@ const Employees: NextPage = () => {
           style={stylesCard}
         />
       </Box>
-      <Box display="flex" justifyContent="space-between" className="my-8">
+      <Box display="flex" justifyContent="space-around" className="my-8">
         <EmployeesButton onclick={handleClickOpenCreate} />
-        <Box
-          className="w-1/2 gap-x-4"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Form
-            initialValues={initFilterValues}
-            onSubmit={handleFilter}
-            autoSubmit
-          >
-            <SearchBar name="type" />
-            <Box className="w-1/2">
-              <FlagSelector name="country" />
-            </Box>
-          </Form>
-        </Box>
+          <Box className="w-1/3">
+            <Form
+              initialValues={initFilterValues}
+              onSubmit={handleFilter}
+              autoSubmit
+            >
+              <Box display="flex" justifyContent="space-around" alignItems={"center"}>
+                <Box width="40%">
+                  <FlagSelector name="country" />
+                </Box>
+                <Box width="40%">
+                  <SearchBar name="type" />
+                </Box>
+              </Box>
+            </Form>
+          </Box>
       </Box>
       <CreateForm
         open={openCreate}
@@ -253,7 +255,7 @@ const Employees: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
       )}
       {employeesData ? (
         <MiTable

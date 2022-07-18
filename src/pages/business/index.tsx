@@ -14,7 +14,6 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/business/CreateForm';
 import MiTable from '@components/table/MiTable';
-import useTranslate from '@hooks/useTranslate';
 
 import { API_URLS } from '@config';
 
@@ -25,6 +24,8 @@ import {
   postBusiness,
   putBusiness,
 } from '@fetches/business';
+
+import useTranslate from '@hooks/useTranslate';
 
 import { flattenJSONProvider } from '@utils/flattenJSON';
 import { makeUrl } from '@utils/makeUrl';
@@ -39,7 +40,7 @@ const BusinessButton = ({ onclick }: any) => {
 
   return (
     <Button endIcon={<DomainAddIcon />} onclick={onclick}>
-      {t("Add Business")}
+      {t('Add Business')}
     </Button>
   );
 };
@@ -150,7 +151,7 @@ const Business: NextPage = () => {
       const businessFlaten = business.results.map(function (element: any) {
         return flattenJSONProvider(element);
       });
-      console.log("Flat():",businessFlaten)
+      console.log('Flat():', businessFlaten);
       setBusinessData(businessFlaten);
     }
   }, [business]);
@@ -208,25 +209,24 @@ const Business: NextPage = () => {
           style={stylesCard}
         />
       </Box>
-      <Box display="flex" justifyContent="space-between" className="my-8">
+      <Box display="flex" justifyContent="space-around" className="my-8">
         <BusinessButton onclick={handleClickOpenCreate} />
-        <Box
-          className="w-1/2 gap-x-4"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Form
-            initialValues={initFilterValues}
-            onSubmit={handleFilter}
-            autoSubmit
-          >
-            <SearchBar name="type" />
-            <Box className="w-1/2">
-              <FlagSelector name="country" />
-            </Box>
-          </Form>
-        </Box>
+          <Box className="w-1/3">
+            <Form
+              initialValues={initFilterValues}
+              onSubmit={handleFilter}
+              autoSubmit
+            >
+              <Box display="flex" justifyContent="space-around" alignItems={"center"}>
+                <Box width="40%">
+                  <FlagSelector name="country" />
+                </Box>
+                <Box width="40%">
+                  <SearchBar name="type" />
+                </Box>
+              </Box>
+            </Form>
+          </Box>
       </Box>
       <CreateForm
         open={openCreate}
@@ -240,7 +240,7 @@ const Business: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
       )}
       {businessData ? (
         <MiTable

@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
+
 import type { NextPage } from 'next';
+
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
 import { ProvidersHeaders } from '@components/data/Headers';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import Form from '@components/forms/Form';
 import Alert from '@components/layout/Alert';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/providers/CreateForm';
 import MiTable from '@components/table/MiTable';
-import { Box } from '@mui/system';
-import { FormikValues } from 'formik';
-import AddIcon from '@mui/icons-material/Add';
-import useSWR from 'swr';
-import useTranslate from '@hooks/useTranslate';
-import { flattenJSONProvider } from '@utils/flattenJSON';
-import Form from '@components/forms/Form';
 
 import {
   deleteProvider,
@@ -27,13 +23,21 @@ import {
   putProvider,
 } from '@fetches/providers';
 
-const ProvidersButton = ({ onclick }: any) => {
+import useTranslate from '@hooks/useTranslate';
 
+import { flattenJSONProvider } from '@utils/flattenJSON';
+
+import AddIcon from '@mui/icons-material/Add';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import useSWR from 'swr';
+
+const ProvidersButton = ({ onclick }: any) => {
   const t = useTranslate();
 
   return (
     <Button endIcon={<AddIcon />} onclick={onclick}>
-      {t("add provider")}
+      {t('add provider')}
     </Button>
   );
 };
@@ -55,15 +59,15 @@ let initValues = {
         value: '@juanito',
       },
     ],
-    charge: "CE02",
-    phone_number: "+584241315948",  //
-    local_phone: "+582121315948",  //
-    fav_course: "curso bonito", // No debe estar
-    notification_frecuency: "1 vez al mes", // No debe estar
-    first_name: "juan", //
-    last_name: "perez",  //
-    personal_email: "user2@example.com", //
-    business_email: "user5@example.com"  //
+    charge: 'CE02',
+    phone_number: '+584241315948', //
+    local_phone: '+582121315948', //
+    fav_course: 'curso bonito', // No debe estar
+    notification_frecuency: '1 vez al mes', // No debe estar
+    first_name: 'juan', //
+    last_name: 'perez', //
+    personal_email: 'user2@example.com', //
+    business_email: 'user5@example.com', //
   },
   addresses: [
     {
@@ -80,21 +84,20 @@ let initValues = {
       value: 'string',
     },
   ],
-  tax_id: "222333", // Se deben enviar
-  website: "https://api.ati2.vittorioadesso.com/", //
-  phone_number: "+582123335544", //
-  fav_course: "string", // NO
-  notification_frecuency: "string", // NO
-  name: "PROVEEDOR CHEVERE", //
-  email: "user@example.com", //
+  tax_id: '222333', // Se deben enviar
+  website: 'https://api.ati2.vittorioadesso.com/', //
+  phone_number: '+582123335544', //
+  fav_course: 'string', // NO
+  notification_frecuency: 'string', // NO
+  name: 'PROVEEDOR CHEVERE', //
+  email: 'user@example.com', //
   business: [36], // NO
   // services:"Servicio que promociona"
 };
 // as ProviderForm
 
 const Provider: NextPage = () => {
-
-  const [providerData, setProviderData] = useState()
+  const [providerData, setProviderData] = useState();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -170,7 +173,7 @@ const Provider: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception)
+      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
       // setLoading(false);
     }
@@ -183,7 +186,7 @@ const Provider: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception);
+      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
@@ -244,22 +247,25 @@ const Provider: NextPage = () => {
           style={stylesCard}
         />
       </Box>
-      <Box display="flex" justifyContent="space-between" className="my-8">
+      <Box display="flex" justifyContent="space-around" className="my-8">
         <ProvidersButton onclick={handleClickOpenCreate} />
-        <Box
-          className="w-1/2 gap-x-4"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
+        <Box className="w-1/3">
           <Form
             initialValues={initFilterValues}
             onSubmit={handleFilter}
             autoSubmit
           >
-            <SearchBar name="type" />
-            <Box className="w-1/2">
-              <FlagSelector name="country" />
+            <Box
+              display="flex"
+              justifyContent="space-around"
+              alignItems={'center'}
+            >
+              <Box width="40%">
+                <FlagSelector name="country" />
+              </Box>
+              <Box width="40%">
+                <SearchBar name="type" />
+              </Box>
             </Box>
           </Form>
         </Box>
@@ -276,7 +282,7 @@ const Provider: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
       )}
       {providerData ? (
         <MiTable
