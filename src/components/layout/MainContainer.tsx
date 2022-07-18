@@ -91,7 +91,8 @@ export default function MainContainer({ children }: any) {
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, maxWidth: "calc(100vw - 240px)" }}
+        className="w-full"
       >
         <Toolbar />
         <Box
@@ -100,11 +101,10 @@ export default function MainContainer({ children }: any) {
           sx={{ height: 'calc(100vh - 64px)', bgColor: '#185583' }}
         >
           <Container
-            className="mt-40 h-full"
-            maxWidth="xl"
-            sx={{ width: '100%' }}
+            className="mt-40 h-full w-full"
+            sx={{ maxWidth: "100% !important" }}
           >
-            {children}
+            {children}  
           </Container>
         </Box>
       </Box>

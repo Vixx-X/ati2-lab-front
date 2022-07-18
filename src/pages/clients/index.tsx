@@ -217,7 +217,7 @@ const Clients: NextPage = () => {
 
   return (
     <MainContainer>
-      <Box sx={{ maxWidth: 500 }}>
+      <Box sx={{ maxWidth: 400 }}>
         <Card
           name={ENTITYS[2].name}
           icon={ENTITYS[2].icon}
@@ -228,9 +228,9 @@ const Clients: NextPage = () => {
         />
       </Box>
       {/* <MiTable rows={clientData}></MiTable> */}
-      <Box display="flex" justifyContent="space-around" className="my-8">
+      <Box display="flex" justifyContent="space-between" className="my-8">
         <ClientsButton onclick={handleClickOpenCreate} />
-        <Box className="w-1/3">
+        <Box className="w-2/4">
           <Form
             initialValues={initFilterValues}
             onSubmit={handleFilter}

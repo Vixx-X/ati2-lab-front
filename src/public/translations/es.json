@@ -88,5 +88,8 @@
   "Remove": "Eliminar",
   "Add": "Añadir",
   "Create employee": "Crear empleado",
-  "Edit employee": "Editar empleado"
+  "Edit employee": "Editar empleado",
+  "address data": "data de dirección",
+  "select businesses": "selecionar empresas",
+  "select business": "selecionar empresa"
 }

@@ -200,7 +200,7 @@ const Business: NextPage = () => {
 
   return (
     <MainContainer>
-      <Box sx={{ maxWidth: 500 }}>
+      <Box sx={{ maxWidth: 400 }}>
         <Card
           name={ENTITYS[1].name}
           icon={ENTITYS[1].icon}
@@ -210,9 +210,9 @@ const Business: NextPage = () => {
           style={stylesCard}
         />
       </Box>
-      <Box display="flex" justifyContent="space-around" className="my-8">
+      <Box display="flex" justifyContent="space-between" className="my-8">
         <BusinessButton onclick={handleClickOpenCreate} />
-        <Box className="w-1/3">
+        <Box className="w-2/4">
           <Form
             initialValues={initFilterValues}
             onSubmit={handleFilter}
@@ -223,10 +223,10 @@ const Business: NextPage = () => {
               justifyContent="space-around"
               alignItems={'center'}
             >
-              <Box width="40%">
+              <Box width="45%">
                 <FlagSelector name="country" />
               </Box>
-              <Box width="40%">
+              <Box width="45%">
                 <SearchBar name="name" />
               </Box>
             </Box>

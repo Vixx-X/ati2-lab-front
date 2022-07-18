@@ -18,7 +18,7 @@ export const ProviderForm = () => {
     <div className="pt-4">
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
-          <BusinessSelect multiple name="businesses" />
+          <BusinessSelect multiple placeholder={t("select businesses")}name="businesses" />
         </div>
       </div>
       <div className="flex gap-x-8">
@@ -83,7 +83,8 @@ export const ProviderForm = () => {
         </div>
       </div>
       <div>
-        <div className="flex gap-x-8">
+        <label className="capitalize">{t('address data')}</label>
+        <div className="flex gap-x-8 my-4">
           <div className="mb-1 text-sm basis-1/3">
             <FlagSelector name="addresses[0].country"></FlagSelector>
             <ErrorMsg name="addresses[0].country" />

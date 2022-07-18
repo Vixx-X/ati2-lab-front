@@ -35,6 +35,7 @@ export const Select = ({
         value={vals[name]}
         onChange={handleChange}
         {...props}
+        label={placeholder}
         sx={{
           display: 'flex',
         }}

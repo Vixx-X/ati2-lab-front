@@ -246,7 +246,7 @@ const Provider: NextPage = () => {
 
   return (
     <MainContainer>
-      <Box sx={{ maxWidth: 500 }}>
+      <Box sx={{ maxWidth: 400 }}>
         <Card
           name={ENTITYS[4].name}
           icon={ENTITYS[4].icon}
@@ -256,9 +256,9 @@ const Provider: NextPage = () => {
           style={stylesCard}
         />
       </Box>
-      <Box display="flex" justifyContent="space-around" className="my-8">
+      <Box display="flex" justifyContent="space-between" className="my-8">
         <ProvidersButton onclick={handleClickOpenCreate} />
-        <Box className="w-1/3">
+        <Box className="w-2/4">
           <Form
             initialValues={initFilterValues}
             onSubmit={handleFilter}

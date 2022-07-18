@@ -24,7 +24,6 @@ export default function SearchBar({ name }: Props) {
         style={{
           background: 'transparent',
           color: '#ffffff',
-          paddingLeft: '1.5em',
         }}
       />
       <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">

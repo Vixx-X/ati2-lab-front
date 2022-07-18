@@ -157,7 +157,8 @@ export const CreateForm = ({
               </div>
             </div>
             <div>
-              <div className="flex gap-x-8">
+              <label className="capitalize">{t('address data')}</label>
+              <div className="flex gap-x-8 my-4">
                 <div className="mb-1 text-sm basis-1/3">
                   <FlagSelector name="client.addresses[0].country" />
                   <ErrorMsg name="client.addresses[0].country" />

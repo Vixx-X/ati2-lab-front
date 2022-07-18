@@ -50,7 +50,7 @@ export const CreateForm = ({
                 display="flex"
                 justifyContent="space-between"
               >
-                <BusinessSelect name="business" id="business" />
+                <BusinessSelect name="business" placeholder={t("select business")} id="business" />
               </Box>
               <ErrorMsg name="business" />
             </div>
@@ -147,7 +147,8 @@ export const CreateForm = ({
               </div>
             </div>
             <div>
-              <div className="flex gap-x-8">
+              <label className="capitalize">{t('address data')}</label>
+              <div className="flex gap-x-8 my-4">
                 <div className="mb-1 text-sm basis-1/3">
                   <FlagSelector name="addresses[0].country"></FlagSelector>
                   <ErrorMsg name="addresses[0].country" />
