@@ -880,13 +880,6 @@
   resolved "https://registry.npmjs.org/@splidejs/splide/-/splide-3.6.12.tgz"
   integrity sha512-ggOUAuSxjWuxxL0IQEZcux26KByfKWfYM2HYmvDBdxkXc5evVW+xuECO+3iuciyrJpgcbYTr4hn0cHfbNlYIeA==
 
-"@tailwindcss/forms@^0.4.0":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.4.1.tgz#5a47ccd60490cbba84e662f2b9cf3d71a5126d17"
-  integrity sha512-gS9xjCmJjUBz/eP12QlENPLnf0tCx68oYE3mri0GMP5jdtVwLbGUNSRpjsp6NzLAZzZy3ueOwrcqB78Ax6Z84A==
-  dependencies:
-    mini-svg-data-uri "^1.2.3"
-
 "@trivago/prettier-plugin-sort-imports@^3.1.1":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@trivago/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-3.2.0.tgz#7a32b6b3085c436eda0143b2710c440a4a56db90"
@@ -3595,11 +3588,6 @@ mimic-response@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/mimic-response/-/mimic-response-3.1.0.tgz#2d1d59af9c1b129815accc2c46a022a5ce1fa3c9"
   integrity sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==
-
-mini-svg-data-uri@^1.2.3:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
-  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"

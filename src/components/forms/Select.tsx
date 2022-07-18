@@ -1,11 +1,14 @@
 import useTranslate from '@hooks/useTranslate';
 
-import { Field } from './Field';
+import { FormControl, InputLabel, MenuItem } from '@mui/material';
+import SSelect from '@mui/material/Select';
+import { useFormikContext } from 'formik';
 
 interface SelectProps extends Props {
-  placeholder?: string;
   choices: { value: string; text: any }[];
   noPlaceholder?: boolean;
+  placeholder: string;
+  name: string;
 }
 
 export const Select = ({
@@ -15,20 +18,29 @@ export const Select = ({
   name,
   ...props
 }: SelectProps) => {
+  const { values, setFieldValue } = useFormikContext();
+  const vals: any = values;
+
+  const handleChange = (e: any) => {
+    const value = e.target.value;
+    setFieldValue(name, value);
+  };
+
   const t = useTranslate();
+
   return (
-    <Field as="select" name={name} {...props}>
-      <>
-        {!noPlaceholder && (
-          <option disabled>{placeholder ?? `--${t('Select')}--`}</option>
-        )}
-        {choices?.map(({ value, text }: any, index: number) => (
-          <option value={value} key={index}>
-            {text}
-          </option>
-        ))}
-      </>
-    </Field>
+    <FormControl className="w-full">
+      {!noPlaceholder && <InputLabel>{t(placeholder ?? 'Select')}</InputLabel>}
+      <SSelect value={vals[name]} onChange={handleChange} {...props}>
+        {choices?.map(({ text, value }) => {
+          return (
+            <MenuItem value={value} key={value}>
+              <>{text}</>
+            </MenuItem>
+          );
+        })}
+      </SSelect>
+    </FormControl>
   );
 };
 
