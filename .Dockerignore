@@ -1,0 +1,21 @@
+#env directory and files
+*.env
+*.env.*
+/env
+
+#git, github and cache folders
+.git
+.gitignore
+.github
+.cache
+
+#dev files
+*/node_modules
+*/build
+
+#audits
+/audits
+
+#test
+src/pages/test
+
