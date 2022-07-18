@@ -26,7 +26,7 @@ export const FlagSelector = ({ name }: FlagSelectorInterface) => {
 
   return (
     <FormControl className="w-full">
-      <InputLabel>Selecciona un Pais</InputLabel>
+      <InputLabel>{t("Select a country")}</InputLabel>
       <Select value={vals[name]} onChange={handleChange}>
         {country &&
           country.results.map((country: any) => {
