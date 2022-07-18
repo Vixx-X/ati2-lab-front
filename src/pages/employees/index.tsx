@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
 import type { NextPage } from 'next';
-
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
@@ -14,9 +12,7 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/employees/CreateForm';
 import MiTable from '@components/table/MiTable';
-
 import { API_URLS } from '@config';
-
 import {
   deleteEmployee,
   getEmployee,
@@ -24,12 +20,9 @@ import {
   postEmployee,
   putEmployee,
 } from '@fetches/employees';
-
 import useTranslate from '@hooks/useTranslate';
-
 import { flattenJSONProvider } from '@utils/flattenJSON';
 import { makeUrl } from '@utils/makeUrl';
-
 import AddIcon from '@mui/icons-material/Add';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
@@ -72,7 +65,7 @@ let initValues = {
   contract_modality: 'Honorarios profesionales',
   business_email: 'user@example.com',
   local_phone_number: '+582125554433',
-  business: 32,
+  business: 0,
 };
 
 const Employees: NextPage = () => {

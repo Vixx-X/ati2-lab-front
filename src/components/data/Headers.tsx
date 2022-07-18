@@ -143,7 +143,7 @@ export const ProvidersHeaders = [
     styles: { minWidth: 150 },
   },
   {
-    key: 'representant.personal_email',
+    key: 'representant.email',
     value: 'rep. personal email',
     styles: { minWidth: 150 },
   },

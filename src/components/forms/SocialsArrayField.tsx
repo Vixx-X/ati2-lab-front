@@ -44,7 +44,7 @@ export const SocialsArrayField = ({ name }: Props) => {
                   className="px-4"
                   sx={{ height: 'fit-content', width: '10rem' }}
                 >
-                  Remove
+                  {t("Remove")}
                 </Button>
               </Box>
             ))}
@@ -54,7 +54,7 @@ export const SocialsArrayField = ({ name }: Props) => {
               variant="outlined"
               sx={{ height: 'fit-content' }}
             >
-              Add
+              {t("Add")}
             </Button>
           </Box>
         </>

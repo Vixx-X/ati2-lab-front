@@ -38,7 +38,7 @@ export const CreateForm = ({
   return (
     <Dialog open={open} onClose={handleClose} sx={styles}>
       <DialogTitle>
-        {!edit ? `${'Create employee'}` : `${'Edit employee'}`}
+        {!edit ? `${t('Create employee')}` : `${t('Edit employee')}`}
       </DialogTitle>
       <Form initialValues={initValues} onSubmit={handleSubmit}>
         <DialogContent>
@@ -107,10 +107,10 @@ export const CreateForm = ({
               </div>
               <div className="mb-4 text-sm basis-2/4">
                 <Field
-                  label="Teléfono Local"
-                  name={t('rep. phone')}
+                  label={t('local phone')}
+                  name="local_phone_number"
                   id="local_phone_number"
-                  placeholder={t('rep. phone')}
+                  placeholder={t('local phone')}
                 />
                 <ErrorMsg name="local_phone_number" />
               </div>

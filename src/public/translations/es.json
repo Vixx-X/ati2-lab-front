@@ -1,8 +1,9 @@
 {
   "hello world!": "hola mundo!",
   "consultant x": "consultora x",
-  "Cancel": "Cancel",
+  "Cancel": "Cancelar",
   "Create": "Crear",
+  "Acept": "Aceptar",
   "Edit": "Editar",
   "home": "home",
   "businesses": "empresas",
@@ -50,6 +51,10 @@
   "rep. personal email": "correo personal de repr.",
   "rep. business email": "correo empresarial de repr.",
   "rep. country": "país de repr.",
+  "rep. city": "ciudad de repr.",
+  "rep. state": "estado de repr.",
+  "rep. basic address": "dirección basica de repr.",
+  "rep. more details address": "más detalles dirección de repr.",
   "rep. socials": "redes sociales de repr.",
   "company": "compañia",
   "charge": "cargo",
@@ -79,5 +84,9 @@
   "name of social media": "nombre de red social",
   "value of social media": "valor de red social",
   "Ex: instagram, facebook": "Ej: instagram, facebook",
-  "Ex: @abc123": "Ej: @abc123"
+  "Ex: @abc123": "Ej: @abc123",
+  "Remove": "Eliminar",
+  "Add": "Añadir",
+  "Create employee": "Crear empleado",
+  "Edit employee": "Editar empleado"
 }

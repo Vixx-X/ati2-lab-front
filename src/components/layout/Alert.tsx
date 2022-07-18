@@ -31,9 +31,9 @@ export default function AlertDialog({
         </DialogContent> */}
         <DialogActions>
           <Button onClick={handleClose}>{t('Cancel')}</Button>
-          <button onClick={handleSubmit} autoFocus>
+          <Button onClick={handleSubmit} autoFocus>
             {t('Acept')}
-          </button>
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

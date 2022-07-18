@@ -18,39 +18,39 @@ export const RepresentantForm = () => {
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('Name Representant')}
-            name="representant.first_name"
-            id="representant.first_name"
-            placeholder={t('Name Representant')}
+            label={t('rep. name')}
+            name="representant.user.first_name"
+            id="representant.user.first_name"
+            placeholder={t('rep. name')}
           />
-          <ErrorMsg name="representant.first_name" />
+          <ErrorMsg name="representant.user.first_name" />
         </div>
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('Lastname Representant')}
-            name="representant.last_name"
-            id="representant.last_name"
-            placeholder={t('Lastname Representant')}
+            label={t('rep. lastname')}
+            name="representant.user.last_name"
+            id="representant.user.last_name"
+            placeholder={t('rep. lastname')}
           />
-          <ErrorMsg name="representant.last_name" />
+          <ErrorMsg name="representant.user.last_name" />
         </div>
       </div>
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('Charge Representant')}
-            name="representant.charge"
-            id="representant.charge"
-            placeholder={t('Charge Representant')}
+            label={t('rep. charge')}
+            name="representant.user.charge"
+            id="representant.user.charge"
+            placeholder={t('rep. charge')}
           />
-          <ErrorMsg name="representant.charge" />
+          <ErrorMsg name="representant.user.charge" />
         </div>
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('phone')}
+            label={t('rep. cellphone')}
             name="representant.phone_number"
             id="representant.phone_number"
-            placeholder={t('phone')}
+            placeholder={t('rep. cellphone')}
           />
           <ErrorMsg name="representant.phone_number" />
         </div>
@@ -58,19 +58,19 @@ export const RepresentantForm = () => {
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('personal e-mail')}
-            name="representant.personal_email"
-            id="representant.personal_email"
-            placeholder={t('personal e-mail')}
+            label={t('rep. personal email')}
+            name="representant.user.email"
+            id="representant.user.email"
+            placeholder={t('rep. personal email')}
           />
-          <ErrorMsg name="representant.personal_email" />
+          <ErrorMsg name="representant.user.email" />
         </div>
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('business e-mail')}
+            label={t('rep. business email')}
             name="representant.business_email"
             id="representant.business_email"
-            placeholder={t('business e-mail')}
+            placeholder={t('rep. business email')}
           />
           <ErrorMsg name="representant.business_email" />
         </div>
@@ -78,10 +78,10 @@ export const RepresentantForm = () => {
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
           <Field
-            label={t('local phone')}
+            label={t('rep. localphone')}
             name="representant.local_phone"
             id="representant.local_phone"
-            placeholder={t('local phone')}
+            placeholder={t('rep. localphone')}
           />
           <ErrorMsg name="representant.local_phone" />
         </div>
@@ -94,19 +94,19 @@ export const RepresentantForm = () => {
           </div>
           <div className="mb-1 text-sm basis-1/3">
             <Field
-              label={t('city')}
+              label={t('rep. city')}
               name="representant.addresses[0].city"
               id="representant.addresses[0].city"
-              placeholder={t('city')}
+              placeholder={t('rep. city')}
             />
             <ErrorMsg name="representant.addresses[0].city" />
           </div>
           <div className="mb-1 text-sm basis-1/3">
             <Field
-              label={t('state')}
+              label={t('rep. state')}
               name="representant.addresses[0].state"
               id="representant.addresses[0].state"
-              placeholder={t('state')}
+              placeholder={t('rep. state')}
             />
             <ErrorMsg name="representant.addresses[0].state" />
           </div>
@@ -114,19 +114,19 @@ export const RepresentantForm = () => {
         <div className="flex gap-x-8">
           <div className="mb-4 text-sm basis-2/4">
             <Field
-              label={t('basic address')}
+              label={t('rep. basic address')}
               name="representant.addresses[0].line1"
               id="representant.addresses[0].line1"
-              placeholder={t('basic address')}
+              placeholder={t('rep. basic address')}
             />
             <ErrorMsg name="representant.addresses[0].line1" />
           </div>
           <div className="mb-4 text-sm basis-2/4">
             <Field
-              label={t('more detail address')}
+              label={t('rep. more details address')}
               name="representant.addresses[0].line2"
               id="representant.addresses[0].line2"
-              placeholder={t('more detail address')}
+              placeholder={t('rep. more details address')}
             />
             <ErrorMsg name="representant.addresses[0].line2" />
           </div>

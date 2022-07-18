@@ -51,7 +51,6 @@ export const CreateForm = ({
                   name="user.first_name"
                   id="first_name"
                   placeholder={t('name')}
-                  className="w-full"
                 />
                 <ErrorMsg name="user.first_name" />
               </div>

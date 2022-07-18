@@ -62,14 +62,16 @@ let initValues = {
         value: '@juanito',
       },
     ],
-    charge: 'CE02',
+    user: {
+      charge: 'CE02',
+      email: 'user2@example.com', //
+      first_name: 'juan', //
+      last_name: 'perez', //
+    },
     phone_number: '+584241315948', //
     local_phone: '+582121315948', //
     fav_course: 'curso bonito', // No debe estar
     notification_frecuency: '1 vez al mes', // No debe estar
-    first_name: 'juan', //
-    last_name: 'perez', //
-    personal_email: 'user2@example.com', //
     business_email: 'user5@example.com', //
   },
   addresses: [
@@ -95,7 +97,7 @@ let initValues = {
   name: 'PROVEEDOR CHEVERE', //
   email: 'user@example.com', //
   businesses: [], // NO
-  // services:"Servicio que promociona"
+  services: "Servicio que promociona"
 };
 // as ProviderForm
 
@@ -131,6 +133,7 @@ const Provider: NextPage = () => {
 
   const handleCloseDelete = () => {
     setOpenDelete(false);
+    mutate();
   };
 
   const handleEditRow = async (id: number) => {
