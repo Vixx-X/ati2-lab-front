@@ -1,17 +1,15 @@
 import * as React from 'react';
 
-import { SOCIAL } from '@components/data/SocialNetworks';
 import ErrorMsg from '@components/forms/ErrorMsg';
 import Field from '@components/forms/Field';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Form from '@components/forms/Form';
-import Select from '@components/forms/Select';
+import SocialsArrayField from '@components/forms/SocialsArrayField';
 import SubmitButton from '@components/forms/SubmitButton';
 import Button from '@components/layout/Button';
 
 import useTranslate from '@hooks/useTranslate';
 
-import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -189,28 +187,7 @@ export const CreateForm = ({
               </div>
             </div>
             <div>
-              <label htmlFor="social_newtworks">{t('social media')}</label>
-              <div className="flex gap-x-16 justify-between">
-                <div className="basis-4/5 gap-x-4 text-sm flex">
-                  <div className="basis-2/5">
-                    <Select
-                      choices={SOCIAL}
-                      placeholder={t('Social Media')}
-                      name="social.name"
-                    />
-                  </div>
-                  <Field
-                    label={t('social media')}
-                    name="social_network"
-                    id="social_network"
-                    className="rounded py-2 px-2 text-gray-600 w-full mt-1"
-                    placeholder={t('social media')}
-                  />
-                </div>
-                <div className="basis-1/5">
-                  <Button endIcon={<AddIcon />}></Button>
-                </div>
-              </div>
+              <SocialsArrayField name="client.socials" />
             </div>
             <div className="mb-6"></div>
           </div>
