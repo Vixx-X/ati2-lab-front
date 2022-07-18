@@ -228,25 +228,24 @@ const Clients: NextPage = () => {
         />
       </Box>
       {/* <MiTable rows={clientData}></MiTable> */}
-      <Box display="flex" justifyContent="space-between" className="my-8">
+      <Box display="flex" justifyContent="space-around" className="my-8">
         <ClientsButton onclick={handleClickOpenCreate} />
-        <Box
-          className="w-1/2 gap-x-4"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Form
-            initialValues={initFilterValues}
-            onSubmit={handleFilter}
-            autoSubmit
-          >
-            <SearchBar name="type" />
-            <Box className="w-1/2">
-              <FlagSelector name="country" />
-            </Box>
-          </Form>
-        </Box>
+          <Box className="w-1/3">
+            <Form
+              initialValues={initFilterValues}
+              onSubmit={handleFilter}
+              autoSubmit
+            >
+              <Box display="flex" justifyContent="space-around" alignItems={"center"}>
+                <Box width="40%">
+                  <FlagSelector name="country" />
+                </Box>
+                <Box width="40%">
+                  <SearchBar name="type" />
+                </Box>
+              </Box>
+            </Form>
+          </Box>
       </Box>
       <CreateForm
         open={openCreate}

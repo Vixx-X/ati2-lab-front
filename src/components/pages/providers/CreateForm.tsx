@@ -39,9 +39,9 @@ export const CreateForm = ({
 
   return (
     <Dialog open={open} onClose={handleClose} sx={styles}>
-      <DialogTitle>{!edit ? t("crear proveedor") : t("editar proveedor")}</DialogTitle>
+      <DialogTitle>{!edit ? t("create provider") : t("edit provider")}</DialogTitle>
       <Form initialValues={initValues} onSubmit={handleSubmit}>
-        <DialogTitle className="py-0 text-base">{page ? t("datos proveedor") : t("datos representante")}</DialogTitle>
+        <DialogTitle className="py-0 text-base">{page ? t("provider data") : t("representant data")}</DialogTitle>
         <Divider className="mx-4 mt-2"></Divider>
         <DialogContent sx={{ height: '580px' }}>
           {page ?
@@ -53,11 +53,11 @@ export const CreateForm = ({
         </DialogContent>
         <DialogActions>
           <Box display="flex" className="gap-x-4" justifyContent="space-between">
-            <Button onclick={handleClose}>Cancelar</Button>
+            <Button onclick={handleClose}>{t("Cancel")}</Button>
             {/* <button type="submit">{!edit ? "Crear" : "Editar"}</button> */}
-            <Button onclick={handlePage}>{page ? "siguiente" : "anterior"}</Button>
+            <Button onclick={handlePage}>{page ? `${t("next")}` : `${t("back")}`}</Button>
             {!page && <SubmitButton>
-              {!edit ? "crear" : "editar"}
+              {!edit ? `${t("Create")}` : `${t("Edit")}`}
             </SubmitButton>}
           </Box>
         </DialogActions>
