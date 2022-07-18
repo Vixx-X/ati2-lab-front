@@ -26,7 +26,7 @@ import {
   putBusiness,
 } from '@fetches/business';
 
-import { flattenJSON } from '@utils/flattenJSON';
+import { flattenJSONProvider } from '@utils/flattenJSON';
 import { makeUrl } from '@utils/makeUrl';
 
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
@@ -68,7 +68,7 @@ let initValues = {
     ],
   },
   name: 'Pepa',
-  email: 'gustariz@mahisoft.com',
+  email: 'gustasdariz@mahisoft.com',
   services: 'lili',
   tax_id: '2222222',
   website: 'https://mui.com/material-ui/api/button/',
@@ -148,8 +148,9 @@ const Business: NextPage = () => {
   useEffect(() => {
     if (business) {
       const businessFlaten = business.results.map(function (element: any) {
-        return flattenJSON(element);
+        return flattenJSONProvider(element);
       });
+      console.log("Flat():",businessFlaten)
       setBusinessData(businessFlaten);
     }
   }, [business]);
