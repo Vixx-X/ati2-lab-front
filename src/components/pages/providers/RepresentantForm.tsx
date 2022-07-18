@@ -3,6 +3,7 @@ import ErrorMsg from '@components/forms/ErrorMsg';
 import Field from '@components/forms/Field';
 import { FlagSelector } from '@components/forms/FlagSelector';
 import Select from '@components/forms/Select';
+import SocialsArrayField from '@components/forms/SocialsArrayField';
 import Button from '@components/layout/Button';
 
 import useTranslate from '@hooks/useTranslate';
@@ -132,28 +133,7 @@ export const RepresentantForm = () => {
         </div>
       </div>
       <div>
-        <label>{t('social media')}</label>
-        <div className="flex gap-x-16 justify-between">
-          <div className="basis-4/5 gap-x-4 text-sm flex">
-            <div className="basis-1/5">
-              <Select
-                choices={SOCIAL}
-                placeholder={t('social media')}
-                name="social"
-              />
-            </div>
-            <Field
-              label="Redes sociales"
-              name="representant.socials[0].value"
-              id="representant.socials[0].value"
-              placeholder={t('social media')}
-            />
-            <ErrorMsg name="representant.socials[0].value" />
-          </div>
-          <div className="basis-1/5">
-            <Button endIcon={<AddIcon />}></Button>
-          </div>
-        </div>
+        <SocialsArrayField name="representant.socials" />
       </div>
     </div>
   );

@@ -75,5 +75,9 @@
   "back": "anterior",
   "Name Representant": "Nombre del Representante",
   "Lastname Representant": "Apellido del Representante",
-  "Change Representant": "Cargo del Representante"
+  "Change Representant": "Cargo del Representante",
+  "name of social media": "nombre de red social",
+  "value of social media": "valor de red social",
+  "Ex: instagram, facebook": "Ej: instagram, facebook",
+  "Ex: @abc123": "Ej: @abc123"
 }

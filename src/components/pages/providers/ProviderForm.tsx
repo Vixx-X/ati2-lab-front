@@ -9,6 +9,7 @@ import useTranslate from '@hooks/useTranslate';
 
 import AddIcon from '@mui/icons-material/Add';
 import { BusinessSelect } from '@components/forms/BusinessSelect';
+import SocialsArrayField from '@components/forms/SocialsArrayField';
 
 export const ProviderForm = () => {
   const t = useTranslate();
@@ -17,7 +18,7 @@ export const ProviderForm = () => {
     <div className="pt-4">
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
-          <BusinessSelect name="businesses"/>
+          <BusinessSelect name="businesses" />
         </div>
       </div>
       <div className="flex gap-x-8">
@@ -128,24 +129,7 @@ export const ProviderForm = () => {
         </div>
       </div>
       <div>
-        <label htmlFor="social_newtworks">{t('social media')}</label>
-        <div className="flex gap-x-16 justify-between">
-          <div className="basis-4/5 gap-x-4 text-sm flex">
-            <div className="basis-1/5">
-              <Select choices={SOCIAL} placeholder="Red Social" name="social" />
-            </div>
-            <Field
-              label=""
-              name="socials[0].value"
-              id="socials[0].value"
-              className="rounded py-2 px-2 text-gray-600 mt-1 basis-4/5"
-              placeholder=""
-            />
-          </div>
-          <div className="basis-1/5">
-            <Button endIcon={<AddIcon />}></Button>
-          </div>
-        </div>
+        <SocialsArrayField name="socials" />
       </div>
     </div>
   );
