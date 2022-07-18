@@ -1,9 +1,11 @@
 import * as React from 'react';
+
+import useTranslate from '@hooks/useTranslate';
+
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import useTranslate from '@hooks/useTranslate';
 
 export default function AlertDialog({
   open,
@@ -28,9 +30,9 @@ export default function AlertDialog({
           </DialogContentText>
         </DialogContent> */}
         <DialogActions>
-          <Button onClick={handleClose}>{t("Cancel")}</Button>
-          <button onClick={handleSubmit} autoFocus >
-            {t("Acept")}
+          <Button onClick={handleClose}>{t('Cancel')}</Button>
+          <button onClick={handleSubmit} autoFocus>
+            {t('Acept')}
           </button>
         </DialogActions>
       </Dialog>

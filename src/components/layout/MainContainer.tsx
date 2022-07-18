@@ -99,7 +99,11 @@ export default function MainContainer({ children }: any) {
           alignItems="center"
           sx={{ height: 'calc(100vh - 64px)', bgColor: '#185583' }}
         >
-          <Container className="mt-40 h-full" maxWidth="xl" sx={{ width: '100%'}}>
+          <Container
+            className="mt-40 h-full"
+            maxWidth="xl"
+            sx={{ width: '100%' }}
+          >
             {children}
           </Container>
         </Box>

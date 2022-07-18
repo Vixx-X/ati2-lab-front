@@ -2,11 +2,12 @@ import * as React from 'react';
 
 import Link from 'next/link';
 
+import useTranslate from '@hooks/useTranslate';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import useTranslate from '@hooks/useTranslate';
 
 const styles = {
   height: 200,
@@ -24,7 +25,6 @@ export default function MediaCard({
   link,
   style = styles,
 }: any) {
-
   const t = useTranslate();
 
   return (

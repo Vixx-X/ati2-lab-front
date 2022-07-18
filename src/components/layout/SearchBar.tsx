@@ -1,12 +1,12 @@
 import Field from '@components/forms/Field';
+
+import useTranslate from '@hooks/useTranslate';
+
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import { Box } from '@mui/system';
-import useTranslate from '@hooks/useTranslate';
-
 
 export default function SearchBar({ name }: Props) {
-
   const t = useTranslate();
 
   return (
@@ -20,7 +20,7 @@ export default function SearchBar({ name }: Props) {
     >
       <Field
         name={name}
-        placeholder={t("Search...")}
+        placeholder={t('Search...')}
         style={{
           background: 'transparent',
           color: '#ffffff',

@@ -226,22 +226,26 @@ const Employees: NextPage = () => {
       </Box>
       <Box display="flex" justifyContent="space-around" className="my-8">
         <EmployeesButton onclick={handleClickOpenCreate} />
-          <Box className="w-1/3">
-            <Form
-              initialValues={initFilterValues}
-              onSubmit={handleFilter}
-              autoSubmit
+        <Box className="w-1/3">
+          <Form
+            initialValues={initFilterValues}
+            onSubmit={handleFilter}
+            autoSubmit
+          >
+            <Box
+              display="flex"
+              justifyContent="space-around"
+              alignItems={'center'}
             >
-              <Box display="flex" justifyContent="space-around" alignItems={"center"}>
-                <Box width="40%">
-                  <FlagSelector name="country" />
-                </Box>
-                <Box width="40%">
-                  <SearchBar name="type" />
-                </Box>
+              <Box width="40%">
+                <FlagSelector name="country" />
               </Box>
-            </Form>
-          </Box>
+              <Box width="40%">
+                <SearchBar name="type" />
+              </Box>
+            </Box>
+          </Form>
+        </Box>
       </Box>
       <CreateForm
         open={openCreate}

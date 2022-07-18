@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
+
 import type { NextPage } from 'next';
+
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
 import { ClientsHeaders } from '@components/data/Headers';
 import { FlagSelector } from '@components/forms/FlagSelector';
+import Form from '@components/forms/Form';
 import Alert from '@components/layout/Alert';
 import Button from '@components/layout/Button';
 import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/clients/CreateForm';
 import MiTable from '@components/table/MiTable';
-import { Box } from '@mui/system';
-import { FormikValues } from 'formik';
-import useTranslate from '@hooks/useTranslate';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import { flattenJSON } from '@utils/flattenJSON';
-import Form from '@components/forms/Form';
-import useSWR from 'swr';
 
 import {
   deleteClient,
@@ -27,15 +23,21 @@ import {
   putClient,
 } from '@fetches/clients';
 
+import useTranslate from '@hooks/useTranslate';
 
+import { flattenJSON } from '@utils/flattenJSON';
+
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import { Box } from '@mui/system';
+import { FormikValues } from 'formik';
+import useSWR from 'swr';
 
 const ClientsButton = ({ onclick }: any) => {
-
-  const t = useTranslate()
+  const t = useTranslate();
 
   return (
     <Button endIcon={<GroupAddIcon />} onclick={onclick}>
-      {t("Add Client")}
+      {t('Add Client')}
     </Button>
   );
 };
@@ -74,10 +76,9 @@ let initValues = {
 };
 
 const Clients: NextPage = () => {
+  const t = useTranslate();
 
-  const t = useTranslate()
-
-  const [clientsData, setClientData] = useState()
+  const [clientsData, setClientData] = useState();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -153,7 +154,7 @@ const Clients: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception)
+      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
       // setLoading(false);
     }
@@ -166,7 +167,7 @@ const Clients: NextPage = () => {
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log("exceptions:", exception);
+      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
@@ -214,7 +215,7 @@ const Clients: NextPage = () => {
       };
     });
   };
-  
+
   return (
     <MainContainer>
       <Box sx={{ maxWidth: 500 }}>
@@ -230,22 +231,26 @@ const Clients: NextPage = () => {
       {/* <MiTable rows={clientData}></MiTable> */}
       <Box display="flex" justifyContent="space-around" className="my-8">
         <ClientsButton onclick={handleClickOpenCreate} />
-          <Box className="w-1/3">
-            <Form
-              initialValues={initFilterValues}
-              onSubmit={handleFilter}
-              autoSubmit
+        <Box className="w-1/3">
+          <Form
+            initialValues={initFilterValues}
+            onSubmit={handleFilter}
+            autoSubmit
+          >
+            <Box
+              display="flex"
+              justifyContent="space-around"
+              alignItems={'center'}
             >
-              <Box display="flex" justifyContent="space-around" alignItems={"center"}>
-                <Box width="40%">
-                  <FlagSelector name="country" />
-                </Box>
-                <Box width="40%">
-                  <SearchBar name="type" />
-                </Box>
+              <Box width="40%">
+                <FlagSelector name="country" />
               </Box>
-            </Form>
-          </Box>
+              <Box width="40%">
+                <SearchBar name="type" />
+              </Box>
+            </Box>
+          </Form>
+        </Box>
       </Box>
       <CreateForm
         open={openCreate}
@@ -259,7 +264,7 @@ const Clients: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t("Are you sure do you want to delete")} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
       )}
       {clientsData ? (
         <MiTable
