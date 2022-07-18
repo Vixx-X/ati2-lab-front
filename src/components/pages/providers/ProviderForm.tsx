@@ -8,12 +8,18 @@ import Button from '@components/layout/Button';
 import useTranslate from '@hooks/useTranslate';
 
 import AddIcon from '@mui/icons-material/Add';
+import { BusinessSelect } from '@components/forms/BusinessSelect';
 
 export const ProviderForm = () => {
   const t = useTranslate();
 
   return (
     <div className="pt-4">
+      <div className="flex gap-x-8">
+        <div className="mb-4 text-sm basis-2/4">
+          <BusinessSelect name="businesses"/>
+        </div>
+      </div>
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
           <Field

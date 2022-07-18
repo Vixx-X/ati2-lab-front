@@ -94,7 +94,7 @@ let initValues = {
   notification_frecuency: 'string', // NO
   name: 'PROVEEDOR CHEVERE', //
   email: 'user@example.com', //
-  business: [1], // NO
+  businesses: [], // NO
   // services:"Servicio que promociona"
 };
 // as ProviderForm
