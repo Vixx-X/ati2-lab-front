@@ -24,7 +24,7 @@ export const FlagSelector = ({ name, ...props }: FlagSelectorInterface) => {
         return {
           value: country.iso_3166_1_a2,
           text: (
-            <>
+            <div className="flex">
               <div className="mr-2 w-8 h-full">
                 <Image
                   width="25"
@@ -35,7 +35,7 @@ export const FlagSelector = ({ name, ...props }: FlagSelectorInterface) => {
                 />
               </div>
               {country.printable_name}
-            </>
+            </div>
           ),
         };
       }) ?? []

@@ -10,8 +10,6 @@ import Select from '@components/forms/Select';
 import SubmitButton from '@components/forms/SubmitButton';
 import Button from '@components/layout/Button';
 
-import { getAllBusinesses } from '@fetches/business';
-
 import useTranslate from '@hooks/useTranslate';
 
 import AddIcon from '@mui/icons-material/Add';
