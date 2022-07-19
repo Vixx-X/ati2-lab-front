@@ -81,7 +81,7 @@ let initValues = {
 const Clients: NextPage = () => {
   const t = useTranslate();
 
-  const [clientsData, setClientData] = useState();
+  const [clientsData, setClientData] = useState<any>();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -93,7 +93,7 @@ const Clients: NextPage = () => {
 
   const [currentId, setId] = useState<number>();
 
-  const [currentRow, setCurrentRow] = useState();
+  const [currentRow, setCurrentRow] = useState<any>();
 
   const [deletable,setDeletable]=useState(false);
 
@@ -120,20 +120,22 @@ const Clients: NextPage = () => {
 
   const handleEditRow = async (id: number) => {
     setId(id);
-    setEditable(true);
     try {
-      initValues = await getClient(id);
+      setInitial(await getClient(id));
+      setEditable(true);
     } catch (exception: any) {
-      // setLoading(false);
     }
-    // get de la variable y setear initial values
-    handleClickOpenCreate();
   };
+
+  useEffect(() => {
+    if (editable) {
+      handleClickOpenCreate();
+    }
+  }, [editable]);
 
   const handleDeleteRow = (id: number) => {
     setId(id);
     if(clientsData){
-      console.log(clientsData)
       setCurrentRow(clientsData.filter((item:any)=>(item.id === id)));
     }
     setDeletable(true)
@@ -151,13 +153,11 @@ const Clients: NextPage = () => {
     values: FormikValues,
     { setStatus }: any
   ) => {
-    console.log('OnSubmit():', values);
     try {
       await postClient(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
       // setLoading(false);
     }
@@ -165,12 +165,10 @@ const Clients: NextPage = () => {
 
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
     try {
-      console.log('edit', values, currentId);
       await putClient(values, currentId);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
