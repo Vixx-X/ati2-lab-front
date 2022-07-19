@@ -71,7 +71,7 @@ let initValues = {
 const Employees: NextPage = () => {
   const t = useTranslate();
 
-  const [employeesData, setEmployeeData] = useState();
+  const [employeesData, setEmployeeData] = useState<any>();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -83,7 +83,7 @@ const Employees: NextPage = () => {
 
   const [currentId, setId] = useState<number>();
 
-  const [currentRow, setCurrentRow] = useState();
+  const [currentRow, setCurrentRow] = useState<any>();
 
   const [deletable,setDeletable] = useState(false);
 
@@ -124,10 +124,8 @@ const Employees: NextPage = () => {
   }, [editable]);
 
   const handleDeleteRow = (id: number) => {
-    console.log('He aqui el id', id);
     setId(id);
     if(deletable){
-      console.log(employeesData);
       setCurrentRow(employeesData.filter((item:any)=>(item.id === id)));
     }
     setDeletable(true)
@@ -145,13 +143,11 @@ const Employees: NextPage = () => {
     values: FormikValues,
     { setStatus }: any
   ) => {
-    console.log('OnSubmit():', values);
     try {
       await postEmployee(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
       // setLoading(false);
     }
@@ -159,12 +155,10 @@ const Employees: NextPage = () => {
 
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
     try {
-      console.log('edit', values, currentId);
       await putEmployee(values, currentId);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
@@ -172,23 +166,9 @@ const Employees: NextPage = () => {
   const handleSubmitDelete = async () => {
     try {
       await deleteEmployee(currentId);
-      // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data.detail);
-      // setLoading(false);
     }
-  };
-
-  const handleSelectFlag = (e: any) => {
-    console.log('Se selecciono la bandera de:', e);
-  };
-
-  const styles = {
-    '& form': {
-      height: '100%',
-    },
-    getEmployee,
   };
 
   const stylesCard = {

@@ -76,7 +76,7 @@ let initValues = {
 };
 
 const Business: NextPage = () => {
-  const [businessData, setBusinessData] = useState();
+  const [businessData, setBusinessData] = useState<any>();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -88,7 +88,7 @@ const Business: NextPage = () => {
 
   const [currentId, setId] = useState<number>();
 
-  const [currentRow, setCurrentRow] = useState();
+  const [currentRow, setCurrentRow] = useState<any>();
 
   const [deletable,setDeletable]=useState(false);
 
@@ -152,7 +152,6 @@ const Business: NextPage = () => {
   };
   const handleFilter = (values: FormikValues) => {
     setQuery((prev: any) => {
-      console.log('setQuery()', { ...prev, ...values });
       return {
         ...prev,
         ...values,
@@ -170,7 +169,6 @@ const Business: NextPage = () => {
       const businessFlaten = business.results.map(function (element: any) {
         return flattenJSONProvider(element);
       });
-      console.log('Flat():', businessFlaten);
       setBusinessData(businessFlaten);
     }
   }, [business]);

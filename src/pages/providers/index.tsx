@@ -102,7 +102,7 @@ let initValues = {
 // as ProviderForm
 
 const Provider: NextPage = () => {
-  const [providerData, setProviderData] = useState();
+  const [providerData, setProviderData] = useState<any>();
 
   const [openCreate, setOpenCreate] = useState(false);
 
@@ -113,6 +113,10 @@ const Provider: NextPage = () => {
   const [initialValues, setInitial] = useState(initValues);
 
   const [currentId, setId] = useState<number>();
+
+  const [currentRow, setCurrentRow] = useState<any>();
+
+  const [deletable,setDeletable] = useState(false);
 
   const t = useTranslate();
 
@@ -145,6 +149,7 @@ const Provider: NextPage = () => {
     }  
   };
 
+
   useEffect(() => {
     if (editable) {
       handleClickOpenCreate();
@@ -152,37 +157,38 @@ const Provider: NextPage = () => {
   }, [editable]);
 
   const handleDeleteRow = (id: number) => {
-    console.log('He aqui el id', id);
     setId(id);
-    handleClickOpenDelete();
+    if(deletable){
+      setCurrentRow(providerData.filter((item:any)=>(item.id === id)));
+    }
+    setDeletable(true)
   };
 
-  // const [loading, setLoading] = useState(false);
+  useEffect(()=>{
+    if(deletable){
+      handleClickOpenDelete();
+    }
+  },[deletable])
 
   const handleSubmitCreate = async (
     values: FormikValues,
     { setStatus }: any
   ) => {
-    console.log('OnSubmit():', values);
     try {
       await postProvider(values);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
-      // setLoading(false);
     }
   };
 
   const handleSubmitEdit = async (values: FormikValues, { setStatus }: any) => {
     try {
-      console.log('edit', values, currentId);
       await putProvider(values, currentId);
       setStatus({});
       handleCloseCreate();
     } catch (exception: any) {
-      console.log('exceptions:', exception);
       setStatus(exception.data.detail);
     }
   };
@@ -190,23 +196,9 @@ const Provider: NextPage = () => {
   const handleSubmitDelete = async () => {
     try {
       await deleteProvider(currentId);
-      // setStatus({});
       handleCloseDelete();
     } catch (e) {
-      // setStatus(exception.data.detail);
-      // setLoading(false);
     }
-  };
-
-  const handleSelectFlag = (e: any) => {
-    console.log('Se selecciono la bandera de:', e);
-  };
-
-  const styles = {
-    '& form': {
-      height: '100%',
-    },
-    getProvider,
   };
 
   const stylesCard = {
@@ -238,11 +230,9 @@ const Provider: NextPage = () => {
 
   useEffect(() => {
     if (provider) {
-      console.log('111', provider);
       const providerFlaten = provider.results.map(function (element: any) {
         return flattenJSONProvider(element);
       });
-      // console.log("formateo", flattenJSONProvider(initValues))
       setProviderData(providerFlaten);
     }
   }, [provider]);
@@ -289,12 +279,12 @@ const Provider: NextPage = () => {
         initValues={initialValues}
         edit={editable}
       />
-      {initialValues && currentId && (
+      {initialValues && currentRow && (
         <Alert
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentRow[0].first_name}`}</Alert>
       )}
       {providerData ? (
         <MiTable

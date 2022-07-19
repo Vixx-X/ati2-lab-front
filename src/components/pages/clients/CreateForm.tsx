@@ -25,9 +25,6 @@ export const CreateForm = ({
   edit,
 }: any) => {
   const t = useTranslate();
-
-  console.log(initValues);
-
   const styles = {
     '& .MuiPaper-root': {
       maxWidth: '900px',

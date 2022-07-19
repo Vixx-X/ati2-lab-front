@@ -24,7 +24,5 @@ export const BusinessSelect = ({ name, ...props }: BusinessSelectProps) => {
     );
   }, [data]);
 
-  console.log('businesses:', businesses);
-
   return <Select choices={businesses} name={name} {...props} />;
 };
