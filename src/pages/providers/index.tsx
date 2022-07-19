@@ -96,7 +96,7 @@ let initValues = {
   notification_frecuency: '', // NO
   name: '', //
   email: '', //
-  businesses: [], // NO
+  business: [], // NO
   services: ""
 };
 // as ProviderForm

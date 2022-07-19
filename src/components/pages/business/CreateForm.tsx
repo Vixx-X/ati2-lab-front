@@ -42,7 +42,7 @@ export const CreateForm = ({
             <div className="flex gap-x-8">
               <div className="mb-4 text-sm basis-2/4">
                 <Field
-                  label={t('Enter user name')}
+                  label={t('Enter business name')}
                   name="name"
                   id="name"
                   placeholder={t('Business Name')}
