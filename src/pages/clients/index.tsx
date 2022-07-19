@@ -115,15 +115,18 @@ const Clients: NextPage = () => {
 
   const handleEditRow = async (id: number) => {
     setId(id);
-    setEditable(true);
     try {
-      initValues = await getClient(id);
+      setInitial(await getClient(id));
+      setEditable(true);
     } catch (exception: any) {
-      // setLoading(false);
     }
-    // get de la variable y setear initial values
-    handleClickOpenCreate();
   };
+
+  useEffect(() => {
+    if (editable) {
+      handleClickOpenCreate();
+    }
+  }, [editable]);
 
   const handleDeleteRow = (id: number) => {
     console.log('He aqui el id', id);
