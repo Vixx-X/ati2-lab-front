@@ -47,32 +47,32 @@ const BusinessButton = ({ onclick }: any) => {
 
 let initValues = {
   client: {
-    phone_number: '+584241315948',
-    fav_course: 'PHP',
-    notification_frecuency: '1 vez al mes',
-    offered_services: 'lulu',
-    whatsapp: '+584241315946',
+    phone_number: '',
+    fav_course: '',
+    notification_frecuency: '',
+    offered_services: '',
+    whatsapp: '',
     addresses: [
       {
-        line1: 'lin1',
-        line2: 'lin2',
+        line1: '',
+        line2: '',
         country: '',
-        city: 'Caracas',
-        state: 'Distrito Capital',
+        city: '',
+        state: '',
       },
     ],
     socials: [
       {
-        name: 'string',
-        value: 'string',
+        name: '',
+        value: '',
       },
     ],
   },
-  name: 'Pepa',
-  email: 'gustasdariz@mahisoft.com',
-  services: 'lili',
-  tax_id: '2222222',
-  website: 'https://mui.com/material-ui/api/button/',
+  name: '',
+  email: '',
+  services: '',
+  tax_id: '',
+  website: '',
 };
 
 const Business: NextPage = () => {
