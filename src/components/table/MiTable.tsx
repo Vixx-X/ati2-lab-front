@@ -68,7 +68,13 @@ export default function MiTable({
                   </Box>
                 </TableCell>
                 {headTable.map(({ key }: any, index: number) => (
-                  <TableCell key={index}>{row[key]}</TableCell>
+                  <TableCell key={index}>{
+                      row[key] ? 
+                      row[key] : 
+                        key === "client.fav_course" ?
+                        "ninguno" :
+                        "no tienen"
+                    }</TableCell>
                 ))}
               </TableRow>
             ))}
