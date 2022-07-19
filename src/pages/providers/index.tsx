@@ -284,7 +284,7 @@ const Provider: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentRow[0].first_name}`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentRow[0].name}`}</Alert>
       )}
       {providerData ? (
         <MiTable
