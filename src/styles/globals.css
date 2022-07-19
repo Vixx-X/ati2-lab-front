@@ -41,10 +41,12 @@ a {
   bottom: 0;
   left: 0;
   transform: translateX(-100%);
-  background-image: linear-gradient(90deg,
-      rgba(233, 233, 233, 1) 0,
-      rgba(233, 233, 233, 0.9) 50%,
-      rgba(233, 233, 233, 0.8) 100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(233, 233, 233, 1) 0,
+    rgba(233, 233, 233, 0.9) 50%,
+    rgba(233, 233, 233, 0.8) 100%
+  );
   animation: shimmer 2.5s ease-out infinite;
   content: '';
 }
@@ -120,7 +122,7 @@ a {
 }
 
 @media print and (-ms-high-contrast: active),
-print and (-ms-high-contrast: none) {
+  print and (-ms-high-contrast: none) {
   .form-select {
     padding-right: 0.75rem;
   }
@@ -137,6 +139,8 @@ print and (-ms-high-contrast: none) {
   background-color: 'black';
 }
 
-label, th, h2 {
+label,
+th,
+h2 {
   text-transform: capitalize !important;
 }

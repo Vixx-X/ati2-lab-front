@@ -1,8 +1,9 @@
 import useTranslate from '@hooks/useTranslate';
 
+import recursiveGetter from '@utils/recursiveGetter';
+
 import { FormControl, InputLabel, MenuItem } from '@mui/material';
 import SSelect from '@mui/material/Select';
-import recursiveGetter from '@utils/recursiveGetter';
 import { useFormikContext } from 'formik';
 
 interface SelectProps extends Props {
@@ -27,6 +28,8 @@ export const Select = ({
   };
 
   const t = useTranslate();
+
+  console.log(name, values);
 
   return (
     <FormControl className="w-full">
