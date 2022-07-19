@@ -88,6 +88,10 @@ const Business: NextPage = () => {
 
   const [currentId, setId] = useState<number>();
 
+  const [currentRow, setCurrentRow] = useState();
+
+  const [deletable,setDeletable]=useState(false);
+
   const t = useTranslate();
 
   const handleClickOpenCreate = () => {
@@ -107,6 +111,7 @@ const Business: NextPage = () => {
 
   const handleCloseDelete = () => {
     setOpenDelete(false);
+    setDeletable(false);
     mutate();
   };
 
@@ -128,8 +133,17 @@ const Business: NextPage = () => {
 
   const handleDeleteRow = (id: number) => {
     setId(id);
-    handleClickOpenDelete();
+    if(businessData){
+      setCurrentRow(businessData.filter((item:any)=>(item.id === id)));
+    }
+    setDeletable(true)
   };
+
+  useEffect(()=>{
+    if(deletable){
+      handleClickOpenDelete();
+    }
+  },[deletable])
 
   const [query, setQuery] = useState<any>({});
   const initFilterValues = {
@@ -244,12 +258,12 @@ const Business: NextPage = () => {
         initValues={initialValues}
         edit={editable}
       />
-      {initialValues && currentId && (
+      {initialValues && currentRow && (
         <Alert
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentId}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentRow[0].name}?`}</Alert>
       )}
       {businessData ? (
         <MiTable
