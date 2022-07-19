@@ -72,7 +72,7 @@ let initValues = {
   contract_modality: '',
   business_email: '',
   local_phone_number: '',
-  business: [],
+  business: 0,
 };
 
 const Employees: NextPage = () => {
