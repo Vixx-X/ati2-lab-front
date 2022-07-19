@@ -49,55 +49,55 @@ let initValues = {
   representant: {
     addresses: [
       {
-        line1: 'lin1 re',
-        line2: 'lin2 re',
-        country: 've',
-        city: 'Caracas',
-        state: 'Distrito Capital',
+        line1: '',
+        line2: '',
+        country: '',
+        city: '',
+        state: '',
       },
     ],
     socials: [
       {
-        name: 'instagram',
-        value: '@juanito',
+        name: '',
+        value: '',
       },
     ],
     user: {
-      charge: 'CE02',
-      email: 'user2@example.com', //
-      first_name: 'juan', //
-      last_name: 'perez', //
+      charge: '',
+      email: '', //
+      first_name: '', //
+      last_name: '', //
     },
-    phone_number: '+584241315948', //
-    local_phone: '+582121315948', //
-    fav_course: 'curso bonito', // No debe estar
-    notification_frecuency: '1 vez al mes', // No debe estar
-    business_email: 'user5@example.com', //
+    phone_number: '', //
+    local_phone: '', //
+    fav_course: '', // No debe estar
+    notification_frecuency: '', // No debe estar
+    business_email: '', //
   },
   addresses: [
     {
-      line1: 'lin1',
-      line2: 'lin2',
-      country: 've',
-      city: 'Caracas',
-      state: 'Distrito Capital',
+      line1: '',
+      line2: '',
+      country: '',
+      city: '',
+      state: '',
     },
   ],
   socials: [
     {
-      name: 'string',
-      value: 'string',
+      name: '',
+      value: '',
     },
   ],
-  tax_id: '222333', // Se deben enviar
-  website: 'https://api.ati2.vittorioadesso.com/', //
-  phone_number: '+582123335544', //
-  fav_course: 'string', // NO
-  notification_frecuency: 'string', // NO
-  name: 'PROVEEDOR CHEVERE', //
-  email: 'user@example.com', //
+  tax_id: '', // Se deben enviar
+  website: '', //
+  phone_number: '', //
+  fav_course: '', // NO
+  notification_frecuency: '', // NO
+  name: '', //
+  email: '', //
   businesses: [], // NO
-  services: "Servicio que promociona"
+  services: ""
 };
 // as ProviderForm
 

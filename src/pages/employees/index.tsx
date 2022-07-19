@@ -40,32 +40,32 @@ const EmployeesButton = ({ onclick }: any) => {
 
 let initValues = {
   user: {
-    charge: 'propietaria',
-    first_name: 'maria',
-    last_name: 'gonzalez',
-    email: 'user@example.com',
+    charge: '',
+    first_name: '',
+    last_name: '',
+    email: '',
   },
   addresses: [
     {
-      line1: 'casita1',
-      line2: 'la calle bonita',
-      city: 'caracas',
-      state: 'distrito capital',
-      country: 've',
+      line1: '',
+      line2: '',
+      city: '',
+      state: '',
+      country: '',
     },
   ],
   socials: [
     {
-      name: 'instagram',
-      value: '@micasita',
+      name: '',
+      value: '',
     },
   ],
-  phone_number: '+584245554433',
-  document_id: 'V26956022',
-  contract_modality: 'Honorarios profesionales',
-  business_email: 'user@example.com',
-  local_phone_number: '+582125554433',
-  business: 0,
+  phone_number: '',
+  document_id: '',
+  contract_modality: '',
+  business_email: '',
+  local_phone_number: '',
+  business: [],
 };
 
 const Employees: NextPage = () => {
