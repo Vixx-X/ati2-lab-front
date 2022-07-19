@@ -50,7 +50,11 @@ export const CreateForm = ({
                 display="flex"
                 justifyContent="space-between"
               >
-                <BusinessSelect name="business" placeholder={t("select business")} id="business" />
+                <BusinessSelect
+                  name="business"
+                  placeholder={t('select business')}
+                  id="business"
+                />
               </Box>
               <ErrorMsg name="business" />
             </div>
