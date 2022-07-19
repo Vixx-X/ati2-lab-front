@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import type { NextPage } from 'next';
+
 import Card from '@components/Card';
 import Loader from '@components/Loader';
 import { ENTITYS } from '@components/data/Entitys';
@@ -12,7 +14,9 @@ import MainContainer from '@components/layout/MainContainer';
 import SearchBar from '@components/layout/SearchBar';
 import { CreateForm } from '@components/pages/employees/CreateForm';
 import MiTable from '@components/table/MiTable';
+
 import { API_URLS } from '@config';
+
 import {
   deleteEmployee,
   getEmployee,
@@ -20,9 +24,12 @@ import {
   postEmployee,
   putEmployee,
 } from '@fetches/employees';
+
 import useTranslate from '@hooks/useTranslate';
+
 import { flattenJSONProvider } from '@utils/flattenJSON';
 import { makeUrl } from '@utils/makeUrl';
+
 import AddIcon from '@mui/icons-material/Add';
 import { Box } from '@mui/system';
 import { FormikValues } from 'formik';
@@ -85,7 +92,7 @@ const Employees: NextPage = () => {
 
   const [currentRow, setCurrentRow] = useState<any>();
 
-  const [deletable,setDeletable] = useState(false);
+  const [deletable, setDeletable] = useState(false);
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
@@ -112,9 +119,8 @@ const Employees: NextPage = () => {
     setId(id);
     try {
       setInitial(await getEmployee(id));
-      setEditable(true)
-    } catch (exception: any) {
-    }
+      setEditable(true);
+    } catch (exception: any) {}
   };
 
   useEffect(() => {
@@ -125,17 +131,17 @@ const Employees: NextPage = () => {
 
   const handleDeleteRow = (id: number) => {
     setId(id);
-    if(deletable){
-      setCurrentRow(employeesData.filter((item:any)=>(item.id === id)));
+    if (deletable) {
+      setCurrentRow(employeesData.filter((item: any) => item.id === id));
     }
-    setDeletable(true)
+    setDeletable(true);
   };
 
-  useEffect(()=>{
-    if(deletable){
+  useEffect(() => {
+    if (deletable) {
       handleClickOpenDelete();
     }
-  },[deletable])
+  }, [deletable]);
 
   // const [loading, setLoading] = useState(false);
 
@@ -167,8 +173,7 @@ const Employees: NextPage = () => {
     try {
       await deleteEmployee(currentId);
       handleCloseDelete();
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const stylesCard = {
@@ -254,7 +259,9 @@ const Employees: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentRow[0].first_name}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${
+          currentRow[0].first_name
+        }?`}</Alert>
       )}
       {employeesData ? (
         <MiTable

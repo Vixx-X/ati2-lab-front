@@ -116,7 +116,7 @@ const Provider: NextPage = () => {
 
   const [currentRow, setCurrentRow] = useState<any>();
 
-  const [deletable,setDeletable] = useState(false);
+  const [deletable, setDeletable] = useState(false);
 
   const t = useTranslate();
 
@@ -144,11 +144,9 @@ const Provider: NextPage = () => {
     setId(id);
     try {
       setInitial(await getProvider(id));
-      setEditable(true);  
-    } catch (exception: any) {
-    }  
+      setEditable(true);
+    } catch (exception: any) {}
   };
-
 
   useEffect(() => {
     if (editable) {
@@ -158,17 +156,17 @@ const Provider: NextPage = () => {
 
   const handleDeleteRow = (id: number) => {
     setId(id);
-    if(deletable){
-      setCurrentRow(providerData.filter((item:any)=>(item.id === id)));
+    if (deletable) {
+      setCurrentRow(providerData.filter((item: any) => item.id === id));
     }
-    setDeletable(true)
+    setDeletable(true);
   };
 
-  useEffect(()=>{
-    if(deletable){
+  useEffect(() => {
+    if (deletable) {
       handleClickOpenDelete();
     }
-  },[deletable])
+  }, [deletable]);
 
   const handleSubmitCreate = async (
     values: FormikValues,
@@ -197,8 +195,7 @@ const Provider: NextPage = () => {
     try {
       await deleteProvider(currentId);
       handleCloseDelete();
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const stylesCard = {
@@ -284,7 +281,7 @@ const Provider: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentRow[0].first_name}`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${currentRow[0].name}`}</Alert>
       )}
       {providerData ? (
         <MiTable

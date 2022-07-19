@@ -90,7 +90,7 @@ const Business: NextPage = () => {
 
   const [currentRow, setCurrentRow] = useState<any>();
 
-  const [deletable,setDeletable]=useState(false);
+  const [deletable, setDeletable] = useState(false);
 
   const t = useTranslate();
 
@@ -120,10 +120,8 @@ const Business: NextPage = () => {
     try {
       setInitial(await getBusiness(id));
       setEditable(true);
-    } catch (exception: any) {
-    }
+    } catch (exception: any) {}
   };
-
 
   useEffect(() => {
     if (editable) {
@@ -133,17 +131,17 @@ const Business: NextPage = () => {
 
   const handleDeleteRow = (id: number) => {
     setId(id);
-    if(businessData){
-      setCurrentRow(businessData.filter((item:any)=>(item.id === id)));
+    if (businessData) {
+      setCurrentRow(businessData.filter((item: any) => item.id === id));
     }
-    setDeletable(true)
+    setDeletable(true);
   };
 
-  useEffect(()=>{
-    if(deletable){
+  useEffect(() => {
+    if (deletable) {
       handleClickOpenDelete();
     }
-  },[deletable])
+  }, [deletable]);
 
   const [query, setQuery] = useState<any>({});
   const initFilterValues = {
@@ -261,7 +259,9 @@ const Business: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentRow[0].name}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${
+          currentRow[0].name
+        }?`}</Alert>
       )}
       {businessData ? (
         <MiTable

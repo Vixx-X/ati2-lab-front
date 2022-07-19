@@ -95,7 +95,7 @@ const Clients: NextPage = () => {
 
   const [currentRow, setCurrentRow] = useState<any>();
 
-  const [deletable,setDeletable]=useState(false);
+  const [deletable, setDeletable] = useState(false);
 
   const handleClickOpenCreate = () => {
     setOpenCreate(true);
@@ -123,8 +123,7 @@ const Clients: NextPage = () => {
     try {
       setInitial(await getClient(id));
       setEditable(true);
-    } catch (exception: any) {
-    }
+    } catch (exception: any) {}
   };
 
   useEffect(() => {
@@ -135,17 +134,17 @@ const Clients: NextPage = () => {
 
   const handleDeleteRow = (id: number) => {
     setId(id);
-    if(clientsData){
-      setCurrentRow(clientsData.filter((item:any)=>(item.id === id)));
+    if (clientsData) {
+      setCurrentRow(clientsData.filter((item: any) => item.id === id));
     }
-    setDeletable(true)
+    setDeletable(true);
   };
 
-  useEffect(()=>{
-    if(deletable){
+  useEffect(() => {
+    if (deletable) {
       handleClickOpenDelete();
     }
-  },[deletable])
+  }, [deletable]);
 
   // const [loading, setLoading] = useState(false);
 
@@ -275,7 +274,9 @@ const Clients: NextPage = () => {
           open={openDelete}
           handleClose={handleCloseDelete}
           handleSubmit={handleSubmitDelete}
-        >{`${t('Are you sure do you want to delete')} ${currentRow[0].first_name}?`}</Alert>
+        >{`${t('Are you sure do you want to delete')} ${
+          currentRow[0].first_name
+        }?`}</Alert>
       )}
       {clientsData ? (
         <MiTable

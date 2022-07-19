@@ -18,7 +18,11 @@ export const ProviderForm = () => {
     <div className="pt-4">
       <div className="flex gap-x-8">
         <div className="mb-4 text-sm basis-2/4">
-          <BusinessSelect multiple placeholder={t("select businesses")}name="businesses" />
+          <BusinessSelect
+            multiple
+            placeholder={t('select businesses')}
+            name="business"
+          />
         </div>
       </div>
       <div className="flex gap-x-8">
