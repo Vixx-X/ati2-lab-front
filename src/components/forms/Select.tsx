@@ -29,8 +29,6 @@ export const Select = ({
 
   const t = useTranslate();
 
-  console.log(name, values);
-
   return (
     <FormControl className="w-full">
       {!noPlaceholder && <InputLabel>{t(placeholder ?? 'Select')}</InputLabel>}
